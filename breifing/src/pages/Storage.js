@@ -93,6 +93,7 @@ const Storage = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+
   };
 
   // YY.MM.DD 로 포맷팅
@@ -149,7 +150,7 @@ const Storage = () => {
           method="dialog"
           className="modal-box h-2/3 px-1 bg-secondBgColor overflow-y-hidden"
         >
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <button className="btn btn-sm btn-circle btn-ghost ring-0 border-none absolute right-2 top-2">
             <Close className="w-5 h-5" />
           </button>
           <div className="mt-4 h-full flex flex-col">
