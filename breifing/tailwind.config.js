@@ -6,6 +6,36 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        xs: [
+          "10px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+        sm: [
+          "13px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+        base: [
+          "15px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+        lg: [
+          "24px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+      },
       colors: {
         primaryBgColor: "#4686CD",
         primaryTextColor: "#134D80",
