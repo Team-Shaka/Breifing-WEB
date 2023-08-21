@@ -1,4 +1,3 @@
-//tailwind.config.js
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -44,5 +43,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
