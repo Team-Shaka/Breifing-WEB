@@ -9,6 +9,7 @@ const BriefChat = () => {
   const [chatsWithTime, setChatsWithTime] = useState([]);
   const [chatId, setChatId] = useState();
   const [moreTen, setMoreTen] = useState();
+  const [loading, setLoading] = useState(true);
 
   const messageEndRef = useRef(null);
   const now = new Date();
@@ -39,6 +40,9 @@ const BriefChat = () => {
       }, 2000);
       return;
     }
+
+    setLoading(false);
+
     const prevChatsWhitoutTime = chatsWithTime.map((chat) => {
       const { time, ...others } = chat;
       return others;
@@ -63,6 +67,16 @@ const BriefChat = () => {
 
     setChatsWithTime(newChatsWithTimeNoResponse);
 
+    const loadingNewChatsWithTimeNoResponse = [
+      ...newChatsWithTimeNoResponse,
+      {
+        role: "Bot",
+        content: loading,
+        time: null,
+      },
+    ];
+    setChatsWithTime(loadingNewChatsWithTimeNoResponse);
+
     axios
       .post(
         `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/234`,
@@ -73,6 +87,7 @@ const BriefChat = () => {
       )
       .then((res) => {
         console.log(res);
+
         const newChatsWithTime = [
           ...newChatsWithTimeNoResponse,
           {
@@ -82,6 +97,7 @@ const BriefChat = () => {
           },
         ];
         setChatsWithTime(newChatsWithTime);
+        setLoading(true);
       })
       .catch((err) => console.log(err));
 
@@ -186,7 +202,11 @@ const BriefChat = () => {
         <div className="mb-20">
           {chatsWithTime.map((chat, i) =>
             chat.role === "Bot" ? (
-              <BotMessage key={i} content={chat.content} time={chat.time} />
+              i === chatsWithTime.length - 1 && loading ? (
+                <BotMessage key={i} loading={loading} />
+              ) : (
+                <BotMessage key={i} content={chat.content} time={chat.time} />
+              )
             ) : (
               <UserMessage key={i} content={chat.content} time={chat.time} />
             )
