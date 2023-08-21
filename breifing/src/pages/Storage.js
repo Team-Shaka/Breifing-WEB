@@ -2,10 +2,51 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BotMessage from "../components/BotMessage";
 import UserMessage from "../components/UserMessage";
+import { ReactComponent as Close } from "../assets/images/close.svg";
+
+// 모달 컴포넌트
+const Modal = ({ selectedChatting, onClose }) => {
+    return (
+        <dialog id="my_modal_3" className="modal" open>
+            <form
+                method="dialog"
+                className="modal-box h-2/3 px-0 bg-secondBgColor overflow-y-hidden"
+            >
+                <button
+                    className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                    onClick={onClose}
+                >
+                    <Close className="w-5 h-5" />
+                </button>
+                {/* Insert the code here */}
+                <div className="mt-4 h-full flex flex-col">
+                    <div className="flex-grow py-4 overflow-y-auto">
+                        {selectedChatting.messages.map((message) => (
+                            <div key={message.id}>
+                                {message.role === "Bot" ? (
+                                    <BotMessage
+                                        content={message.content}
+                                        time={message.created_at}
+                                    />
+                                ) : (
+                                    <UserMessage
+                                        content={message.content}
+                                        time={message.created_at}
+                                    />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </form>
+        </dialog>
+    );
+};
 
 const Storage = () => {
     const [chattings, setChattings] = useState([]);
     const [groupedChattings, setGroupedChattings] = useState({}); // 그룹화된 데이터 상태 추가
+    const [selectedChatting, setSelectedChatting] = useState([]);
 
     // 채팅 리스트 데이터 가져오기
     useEffect(() => {
@@ -15,67 +56,6 @@ const Storage = () => {
             )
             .then((response) => {
                 setChattings(response.data.chattings);
-                // 추가 예시 데이터
-                // const exampleChattings = [
-                //     {
-                //         id: 200,
-                //         title: "예시 채팅 1",
-                //         created_at: "2023/09/02T09:00:00",
-                //     },
-                //     {
-                //         id: 201,
-                //         title: "예시 채팅 2",
-                //         created_at: "2023/09/26T15:00:00",
-                //     },
-                //     {
-                //         id: 202,
-                //         title: "예시 채팅 3",
-                //         created_at: "2023/09/26T15:00:00",
-                //     },
-                //     {
-                //         id: 203,
-                //         title: "예시 채팅 4",
-                //         created_at: "2023/10/26T15:00:00",
-                //     },
-                //     {
-                //         id: 204,
-                //         title: "예시 채팅 5",
-                //         created_at: "2023/10/26T15:00:00",
-                //     },
-                //     {
-                //         id: 205,
-                //         title: "예시 채팅 6",
-                //         created_at: "2023/11/26T15:00:00",
-                //     },
-                //     {
-                //         id: 206,
-                //         title: "예시 채팅 7",
-                //         created_at: "2023/09/26T15:00:00",
-                //     },
-                //     {
-                //         id: 207,
-                //         title: "예시 채팅 8",
-                //         created_at: "2023/12/26T15:00:00",
-                //     },
-                //     {
-                //         id: 208,
-                //         title: "예시 채팅 9",
-                //         created_at: "2024/01/26T15:00:00",
-                //     },
-                //     {
-                //         id: 209,
-                //         title: "예시 채팅 10",
-                //         created_at: "2024/01/23T15:00:00",
-                //     },
-                // ];
-
-                // 기존 데이터와 예시 데이터 병합
-                // const combinedChattings = [
-                //     ...response.data.chattings,
-                //     ...exampleChattings,
-                // ];
-                // 병합된 데이터로 상태 업데이트
-                // setChattings(combinedChattings);
 
                 console.log(chattings);
             })
@@ -101,6 +81,19 @@ const Storage = () => {
 
         setGroupedChattings(updatedGroupedChattings);
     }, [chattings]);
+
+    // 클릭한 채팅의 정보 가져오기
+    const handleChattingClick = async (chattingId) => {
+        try {
+            const response = await axios.get(
+                `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/${chattingId}`
+            );
+            setSelectedChatting(response.data.messages);
+            console.log(selectedChatting);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
     // YY.MM.DD 로 포맷팅
     function formatDate(timeString) {
@@ -151,6 +144,35 @@ const Storage = () => {
 
     return (
         <div className=" bg-secondBgColor w-full h-screen overflow-y-scroll p-6">
+            <dialog id="my_modal_3" className="modal">
+                <form
+                    method="dialog"
+                    className="modal-box h-2/3 px-0 bg-secondBgColor overflow-y-hidden"
+                >
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        <Close className="w-5 h-5" />
+                    </button>
+                    <div className="mt-4 h-full flex flex-col">
+                        <div className="flex-grow py-4 overflow-y-auto">
+                            {selectedChatting.map((message) => (
+                                <div key={message.id}>
+                                    {message.role === "Bot" ? (
+                                        <BotMessage
+                                            content={message.content}
+                                            time={message.created_at}
+                                        />
+                                    ) : (
+                                        <UserMessage
+                                            content={message.content}
+                                            time={message.created_at}
+                                        />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </form>
+            </dialog>
             <div className="flex flex-col">
                 {Object.keys(groupedChattings).map((yearMonth) => (
                     <div key={yearMonth} className="month-section mb-7">
@@ -160,10 +182,19 @@ const Storage = () => {
                         <ul className="menu bg-white w-full rounded-lg">
                             {groupedChattings[yearMonth].map(
                                 (chatting, chatIndex) => (
-                                    <>
+                                    <div key={chatting.id}>
                                         {" "}
-                                        <li key={chatting.id}>
-                                            <div className="flex">
+                                        <li
+                                            key={chatting.id}
+                                            onClick={() => {
+                                                handleChattingClick(
+                                                    chatting.id
+                                                );
+                                                window.my_modal_3.showModal();
+                                            }}
+                                            className="cursor-pointer"
+                                        >
+                                            <div className="flex py-3">
                                                 <div className="flex-grow text-base text-primaryTextColor">
                                                     {formatChatTitle(
                                                         chatting.title
@@ -179,7 +210,7 @@ const Storage = () => {
                                         {chatIndex !==
                                             groupedChattings[yearMonth].length -
                                                 1 && <hr />}
-                                    </>
+                                    </div>
                                 )
                             )}
                         </ul>
