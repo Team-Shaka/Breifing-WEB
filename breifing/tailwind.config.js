@@ -5,6 +5,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        "bottom-sheet-up": {
+          "0%": { transform: "translateY(420px)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        "bottom-sheet-down": {
+          "0%": { transform: "translateY(-80px)" },
+          "100%": { transform: "translateY(0)" },
+        },
+      },
       fontSize: {
         xs: [
           "10px",

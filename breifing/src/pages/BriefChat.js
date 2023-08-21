@@ -8,7 +8,7 @@ const BriefChat = () => {
   const { register, reset, handleSubmit } = useForm();
   const [chatsWithTime, setChatsWithTime] = useState([]);
   const [chatId, setChatId] = useState();
-  const [moreTen, setMoreTen] = useState(false);
+  const [moreTen, setMoreTen] = useState();
 
   const messageEndRef = useRef(null);
 
@@ -29,8 +29,12 @@ const BriefChat = () => {
     setMoreTen(false);
   };
   const onValid = (data) => {
+    if (data.chat === "") return;
     if (chatsWithTime.length > 10) {
       setMoreTen(true);
+      setTimeout(function () {
+        setMoreTen(false);
+      }, 2000);
       return;
     }
     const prevChatsWhitoutTime = chatsWithTime.map((chat) => {
@@ -100,6 +104,9 @@ const BriefChat = () => {
         };
         setChatsWithTime([...chatsWithTime, firstChat]);
         setChatId(res.data.chatId);
+        const ids = localStorage.getItem("chatId");
+
+        console.log(ids);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -143,32 +150,30 @@ const BriefChat = () => {
               <UserMessage key={i} content={chat.content} time={chat.time} />
             )
           )}
-          {moreTen ? (
-            <div className="alert shadow-lg flex flex-row fixed top-1/2 gap-0 ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="stroke-info shrink-0 w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <div className="text-sm">
-                <div className="font-bold">질문 토큰이 만료되었습니다.</div>
-                <div className="text-xs">
-                  새 채팅 버튼을 눌러 새로운 대화를 시작해 주세요.
-                </div>
-              </div>
-              <button className="btn btn-sm" onClick={onClickDelete}>
-                delete
-              </button>
-            </div>
-          ) : null}
+          <div
+            className={
+              moreTen === undefined
+                ? "hidden"
+                : moreTen
+                ? "alert alert-error animate-[bottom-sheet-up_500ms_ease-in-out] shadow-xl flex flex-row fixed bottom-20 gap-0 space-x-2 text-white "
+                : "alert alert-error animate-[bottom-sheet-down_500ms_ease-in-out] shadow-xl flex flex-row fixed bottom-0 gap-0 space-x-2 text-white "
+            }
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>토큰 만료! 새 채팅을 생성해주세요</span>
+          </div>
           <div ref={messageEndRef}></div>
         </div>
 
