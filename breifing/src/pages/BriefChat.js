@@ -11,12 +11,14 @@ const BriefChat = () => {
   const [moreTen, setMoreTen] = useState();
 
   const messageEndRef = useRef(null);
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0"); // Month is zero-based
+  const day = String(now.getDate()).padStart(2, "0");
+
+  const nowDate = `${year}-${month}-${day}`;
 
   function getCurrentFormattedDate() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0"); // Month is zero-based
-    const day = String(now.getDate()).padStart(2, "0");
     const hours = String(now.getHours()).padStart(2, "0");
     const minutes = String(now.getMinutes()).padStart(2, "0");
     const seconds = String(now.getSeconds()).padStart(2, "0");
@@ -87,28 +89,62 @@ const BriefChat = () => {
   };
 
   const onClickNewChatBtn = () => {
-    setChatsWithTime([]);
+    localStorage.setItem("onClickNew", true);
+    window.location.reload();
   };
   useEffect(() => {
-    axios
-      .post(
-        `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings`
-      )
-      .then((res) => {
-        console.log(res);
-        const firstChat = {
-          role: "Bot",
-          content:
-            "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?",
-          time: res.data.created_at,
-        };
-        setChatsWithTime([...chatsWithTime, firstChat]);
-        setChatId(res.data.chatId);
-        const ids = localStorage.getItem("chatId");
+    const localChatids = localStorage.getItem("chatIds");
+    const prevDate = localStorage.getItem("date");
+    const prevClickNew = localStorage.getItem("onClickNew");
+    if (
+      localChatids === undefined ||
+      localChatids === null ||
+      prevDate !== nowDate ||
+      prevClickNew
+    ) {
+      // 처음실행시
+      // 새 채팅 눌렀을 시
+      // 날짜가 바뀌었을 때
+      axios
+        .post(
+          `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings`
+        )
+        .then((res) => {
+          console.log(res);
+          const firstChat = {
+            role: "Bot",
+            content:
+              "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?",
+            time: res.data.created_at,
+          };
+          setChatsWithTime([...chatsWithTime, firstChat]);
+          setChatId(res.data.id);
 
-        console.log(ids);
-      })
-      .catch((err) => console.log(err));
+          const ids = localChatids.split(",");
+          if (ids.length >= 1) {
+            const newLocalIds = `${localChatids},${res.data.id}`;
+            localStorage.setItem("chatIds", newLocalIds);
+          } else {
+            localStorage.setItem("chatIds", res.data.id);
+            localStorage.setItem("date", nowDate);
+            localStorage.setItem("onClickNew", false);
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      //나갔다가 들어왔을 떄
+      const id = localChatids.split(",")[-1];
+      axios
+        .get(
+          `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/234` //여기서 id넘겨야함
+        )
+        .then((res) => {
+          console.log(res);
+          setChatsWithTime(res.data.messages);
+          localStorage.setItem("date", nowDate);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   useEffect(() => {
@@ -118,10 +154,15 @@ const BriefChat = () => {
     <div className="h-screen flex flex-col">
       <div className="pl-7 pr-5 flex justify-between items-end bg-primaryBgColor pt-[9px] pb-[22px] w-screen fixed top-0">
         <div className="flex flex-col font-bold text-white">
-          <span className="text-[20px]">2023년 8월 7일</span>
+          <span className="text-[20px]">
+            {year}년 {month}월 {day}일
+          </span>
           <span className="text-[25px]">직접 물어보기</span>
         </div>
-        <div className="btn btn-xs flex items-center text-primaryTextColor bg-white space-x-0 rounded-[30px] gap-0">
+        <div
+          className="btn btn-xs flex items-center text-primaryTextColor bg-white space-x-0 rounded-[30px] gap-0"
+          onClick={onClickNewChatBtn}
+        >
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
