@@ -1,18 +1,47 @@
-//tailwind.config.js
 module.exports = {
-    content: [
-        "./src/**/*.{js,jsx,ts,tsx}",
-        "./src/components/**/*.{js,jsx,ts,tsx}",
-    ],
-    theme: {
-        extend: {
-            colors: {
-                primaryBgColor: "#4686CD",
-                primaryTextColor: "#134D80",
-                secondBgColor: "#F7F7F7",
-                secondTextColor: "#B6B6B6",
-            },
-        },
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/components/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontSize: {
+        xs: [
+          "10px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+        sm: [
+          "13px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+        base: [
+          "15px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+        lg: [
+          "24px",
+          {
+            lineHeight: "normal",
+            fontWeight: "400",
+          },
+        ],
+      },
+      colors: {
+        primaryBgColor: "#4686CD",
+        primaryTextColor: "#134D80",
+        secondBgColor: "#F7F7F7",
+        secondTextColor: "#B6B6B6",
+      },
     },
-    plugins: [require("daisyui")],
+  },
+  plugins: [require("daisyui")],
 };
