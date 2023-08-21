@@ -4,65 +4,27 @@ import BotMessage from "../components/BotMessage";
 import UserMessage from "../components/UserMessage";
 import { ReactComponent as Close } from "../assets/images/close.svg";
 
-// 모달 컴포넌트
-const Modal = ({ selectedChatting, onClose }) => {
-    return (
-        <dialog id="my_modal_3" className="modal" open>
-            <form
-                method="dialog"
-                className="modal-box h-2/3 px-0 bg-secondBgColor overflow-y-hidden"
-            >
-                <button
-                    className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                    onClick={onClose}
-                >
-                    <Close className="w-5 h-5" />
-                </button>
-                {/* Insert the code here */}
-                <div className="mt-4 h-full flex flex-col">
-                    <div className="flex-grow py-4 overflow-y-auto">
-                        {selectedChatting.messages.map((message) => (
-                            <div key={message.id}>
-                                {message.role === "Bot" ? (
-                                    <BotMessage
-                                        content={message.content}
-                                        time={message.created_at}
-                                    />
-                                ) : (
-                                    <UserMessage
-                                        content={message.content}
-                                        time={message.created_at}
-                                    />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </form>
-        </dialog>
-    );
-};
-
 const Storage = () => {
     const [chattings, setChattings] = useState([]);
     const [groupedChattings, setGroupedChattings] = useState({}); // 그룹화된 데이터 상태 추가
     const [selectedChatting, setSelectedChatting] = useState([]);
+    const [localStorageChatIds, setLocalStorageChatIds] = useState(""); // 로컬스토리지에 저장된 채팅 아이디들 문자열
 
     // 채팅 리스트 데이터 가져오기
     useEffect(() => {
         axios
             .get(
-                "https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings?ids=12%2C18%2C31%2C104"
+                `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings?ids=${localStorageChatIds}}`
             )
             .then((response) => {
                 setChattings(response.data.chattings);
 
-                console.log(chattings);
+                console.log(localStorageChatIds);
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
-    }, []);
+    }, [localStorageChatIds]);
 
     // 새로운 chattings 데이터가 업데이트될 때마다 그룹화 수행
     useEffect(() => {
@@ -126,24 +88,21 @@ const Storage = () => {
         return `${months[monthIndex]}, ${year}`;
     }
 
-    // Created_at 의 Year, Month 로 그룹화된 데이터 출력
-    for (const yearMonth in groupedChattings) {
-        console.log(`Year-Month: ${yearMonth}`);
-        groupedChattings[yearMonth].forEach((chatting) => {
-            console.log(
-                `  Title: ${chatting.title}, Created At: ${chatting.created_at}`
-            );
-        });
-        console.log("---");
-    }
-
     // title 글자 수 자르기
     const formatChatTitle = (title) => {
         return title.length > 15 ? `${title.slice(0, 15)}...` : title;
     };
 
+    // 로컬스토리지에 저장된 채팅 아이디들 가져오기
+    useEffect(() => {
+        const localChatids = localStorage.getItem("chatIds");
+        // ex : chatIds = "12,18,31,104"
+        setLocalStorageChatIds(localChatids);
+    }, []);
+
     return (
         <div className=" bg-secondBgColor w-full h-screen overflow-y-scroll p-6">
+            {/* 상세보기 모달창 */}
             <dialog id="my_modal_3" className="modal">
                 <form
                     method="dialog"
