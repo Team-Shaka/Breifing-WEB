@@ -10,6 +10,7 @@ import { ReactComponent as Logo } from "../../src/assets/images/logo.svg";
 // const time = "2023/08/21T13:00:00";
 
 function BotMessage({ content, time }) {
+
   function formatTime(timeString) {
     const [datePart, timePart] = timeString.split("T");
     const [year, month, day] = datePart.split("/");
@@ -31,17 +32,7 @@ function BotMessage({ content, time }) {
         <div className=" w-9 h-9 rounded-full border-2 border-primaryTextColor flex items-center justify-center">
           <Logo className="w-4 h-4" />
         </div>
-      </div>
-      <div className="message-box-wrap pr-5">
-        <div className="message-box text-primaryTextColor bg-white rounded-lg p-4">
-          <div className="text-base whitespace-pre-line">{content}</div>
-          <div className="flex justify-end text-xs text-secondTextColor">
-            {formattedTime}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default BotMessage;

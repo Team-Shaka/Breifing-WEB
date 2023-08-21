@@ -10,6 +10,7 @@ import { ReactComponent as You } from "../../src/assets/images/you.svg";
 // const time = "2023/08/21T13:00:00";
 
 function UserMessage({ content, time }) {
+
   function formatTime(timeString) {
     const [datePart, timePart] = timeString.split("T");
     const [year, month, day] = datePart.split("/");
