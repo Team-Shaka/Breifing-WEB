@@ -10,7 +10,6 @@ import { ReactComponent as You } from "../../src/assets/images/you.svg";
 // const time = "2023/08/21T13:00:00";
 
 function UserMessage({ content, time }) {
-
   function formatTime(timeString) {
     const [datePart, timePart] = timeString.split("T");
     const [year, month, day] = datePart.split("/");
@@ -27,7 +26,7 @@ function UserMessage({ content, time }) {
   const formattedTime = formatTime(time);
 
   return (
-    <div className="flex py-2 w-screen  ">
+    <div className="flex py-2 w-full  ">
       <div className="flex-1" />
       <div className="message-box-wrap pl-5 ">
         <div className="message-box text-primaryTextColor bg-white rounded-lg p-4">
