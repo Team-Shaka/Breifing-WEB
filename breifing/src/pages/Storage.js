@@ -147,7 +147,7 @@ const Storage = () => {
             <dialog id="my_modal_3" className="modal">
                 <form
                     method="dialog"
-                    className="modal-box h-2/3 px-0 bg-secondBgColor overflow-y-hidden"
+                    className="modal-box h-2/3 px-1 bg-secondBgColor overflow-y-hidden"
                 >
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                         <Close className="w-5 h-5" />

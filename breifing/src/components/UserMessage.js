@@ -32,7 +32,7 @@ function UserMessage({ content, time }) {
             <div className="message-box-wrap pl-5">
                 <div className="message-box text-primaryTextColor bg-white rounded-lg p-4">
                     <div className="text-base">{content}</div>
-                    <div className="flex justify-end text-xs text-secondTextColor">
+                    <div className="flex justify-end text-xs text-secondTextColor  mt-2">
                         {formattedTime}
                     </div>
                 </div>
