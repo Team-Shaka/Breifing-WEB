@@ -24,7 +24,6 @@ function BotMessage({ content, time }) {
   }
 
   const formattedTime = formatTime(time);
-  console.log(formattedTime);
 
   return (
     <div className="flex py-2">

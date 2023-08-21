@@ -1,23 +1,115 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import BotMessage from "../components/BotMessage";
+import UserMessage from "../components/UserMessage";
 import axios from "axios";
 
 const BriefChat = () => {
   const { register, reset, handleSubmit } = useForm();
-  const [chats, setChats] = useState([]);
-  const onValid = ({ chat }) => {
-    console.log(chat);
+  const [chatsWithTime, setChatsWithTime] = useState([]);
+  const [chatId, setChatId] = useState();
+  const [moreTen, setMoreTen] = useState(false);
+
+  const messageEndRef = useRef(null);
+
+  function getCurrentFormattedDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0"); // Month is zero-based
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+
+    const formattedDate = `${year}/${month}/${day}T${hours}:${minutes}:${seconds}`;
+    return formattedDate;
+  }
+
+  const onClickDelete = () => {
+    setMoreTen(false);
+  };
+  const onValid = (data) => {
+    if (chatsWithTime.length > 10) {
+      setMoreTen(true);
+      return;
+    }
+    const prevChatsWhitoutTime = chatsWithTime.map((chat) => {
+      const { time, ...others } = chat;
+      return others;
+    });
+
+    const newChatsWithoutTime = [
+      ...prevChatsWhitoutTime,
+      {
+        role: "User",
+        content: data.chat,
+      },
+    ];
+
+    const newChatsWithTimeNoResponse = [
+      ...chatsWithTime,
+      {
+        role: "User",
+        content: data.chat,
+        time: getCurrentFormattedDate(),
+      },
+    ];
+
+    setChatsWithTime(newChatsWithTimeNoResponse);
+
+    axios
+      .post(
+        `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/234`,
+        {
+          model: "gpt-3.5-turbo",
+          message: newChatsWithoutTime,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        const newChatsWithTime = [
+          ...newChatsWithTimeNoResponse,
+          {
+            role: res.data.role,
+            content: res.data.content,
+            time: res.data.created_at,
+          },
+        ];
+        setChatsWithTime(newChatsWithTime);
+      })
+      .catch((err) => console.log(err));
+
     reset();
   };
 
   const onClickNewChatBtn = () => {
-    setChats([]);
+    setChatsWithTime([]);
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios
+      .post(
+        `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings`
+      )
+      .then((res) => {
+        console.log(res);
+        const firstChat = {
+          role: "Bot",
+          content:
+            "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?",
+          time: res.data.created_at,
+        };
+        setChatsWithTime([...chatsWithTime, firstChat]);
+        setChatId(res.data.chatId);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [chatsWithTime]);
   return (
     <div className="h-screen flex flex-col">
-      <div className="pl-7 pr-5 flex justify-between items-end bg-primaryBgColor pt-[9px] pb-[22px]">
+      <div className="pl-7 pr-5 flex justify-between items-end bg-primaryBgColor pt-[9px] pb-[22px] w-screen fixed top-0">
         <div className="flex flex-col font-bold text-white">
           <span className="text-[20px]">2023년 8월 7일</span>
           <span className="text-[25px]">직접 물어보기</span>
@@ -28,13 +120,13 @@ const BriefChat = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="3"
+              strokeWidth="3"
               stroke="currentColor"
-              class="w-4 h-4"
+              className="w-4 h-4"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M12 4.5v15m7.5-7.5h-15"
               />
             </svg>
@@ -42,20 +134,49 @@ const BriefChat = () => {
           <span className="text-sm">새 채팅</span>
         </div>
       </div>
-      <div className="flex-1 bg-secondBgColor">
-        <div>
-          <BotMessage
-            content={
-              "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?"
-            }
-            time={"2023/08/21T13:00:00"}
-          />
+      <div className="flex-1 bg-secondBgColor mt-[100px]">
+        <div className="mb-20">
+          {chatsWithTime.map((chat, i) =>
+            chat.role === "Bot" ? (
+              <BotMessage key={i} content={chat.content} time={chat.time} />
+            ) : (
+              <UserMessage key={i} content={chat.content} time={chat.time} />
+            )
+          )}
+          {moreTen ? (
+            <div className="alert shadow-lg flex flex-row fixed top-1/2 gap-0 ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-info shrink-0 w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <div className="text-sm">
+                <div className="font-bold">질문 토큰이 만료되었습니다.</div>
+                <div className="text-xs">
+                  새 채팅 버튼을 눌러 새로운 대화를 시작해 주세요.
+                </div>
+              </div>
+              <button className="btn btn-sm" onClick={onClickDelete}>
+                delete
+              </button>
+            </div>
+          ) : null}
+          <div ref={messageEndRef}></div>
         </div>
-        <div className="w-screen py-[15px] bg-white px-[15px] fixed bottom-0">
+
+        <div className="w-screen py-[15px] bgWhite px-[15px] fixed bottom-0 bg-white">
           <form onSubmit={handleSubmit(onValid)} className="w-full relative">
             <input
               {...register("chat")}
-              className="input rounded-full w-full bg-[#F0F0F0] placeholder:text-[17px] placeholder:font-[#B6B6B6]"
+              className="input rounded-full w-full pr-12 bg-[#F0F0F0] placeholder:text-[17px] placeholder:font-[#B6B6B6]"
               placeholder="메시지를 입력하세요."
             />
             <button className="absolute right-5 top-3">
@@ -69,16 +190,16 @@ const BriefChat = () => {
                 <path
                   d="M21 1L10 12"
                   stroke="#134D80"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokewinecap="round"
+                  strokewinejoin="round"
                 />
                 <path
                   d="M21 1L14 21L10 12L1 8L21 1Z"
                   stroke="#134D80"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokewinecap="round"
+                  strokewinejoin="round"
                 />
               </svg>
             </button>
