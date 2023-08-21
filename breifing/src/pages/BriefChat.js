@@ -51,6 +51,39 @@ const BriefChat = () => {
             time={"2023/08/21T13:00:00"}
           />
         </div>
+        <div className="w-screen py-[15px] bg-white px-[15px] fixed bottom-0">
+          <form onSubmit={handleSubmit(onValid)} className="w-full relative">
+            <input
+              {...register("chat")}
+              className="input rounded-full w-full bg-[#F0F0F0] placeholder:text-[17px] placeholder:font-[#B6B6B6]"
+              placeholder="메시지를 입력하세요."
+            />
+            <button className="absolute right-5 top-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+              >
+                <path
+                  d="M21 1L10 12"
+                  stroke="#134D80"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M21 1L14 21L10 12L1 8L21 1Z"
+                  stroke="#134D80"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
