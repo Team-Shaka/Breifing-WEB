@@ -4,9 +4,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif, "product-sans";
+  font-family: "product-sans";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,5 +16,5 @@ code {
 
 @font-face {
   font-family: "product-sans";
-  src: url(./assets/fonts/ProductSans-Regular.ttf);
+  src: url('./assets/fonts/product-sans/Product\ Sans\ Regular.ttf');
 }
