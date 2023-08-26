@@ -9,7 +9,7 @@ const BriefChat = () => {
   const [chatsWithTime, setChatsWithTime] = useState([]);
   const [chatId, setChatId] = useState();
   const [moreTen, setMoreTen] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const messageEndRef = useRef(null);
   const now = new Date();
@@ -40,8 +40,7 @@ const BriefChat = () => {
       }, 2000);
       return;
     }
-
-    setLoading(false);
+    setLoading(true);
 
     const prevChatsWhitoutTime = chatsWithTime.map((chat) => {
       const { time, ...others } = chat;
@@ -51,7 +50,7 @@ const BriefChat = () => {
     const newChatsWithoutTime = [
       ...prevChatsWhitoutTime,
       {
-        role: "User",
+        role: "user",
         content: data.chat,
       },
     ];
@@ -59,45 +58,40 @@ const BriefChat = () => {
     const newChatsWithTimeNoResponse = [
       ...chatsWithTime,
       {
-        role: "User",
+        role: "user",
         content: data.chat,
         time: getCurrentFormattedDate(),
+      },
+      {
+        role: "assistant",
+        content: loading,
+        time: "null",
       },
     ];
 
     setChatsWithTime(newChatsWithTimeNoResponse);
 
-    const loadingNewChatsWithTimeNoResponse = [
-      ...newChatsWithTimeNoResponse,
-      {
-        role: "Bot",
-        content: loading,
-        time: null,
-      },
-    ];
-    setChatsWithTime(loadingNewChatsWithTimeNoResponse);
-
     axios
-      .post(
-        `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/234`,
-        {
-          model: "gpt-3.5-turbo",
-          message: newChatsWithoutTime,
-        }
-      )
+      .post(`${process.env.REACT_APP_BASE_URL}/chattings/${chatId}`, {
+        model: "gpt-3.5-turbo",
+        messages: newChatsWithoutTime,
+      })
       .then((res) => {
         console.log(res);
 
-        const newChatsWithTime = [
-          ...newChatsWithTimeNoResponse,
-          {
-            role: res.data.role,
-            content: res.data.content,
-            time: res.data.created_at,
-          },
-        ];
-        setChatsWithTime(newChatsWithTime);
-        setLoading(true);
+        setChatsWithTime((prevChats) => {
+          const updatedLastChat = {
+            ...prevChats[prevChats.length - 1], // 이전 마지막 요소 복사
+            content: res.data.content, // content 변경
+            time: res.data.time, // time 변경
+          };
+
+          return [
+            ...prevChats.slice(0, prevChats.length - 1), // 이전 요소들 복사
+            updatedLastChat, // 업데이트된 요소 추가
+          ];
+        });
+        setLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -122,22 +116,18 @@ const BriefChat = () => {
       // 새 채팅 눌렀을 시
       // 날짜가 바뀌었을 때
       axios
-        .post(
-          `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings`
-        )
+        .post(`${process.env.REACT_APP_BASE_URL}/chattings`)
         .then((res) => {
           console.log(res);
           const firstChat = {
-            role: "Bot",
+            role: "assistant",
             content:
               "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?",
             time: res.data.created_at,
           };
           setChatsWithTime([...chatsWithTime, firstChat]);
           setChatId(res.data.id);
-
-          const ids = localChatids.split(",");
-          if (ids.length >= 1) {
+          if (localChatids !== undefined) {
             const newLocalIds = `${localChatids},${res.data.id}`;
             localStorage.setItem("chatIds", newLocalIds);
           } else {
@@ -147,12 +137,12 @@ const BriefChat = () => {
           }
         })
         .catch((err) => console.log(err));
-    } else {
+    } else if (localChatids !== undefined) {
       //나갔다가 들어왔을 떄
       const id = localChatids.split(",")[-1];
       axios
         .get(
-          `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/234` //여기서 id넘겨야함
+          `${process.env.REACT_APP_BASE_URL}/chattings/${id}` //여기서 id넘겨야함
         )
         .then((res) => {
           console.log(res);
@@ -201,9 +191,11 @@ const BriefChat = () => {
       <div className="flex-1 bg-secondBgColor mt-[100px]">
         <div className="mb-20">
           {chatsWithTime.map((chat, i) =>
-            chat.role === "Bot" ? (
-              i === chatsWithTime.length - 1 && loading ? (
-                <BotMessage key={i} loading={loading} />
+            chat.role === "assistant" ? (
+              loading &&
+              chatsWithTime.length !== 1 &&
+              i === chatsWithTime.length - 1 ? (
+                <BotMessage key={i} loading={loading} time={chat.time} />
               ) : (
                 <BotMessage key={i} content={chat.content} time={chat.time} />
               )
