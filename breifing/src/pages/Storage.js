@@ -40,7 +40,7 @@ const Storage = () => {
 
         chattings.forEach((chatting) => {
             const datePart = chatting.created_at.split("T")[0];
-            const [year, month, day] = datePart.split("/");
+            const [year, month, day] = datePart.split("-");
 
             const yearMonth = `${year}.${month}`;
             if (!updatedGroupedChattings[yearMonth]) {
@@ -50,6 +50,7 @@ const Storage = () => {
         });
 
         setGroupedChattings(updatedGroupedChattings);
+        console.log(groupedChattings);
     }, [chattings]);
 
     // 클릭한 채팅의 정보 가져오기
@@ -59,7 +60,6 @@ const Storage = () => {
                 `${process.env.REACT_APP_BASE_URL}/chattings/${chattingId}`
             );
             setSelectedChatting(response.data.messages);
-            console.log(selectedChatting);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -68,7 +68,12 @@ const Storage = () => {
     // YY.MM.DD 로 포맷팅
     function formatDate(timeString) {
         const datePart = timeString.split("T")[0];
-        const [year, month, day] = datePart.split("/");
+        console.log("datePart:", datePart);
+        const [year, month, day] = datePart.split("-");
+        console.log("year:", year);
+        console.log("month:", month);
+        console.log("day:", day);
+        console.log(`${year.slice(-2)}.${month}.${day}`);
         return `${year.slice(-2)}.${month}.${day}`;
     }
 
