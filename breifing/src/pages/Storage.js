@@ -22,7 +22,7 @@ const Storage = () => {
         if (!localStorageChatIds) return;
         axios
             .get(
-                `${process.env.REACT_APP_BASE_URL}/chattings?ids=${localStorageChatIds}}`
+                `${process.env.REACT_APP_BASE_URL}/chattings?ids=${localStorageChatIds}`
             )
             .then((response) => {
                 setChattings(response.data.chattings);
