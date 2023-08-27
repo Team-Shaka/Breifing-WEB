@@ -3,6 +3,7 @@ import axios from "axios";
 import BotMessage from "../components/BotMessage";
 import UserMessage from "../components/UserMessage";
 import { ReactComponent as Close } from "../assets/images/close.svg";
+import attention from "../assets/images/attention.png";
 
 const Storage = () => {
     const [chattings, setChattings] = useState([]);
@@ -129,6 +130,18 @@ const Storage = () => {
             </dialog>
             {/* 채팅 리스트 */}
             <div className="flex flex-col">
+                {chattings.length === 0 && (
+                    <div className="flex flex-col h-screen justify-center items-center overflow-y-hidden">
+                        <img
+                            className="w-16 h-16 mb-10"
+                            src={attention}
+                            alt="storage"
+                        ></img>
+                        <div className=" text-base">
+                            채팅 스토리지가 비어있어요.
+                        </div>
+                    </div>
+                )}
                 {groupedChattings &&
                     Object.keys(groupedChattings).map((yearMonth) => (
                         <div key={yearMonth} className="month-section mb-7">
