@@ -168,10 +168,11 @@ const Storage = () => {
                                                     </div>
                                                 </div>
                                             </li>
-                                            {chatIndex !==
-                                                groupedChattings[yearMonth]
-                                                    .length -
-                                                    1 && <hr />}
+                                            {groupedChattings[yearMonth] &&
+                                                chatIndex !==
+                                                    groupedChattings[yearMonth]
+                                                        .length -
+                                                        1 && <hr />}
                                         </div>
                                     )
                                 )}
