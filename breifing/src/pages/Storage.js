@@ -19,6 +19,7 @@ const Storage = () => {
 
     // 채팅 리스트 데이터 가져오기
     useEffect(() => {
+        if (!localStorageChatIds) return;
         axios
             .get(
                 `${process.env.REACT_APP_BASE_URL}/chattings?ids=${localStorageChatIds}}`
