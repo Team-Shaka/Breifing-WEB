@@ -3,13 +3,14 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import BriefChat from "./pages/BriefChat";
 import Storage from "./pages/Storage";
+import Ready from "./pages/Ready";
 
 function App() {
     return (
         <div>
             <Routes>
                 <Route path="/briefChat" element={<BriefChat />} />
-                <Route path="/storage" element={<Storage />} />
+                <Route path="/storage" element={<Ready />} />
             </Routes>
         </div>
     );
