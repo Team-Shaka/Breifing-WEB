@@ -95,11 +95,6 @@ const Storage = () => {
         return `${months[monthIndex]}, ${year}`;
     }
 
-    // title 글자 수 자르기
-    const formatChatTitle = (title) => {
-        return title.length > 15 ? `${title.slice(0, 15)}...` : title;
-    };
-
     return (
         <div className=" bg-secondBgColor w-full h-screen overflow-y-scroll p-6">
             {/* 상세보기 모달창 */}
@@ -158,9 +153,7 @@ const Storage = () => {
                                                 >
                                                     <div className="flex py-3">
                                                         <div className="flex-grow text-base text-primaryTextColor">
-                                                            {formatChatTitle(
-                                                                chatting.title
-                                                            )}
+                                                            {chatting.title}
                                                         </div>
                                                         <div className="ml-auto text-secondTextColor text-sm">
                                                             {formatDate(
