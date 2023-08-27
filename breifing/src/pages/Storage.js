@@ -97,96 +97,131 @@ const Storage = () => {
     }
 
     return (
-        <div className=" bg-secondBgColor w-full h-screen overflow-y-scroll p-6">
-            {/* 상세보기 모달창 */}
-            <dialog id="my_modal_3" className="modal">
-                <form
-                    method="dialog"
-                    className="modal-box h-2/3 px-1 bg-secondBgColor overflow-y-hidden"
-                >
-                    <button className="btn btn-sm btn-circle btn-ghost focus:ring-0 focus:outline-none  border-none absolute right-2 top-2">
-                        <Close className="w-5 h-5" />
-                    </button>
-                    <div className="mt-4 h-full flex flex-col">
-                        <div className="flex-grow py-4 overflow-y-auto">
-                            {selectedChatting.map((message) => (
-                                <div key={message.id}>
-                                    {message.role === "assistant" ? (
-                                        <BotMessage
-                                            content={message.content}
-                                            time={message.created_at}
-                                        />
-                                    ) : (
-                                        <UserMessage
-                                            content={message.content}
-                                            time={message.created_at}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+        <>
+            {chattings.length === 0 ? (
+                <div className="flex flex-col h-screen justify-center items-center overflow-y-hidden">
+                    <img
+                        className="w-16 h-16 mb-10"
+                        src={attention}
+                        alt="storage"
+                    ></img>
+                    <div className=" text-base">
+                        채팅 스토리지가 비어있어요.
                     </div>
-                </form>
-            </dialog>
-            {/* 채팅 리스트 */}
-            <div className="flex flex-col">
-                {chattings.length === 0 && (
-                    <div className="flex flex-col h-screen justify-center items-center overflow-y-hidden">
-                        <img
-                            className="w-16 h-16 mb-10"
-                            src={attention}
-                            alt="storage"
-                        ></img>
-                        <div className=" text-base">
-                            채팅 스토리지가 비어있어요.
-                        </div>
-                    </div>
-                )}
-                {groupedChattings &&
-                    Object.keys(groupedChattings).map((yearMonth) => (
-                        <div key={yearMonth} className="month-section mb-7">
-                            <div className="text-primaryTextColor text-base mb-2 pl-4">
-                                {formatMonthYear(yearMonth)}
-                            </div>
-                            <ul className="menu bg-white w-full rounded-lg">
-                                {groupedChattings[yearMonth] &&
-                                    groupedChattings[yearMonth].map(
-                                        (chatting, chatIndex) => (
-                                            <div key={chatting.id}>
-                                                {" "}
-                                                <li
-                                                    key={chatting.id}
-                                                    onClick={() => {
-                                                        handleChattingClick(
-                                                            chatting.id
-                                                        );
-                                                        window.my_modal_3.showModal();
-                                                    }}
-                                                    className="cursor-pointer"
-                                                >
-                                                    <div className="flex py-3">
-                                                        <div className="flex-grow text-base text-primaryTextColor">
-                                                            {chatting.title}
-                                                        </div>
-                                                        <div className="ml-auto text-secondTextColor text-sm">
-                                                            {formatDate(
-                                                                chatting.created_at
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                {groupedChattings[yearMonth]
-                                                    .length -
-                                                    1 !==
-                                                    chatIndex && <hr />}
+                </div>
+            ) : (
+                <>
+                    <div className=" bg-secondBgColor w-full h-screen overflow-y-scroll p-6">
+                        {/* 상세보기 모달창 */}
+                        <dialog id="my_modal_3" className="modal">
+                            <form
+                                method="dialog"
+                                className="modal-box h-2/3 px-1 bg-secondBgColor overflow-y-hidden"
+                            >
+                                <button className="btn btn-sm btn-circle btn-ghost focus:ring-0 focus:outline-none  border-none absolute right-2 top-2">
+                                    <Close className="w-5 h-5" />
+                                </button>
+                                <div className="mt-4 h-full flex flex-col">
+                                    <div className="flex-grow py-4 overflow-y-auto">
+                                        {selectedChatting.map((message) => (
+                                            <div key={message.id}>
+                                                {message.role ===
+                                                "assistant" ? (
+                                                    <BotMessage
+                                                        content={
+                                                            message.content
+                                                        }
+                                                        time={
+                                                            message.created_at
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <UserMessage
+                                                        content={
+                                                            message.content
+                                                        }
+                                                        time={
+                                                            message.created_at
+                                                        }
+                                                    />
+                                                )}
                                             </div>
-                                        )
-                                    )}
-                            </ul>
+                                        ))}
+                                    </div>
+                                </div>
+                            </form>
+                        </dialog>
+                        {/* 채팅 리스트 */}
+                        <div className="flex flex-col">
+                            {groupedChattings &&
+                                Object.keys(groupedChattings).map(
+                                    (yearMonth) => (
+                                        <div
+                                            key={yearMonth}
+                                            className="month-section mb-7"
+                                        >
+                                            <div className="text-primaryTextColor text-base mb-2 pl-4">
+                                                {formatMonthYear(yearMonth)}
+                                            </div>
+                                            <ul className="menu bg-white w-full rounded-lg">
+                                                {groupedChattings[yearMonth] &&
+                                                    groupedChattings[
+                                                        yearMonth
+                                                    ].map(
+                                                        (
+                                                            chatting,
+                                                            chatIndex
+                                                        ) => (
+                                                            <div
+                                                                key={
+                                                                    chatting.id
+                                                                }
+                                                            >
+                                                                {" "}
+                                                                <li
+                                                                    key={
+                                                                        chatting.id
+                                                                    }
+                                                                    onClick={() => {
+                                                                        handleChattingClick(
+                                                                            chatting.id
+                                                                        );
+                                                                        window.my_modal_3.showModal();
+                                                                    }}
+                                                                    className="cursor-pointer"
+                                                                >
+                                                                    <div className="flex py-3">
+                                                                        <div className="flex-grow text-base text-primaryTextColor">
+                                                                            {
+                                                                                chatting.title
+                                                                            }
+                                                                        </div>
+                                                                        <div className="ml-auto text-secondTextColor text-sm">
+                                                                            {formatDate(
+                                                                                chatting.created_at
+                                                                            )}
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                {groupedChattings[
+                                                                    yearMonth
+                                                                ].length -
+                                                                    1 !==
+                                                                    chatIndex && (
+                                                                    <hr />
+                                                                )}
+                                                            </div>
+                                                        )
+                                                    )}
+                                            </ul>
+                                        </div>
+                                    )
+                                )}
                         </div>
-                    ))}
-            </div>
-        </div>
+                    </div>
+                </>
+            )}
+        </>
     );
 };
 
