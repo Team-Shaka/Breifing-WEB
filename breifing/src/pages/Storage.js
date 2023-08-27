@@ -27,7 +27,7 @@ const Storage = () => {
             .then((response) => {
                 setChattings(response.data.chattings);
 
-                console.log(localStorageChatIds);
+                // console.log(localStorageChatIds);
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
