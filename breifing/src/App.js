@@ -9,7 +9,7 @@ function App() {
     return (
         <div>
             <Routes>
-                <Route path="/briefChat" element={<BriefChat />} />
+                <Route path="/briefChat" element={<Ready />} />
                 <Route path="/storage" element={<Ready />} />
             </Routes>
         </div>
