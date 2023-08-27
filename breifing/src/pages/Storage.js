@@ -10,11 +10,18 @@ const Storage = () => {
     const [selectedChatting, setSelectedChatting] = useState([]);
     const [localStorageChatIds, setLocalStorageChatIds] = useState(""); // 로컬스토리지에 저장된 채팅 아이디들 문자열
 
+    // 로컬스토리지에 저장된 채팅 아이디들 가져오기
+    useEffect(() => {
+        const localChatids = localStorage.getItem("chatIds");
+        // ex : chatIds = "12,18,31,104"
+        setLocalStorageChatIds(localChatids);
+    }, []);
+
     // 채팅 리스트 데이터 가져오기
     useEffect(() => {
         axios
             .get(
-                `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings?ids=${localStorageChatIds}}`
+                `${process.env.REACT_APP_BASE_URL}/chattings?ids=${localStorageChatIds}}`
             )
             .then((response) => {
                 setChattings(response.data.chattings);
@@ -48,7 +55,7 @@ const Storage = () => {
     const handleChattingClick = async (chattingId) => {
         try {
             const response = await axios.get(
-                `https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io/chattings/${chattingId}`
+                `${process.env.REACT_APP_BASE_URL}/chattings/${chattingId}`
             );
             setSelectedChatting(response.data.messages);
             console.log(selectedChatting);
@@ -93,13 +100,6 @@ const Storage = () => {
         return title.length > 15 ? `${title.slice(0, 15)}...` : title;
     };
 
-    // 로컬스토리지에 저장된 채팅 아이디들 가져오기
-    useEffect(() => {
-        const localChatids = localStorage.getItem("chatIds");
-        // ex : chatIds = "12,18,31,104"
-        setLocalStorageChatIds(localChatids);
-    }, []);
-
     return (
         <div className=" bg-secondBgColor w-full h-screen overflow-y-scroll p-6">
             {/* 상세보기 모달창 */}
@@ -115,7 +115,7 @@ const Storage = () => {
                         <div className="flex-grow py-4 overflow-y-auto">
                             {selectedChatting.map((message) => (
                                 <div key={message.id}>
-                                    {message.role === "Bot" ? (
+                                    {message.role === "assistant" ? (
                                         <BotMessage
                                             content={message.content}
                                             time={message.created_at}
@@ -132,6 +132,7 @@ const Storage = () => {
                     </div>
                 </form>
             </dialog>
+            {/* 채팅 리스트 */}
             <div className="flex flex-col">
                 {Object.keys(groupedChattings).map((yearMonth) => (
                     <div key={yearMonth} className="month-section mb-7">
