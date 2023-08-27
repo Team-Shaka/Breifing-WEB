@@ -6,10 +6,15 @@ import axios from "axios";
 
 const BriefChat = () => {
   const { register, reset, handleSubmit } = useForm();
-  const [chatsWithTime, setChatsWithTime] = useState([]);
+
   const [chatId, setChatId] = useState();
   const [moreTen, setMoreTen] = useState();
   const [loading, setLoading] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+
+  const localChatids = localStorage.getItem("chatIds");
+  const prevDate = localStorage.getItem("date");
+  const prevClickNew = localStorage.getItem("onClickNew");
 
   const messageEndRef = useRef(null);
   const now = new Date();
@@ -27,11 +32,19 @@ const BriefChat = () => {
     const formattedDate = `${year}/${month}/${day}T${hours}:${minutes}:${seconds}`;
     return formattedDate;
   }
-
+  const [chatsWithTime, setChatsWithTime] = useState([
+    {
+      role: "assistant",
+      content:
+        "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?",
+      time: getCurrentFormattedDate(),
+    },
+  ]);
   const onClickDelete = () => {
     setMoreTen(false);
   };
-  const onValid = (data) => {
+
+  const onValid = async (data) => {
     if (data.chat === "") return;
     if (chatsWithTime.length > 10) {
       setMoreTen(true);
@@ -40,50 +53,77 @@ const BriefChat = () => {
       }, 2000);
       return;
     }
+
     setLoading(true);
 
-    const prevChatsWhitoutTime = chatsWithTime.map((chat) => {
-      const { time, ...others } = chat;
-      return others;
-    });
+    try {
+      let newChatId = chatId;
 
-    const newChatsWithoutTime = [
-      ...prevChatsWhitoutTime,
-      {
-        role: "user",
-        content: data.chat,
-      },
-    ];
+      if (!isValid) {
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/chattings`
+        );
+        console.log(response);
 
-    const newChatsWithTimeNoResponse = [
-      ...chatsWithTime,
-      {
-        role: "user",
-        content: data.chat,
-        time: getCurrentFormattedDate(),
-      },
-      {
-        role: "assistant",
-        content: loading,
-        time: "null",
-      },
-    ];
+        newChatId = response.data.id;
+        setChatId(newChatId);
 
-    setChatsWithTime(newChatsWithTimeNoResponse);
+        if (localChatids !== undefined && localChatids !== null) {
+          const newLocalIds = `${localChatids},${response.data.id}`;
+          localStorage.setItem("chatIds", newLocalIds);
+        } else {
+          localStorage.setItem("chatIds", response.data.id);
+          localStorage.setItem("date", nowDate);
+          localStorage.setItem("onClickNew", false);
+        }
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/chattings/${chatId}`, {
-        model: "gpt-3.5-turbo",
-        messages: newChatsWithoutTime,
-      })
-      .then((res) => {
-        console.log(res);
+        setIsValid(true);
+      }
+
+      const prevChatsWithoutTime = chatsWithTime.map((chat) => {
+        const { time, ...others } = chat;
+        return others;
+      });
+
+      const newChatsWithoutTime = [
+        ...prevChatsWithoutTime,
+        {
+          role: "user",
+          content: data.chat,
+        },
+      ];
+
+      const newChatsWithTimeNoResponse = [
+        ...chatsWithTime,
+        {
+          role: "user",
+          content: data.chat,
+          time: getCurrentFormattedDate(),
+        },
+        {
+          role: "assistant",
+          content: loading,
+          time: "null",
+        },
+      ];
+
+      setChatsWithTime(newChatsWithTimeNoResponse);
+
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/chattings/${newChatId}`,
+          {
+            model: "gpt-3.5-turbo",
+            messages: newChatsWithoutTime,
+          }
+        );
+        console.log(response);
 
         setChatsWithTime((prevChats) => {
           const updatedLastChat = {
             ...prevChats[prevChats.length - 1], // 이전 마지막 요소 복사
-            content: res.data.content, // content 변경
-            time: res.data.time, // time 변경
+            content: response.data.content, // content 변경
+            time: response.data.time, // time 변경
           };
 
           return [
@@ -92,58 +132,27 @@ const BriefChat = () => {
           ];
         });
         setLoading(false);
-      })
-      .catch((err) => console.log(err));
+      } catch (error) {
+        console.log(error);
+      }
 
-    reset();
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onClickNewChatBtn = () => {
     localStorage.setItem("onClickNew", true);
     window.location.reload();
   };
+
   useEffect(() => {
-    const localChatids = localStorage.getItem("chatIds");
-    const prevDate = localStorage.getItem("date");
-    const prevClickNew = localStorage.getItem("onClickNew");
-    if (
-      localChatids === undefined ||
-      localChatids === null ||
-      prevDate !== nowDate ||
-      prevClickNew
-    ) {
-      // 처음실행시
-      // 새 채팅 눌렀을 시
-      // 날짜가 바뀌었을 때
-      axios
-        .post(`${process.env.REACT_APP_BASE_URL}/chattings`)
-        .then((res) => {
-          console.log(res);
-          const firstChat = {
-            role: "assistant",
-            content:
-              "Brief는 어제의 이슈에 대해서 뉴스 등의 기사를 통해 정보를 제공합니다.\n\n해당 내용은 100% 신뢰할 수 없는 내용일 수 있으며, 높은 신뢰도를 위해서는 추천 기사 등을 통해 정보를 확인하시기 바랍니다.\n\n어떤 것이 궁금하신가요?",
-            time: res.data.created_at,
-          };
-          setChatsWithTime([...chatsWithTime, firstChat]);
-          setChatId(res.data.id);
-          if (localChatids !== undefined && localChatids !== null) {
-            const newLocalIds = `${localChatids},${res.data.id}`;
-            localStorage.setItem("chatIds", newLocalIds);
-          } else {
-            localStorage.setItem("chatIds", res.data.id);
-            localStorage.setItem("date", nowDate);
-            localStorage.setItem("onClickNew", false);
-          }
-        })
-        .catch((err) => console.log(err));
-    } else if (localChatids !== undefined) {
+    if (localChatids !== undefined && prevDate === nowDate) {
       //나갔다가 들어왔을 떄
       const id = localChatids.split(",")[-1];
       axios
-        .get(
-          `${process.env.REACT_APP_BASE_URL}/chattings/${id}` //여기서 id넘겨야함
-        )
+        .get(`${process.env.REACT_APP_BASE_URL}/chattings/${id}`)
         .then((res) => {
           console.log(res);
           setChatsWithTime(res.data.messages);
