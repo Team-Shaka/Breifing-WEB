@@ -68,12 +68,7 @@ const Storage = () => {
     // YY.MM.DD 로 포맷팅
     function formatDate(timeString) {
         const datePart = timeString.split("T")[0];
-        console.log("datePart:", datePart);
         const [year, month, day] = datePart.split("-");
-        console.log("year:", year);
-        console.log("month:", month);
-        console.log("day:", day);
-        console.log(`${year.slice(-2)}.${month}.${day}`);
         return `${year.slice(-2)}.${month}.${day}`;
     }
 
