@@ -50,7 +50,6 @@ const Storage = () => {
         });
 
         setGroupedChattings(updatedGroupedChattings);
-        console.log(groupedChattings);
     }, [chattings]);
 
     // 클릭한 채팅의 정보 가져오기
@@ -141,39 +140,41 @@ const Storage = () => {
                             {formatMonthYear(yearMonth)}
                         </div>
                         <ul className="menu bg-white w-full rounded-lg">
-                            {groupedChattings[yearMonth].map(
-                                (chatting, chatIndex) => (
-                                    <div key={chatting.id}>
-                                        {" "}
-                                        <li
-                                            key={chatting.id}
-                                            onClick={() => {
-                                                handleChattingClick(
-                                                    chatting.id
-                                                );
-                                                window.my_modal_3.showModal();
-                                            }}
-                                            className="cursor-pointer"
-                                        >
-                                            <div className="flex py-3">
-                                                <div className="flex-grow text-base text-primaryTextColor">
-                                                    {formatChatTitle(
-                                                        chatting.title
-                                                    )}
+                            {groupedChattings[yearMonth] &&
+                                groupedChattings[yearMonth].map(
+                                    (chatting, chatIndex) => (
+                                        <div key={chatting.id}>
+                                            {" "}
+                                            <li
+                                                key={chatting.id}
+                                                onClick={() => {
+                                                    handleChattingClick(
+                                                        chatting.id
+                                                    );
+                                                    window.my_modal_3.showModal();
+                                                }}
+                                                className="cursor-pointer"
+                                            >
+                                                <div className="flex py-3">
+                                                    <div className="flex-grow text-base text-primaryTextColor">
+                                                        {formatChatTitle(
+                                                            chatting.title
+                                                        )}
+                                                    </div>
+                                                    <div className="ml-auto text-secondTextColor text-sm">
+                                                        {formatDate(
+                                                            chatting.created_at
+                                                        )}
+                                                    </div>
                                                 </div>
-                                                <div className="ml-auto text-secondTextColor text-sm">
-                                                    {formatDate(
-                                                        chatting.created_at
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </li>
-                                        {chatIndex !==
-                                            groupedChattings[yearMonth].length -
-                                                1 && <hr />}
-                                    </div>
-                                )
-                            )}
+                                            </li>
+                                            {chatIndex !==
+                                                groupedChattings[yearMonth]
+                                                    .length -
+                                                    1 && <hr />}
+                                        </div>
+                                    )
+                                )}
                         </ul>
                     </div>
                 ))}
