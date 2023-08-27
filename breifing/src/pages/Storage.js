@@ -134,51 +134,53 @@ const Storage = () => {
             </dialog>
             {/* 채팅 리스트 */}
             <div className="flex flex-col">
-                {Object.keys(groupedChattings).map((yearMonth) => (
-                    <div key={yearMonth} className="month-section mb-7">
-                        <div className="text-primaryTextColor text-base mb-2 pl-4">
-                            {formatMonthYear(yearMonth)}
+                {groupedChattings &&
+                    Object.keys(groupedChattings).map((yearMonth) => (
+                        <div key={yearMonth} className="month-section mb-7">
+                            <div className="text-primaryTextColor text-base mb-2 pl-4">
+                                {formatMonthYear(yearMonth)}
+                            </div>
+                            <ul className="menu bg-white w-full rounded-lg">
+                                {groupedChattings[yearMonth] &&
+                                    groupedChattings[yearMonth].map(
+                                        (chatting, chatIndex) => (
+                                            <div key={chatting.id}>
+                                                {" "}
+                                                <li
+                                                    key={chatting.id}
+                                                    onClick={() => {
+                                                        handleChattingClick(
+                                                            chatting.id
+                                                        );
+                                                        window.my_modal_3.showModal();
+                                                    }}
+                                                    className="cursor-pointer"
+                                                >
+                                                    <div className="flex py-3">
+                                                        <div className="flex-grow text-base text-primaryTextColor">
+                                                            {formatChatTitle(
+                                                                chatting.title
+                                                            )}
+                                                        </div>
+                                                        <div className="ml-auto text-secondTextColor text-sm">
+                                                            {formatDate(
+                                                                chatting.created_at
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                {groupedChattings[yearMonth] &&
+                                                    chatIndex !==
+                                                        groupedChattings[
+                                                            yearMonth
+                                                        ].length -
+                                                            1 && <hr />}
+                                            </div>
+                                        )
+                                    )}
+                            </ul>
                         </div>
-                        <ul className="menu bg-white w-full rounded-lg">
-                            {groupedChattings[yearMonth] &&
-                                groupedChattings[yearMonth].map(
-                                    (chatting, chatIndex) => (
-                                        <div key={chatting.id}>
-                                            {" "}
-                                            <li
-                                                key={chatting.id}
-                                                onClick={() => {
-                                                    handleChattingClick(
-                                                        chatting.id
-                                                    );
-                                                    window.my_modal_3.showModal();
-                                                }}
-                                                className="cursor-pointer"
-                                            >
-                                                <div className="flex py-3">
-                                                    <div className="flex-grow text-base text-primaryTextColor">
-                                                        {formatChatTitle(
-                                                            chatting.title
-                                                        )}
-                                                    </div>
-                                                    <div className="ml-auto text-secondTextColor text-sm">
-                                                        {formatDate(
-                                                            chatting.created_at
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            {groupedChattings[yearMonth] &&
-                                                chatIndex !==
-                                                    groupedChattings[yearMonth]
-                                                        .length -
-                                                        1 && <hr />}
-                                        </div>
-                                    )
-                                )}
-                        </ul>
-                    </div>
-                ))}
+                    ))}
             </div>
         </div>
     );
