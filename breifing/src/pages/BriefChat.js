@@ -127,7 +127,7 @@ const BriefChat = () => {
           };
           setChatsWithTime([...chatsWithTime, firstChat]);
           setChatId(res.data.id);
-          if (localChatids !== undefined) {
+          if (localChatids !== undefined && localChatids !== null) {
             const newLocalIds = `${localChatids},${res.data.id}`;
             localStorage.setItem("chatIds", newLocalIds);
           } else {
