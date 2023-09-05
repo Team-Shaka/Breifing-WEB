@@ -175,7 +175,7 @@ const BriefChat = () => {
           <span className="text-[25px]">직접 물어보기</span>
         </div>
         <div
-          className="btn btn-xs flex items-center text-primaryTextColor bg-white space-x-0 rounded-[30px] gap-0"
+          className="btn btn-xs flex items-center text-primaryTextColor bg-white space-x-0 rounded-[30px] gap-0 border-none"
           onClick={onClickNewChatBtn}
         >
           <span>

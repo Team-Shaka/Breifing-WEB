@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: "product-sans";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -16,5 +9,13 @@ code {
 
 @font-face {
   font-family: "product-sans";
-  src: url('./assets/fonts/product-sans/Product\ Sans\ Regular.ttf');
+  src: url("./assets/fonts/product-sans/Product\ Sans\ Regular.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: "product-sans";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f7f7f7;
 }
