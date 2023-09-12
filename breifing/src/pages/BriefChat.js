@@ -8,7 +8,8 @@ const BriefChat = () => {
   const { register, reset, handleSubmit } = useForm();
 
   const [chatId, setChatId] = useState();
-  const [moreTen, setMoreTen] = useState();
+  const [moreThree, setMoreThree] = useState();
+  const [tokens, setTokens] = useState(3);
   const [loading, setLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
@@ -41,15 +42,15 @@ const BriefChat = () => {
     },
   ]);
   const onClickDelete = () => {
-    setMoreTen(false);
+    setMoreThree(false);
   };
 
   const onValid = async (data) => {
     if (data.chat === "") return;
-    if (chatsWithTime.length > 10) {
-      setMoreTen(true);
+    if (chatsWithTime.length > 6) {
+      setMoreThree(true);
       setTimeout(function () {
-        setMoreTen(false);
+        setMoreThree(false);
       }, 2000);
       return;
     }
@@ -118,12 +119,12 @@ const BriefChat = () => {
           }
         );
         console.log(response);
-
+        setTokens((prev) => prev - 1);
         setChatsWithTime((prevChats) => {
           const updatedLastChat = {
             ...prevChats[prevChats.length - 1], // 이전 마지막 요소 복사
             content: response.data.content, // content 변경
-            time: response.data.time, // time 변경
+            time: response.data.created_at, // time 변경
           };
 
           return [
@@ -140,6 +141,7 @@ const BriefChat = () => {
     } catch (error) {
       console.log(error);
     }
+    reset();
   };
 
   const onClickNewChatBtn = () => {
@@ -165,40 +167,55 @@ const BriefChat = () => {
   useEffect(() => {
     messageEndRef.current.scrollIntoView({ behavior: "smooth" });
   }, [chatsWithTime]);
+  console.log(chatsWithTime);
   return (
     <div className="h-screen flex flex-col">
-      <div className="pl-7 pr-5 flex justify-between items-end bg-primaryBgColor pt-[9px] pb-[22px] w-screen fixed top-0">
-        <div className="flex flex-col font-bold text-white">
-          <span className="text-[20px]">
-            {year}년 {month}월 {day}일
+      <div className="pl-7 pr-5 flex justify-between items-end bg-secondBgColor pt-16 pb-7 w-screen fixed top-0">
+        <div className="flex items-center justify-between w-full ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="24"
+            viewBox="0 0 14 24"
+            fill="none"
+          >
+            <path
+              d="M12 2L2 12L12 22"
+              stroke="#134D80"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span className="text-primaryTextColor text-lg font-normal">
+            #{"배터리 혁명"}
           </span>
-          <span className="text-[25px]">직접 물어보기</span>
-        </div>
-        <div
-          className="btn btn-xs flex items-center text-primaryTextColor bg-white space-x-0 rounded-[30px] gap-0 border-none"
-          onClick={onClickNewChatBtn}
-        >
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="3"
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </span>
-          <span className="text-sm">새 채팅</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="21"
+            viewBox="0 0 25 21"
+            fill="none"
+          >
+            <path
+              d="M24 10.2H17.1L14.8 13.65H10.2L7.9 10.2H1"
+              stroke="#134D80"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M4.9675 2.2765L1 10.2V17.1C1 17.71 1.24232 18.295 1.67365 18.7263C2.10499 19.1577 2.69 19.4 3.3 19.4H21.7C22.31 19.4 22.895 19.1577 23.3263 18.7263C23.7577 18.295 24 17.71 24 17.1V10.2L20.0325 2.2765C19.8421 1.89331 19.5486 1.57083 19.1849 1.34532C18.8212 1.11982 18.4019 1.00023 17.974 1H7.026C6.5981 1.00023 6.17875 1.11982 5.8151 1.34532C5.45145 1.57083 5.15791 1.89331 4.9675 2.2765Z"
+              stroke="#134D80"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </div>
       </div>
-      <div className="flex-1 bg-secondBgColor mt-[100px]">
-        <div className="mb-20">
+      <div className="flex-1 bg-secondBgColor mt-32 text-base">
+        <div className="mb-28">
           {chatsWithTime.map((chat, i) =>
             chat.role === "assistant" ? (
               loading &&
@@ -214,9 +231,9 @@ const BriefChat = () => {
           )}
           <div
             className={
-              moreTen === undefined
+              moreThree === undefined
                 ? "hidden"
-                : moreTen
+                : moreThree
                 ? "alert alert-error animate-[bottom-sheet-up_500ms_ease-in-out] shadow-xl flex flex-row fixed bottom-20 gap-0 space-x-2 text-white "
                 : "alert alert-error animate-[bottom-sheet-down_500ms_ease-in-out] shadow-xl flex flex-row fixed bottom-0 gap-0 space-x-2 text-white "
             }
@@ -239,8 +256,14 @@ const BriefChat = () => {
           <div ref={messageEndRef}></div>
         </div>
 
-        <div className="w-screen py-[15px] bgWhite px-[15px] fixed bottom-0 bg-white">
-          <form onSubmit={handleSubmit(onValid)} className="w-full relative">
+        <div className="w-screen pb-[15px] bg-secondBgColor  fixed bottom-0 ">
+          <div className="w-screen bg-white py-1 text-primaryTextColor text-sm flex justify-center my-4">
+            남은 메시지 토큰: {tokens}
+          </div>
+          <form
+            onSubmit={handleSubmit(onValid)}
+            className="w-full relative px-[15px]"
+          >
             <input
               {...register("chat")}
               className="input rounded-full w-full pr-12 bg-[#F0F0F0] placeholder:text-[17px] placeholder:font-[#B6B6B6]"
