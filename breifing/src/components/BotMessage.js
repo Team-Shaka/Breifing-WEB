@@ -12,7 +12,7 @@ import "./loading.css";
 
 function BotMessage({ content, time, loading }) {
   function formatTime(timeString) {
-    if (typeof timeString !== String) return "";
+    if (typeof timeString !== "string") return "";
     const [datePart, timePart] = timeString.split("T");
     const [year, month, day] = datePart.split("/");
     const [hours, minutes] = timePart.split(":");
@@ -21,7 +21,7 @@ function BotMessage({ content, time, loading }) {
     const period = parsedHours >= 12 ? "오후" : "오전";
     const formattedHours = parsedHours % 12 === 0 ? 12 : parsedHours % 12;
     const formattedMinutes = parseInt(minutes) === 0 ? "0" : parseInt(minutes);
-
+    console.log(period, formattedHours, formattedMinutes);
     return `${period} ${formattedHours}시 ${formattedMinutes}분`;
   }
 
@@ -47,7 +47,7 @@ function BotMessage({ content, time, loading }) {
               content
             )}
           </div>
-          <div className="flex justify-end text-xs text-secondTextColor">
+          <div className="flex justify-end text-xs text-secondTextColor pt-2">
             {formattedTime}
           </div>
         </div>
