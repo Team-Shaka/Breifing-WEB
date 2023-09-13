@@ -4,6 +4,10 @@ import BotMessage from "../components/BotMessage";
 import UserMessage from "../components/UserMessage";
 import axios from "axios";
 
+export function cls(...classnames) {
+  return classnames.join(" ");
+}
+
 const BriefChat = () => {
   const { register, reset, handleSubmit } = useForm();
 
@@ -182,12 +186,12 @@ const BriefChat = () => {
             <path
               d="M12 2L2 12L12 22"
               stroke="#134D80"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
-          <span className="text-primaryTextColor text-lg font-normal">
+          <span className="text-primaryTextColor textLg font-normal">
             #{"배터리 혁명"}
           </span>
           <svg
@@ -200,16 +204,16 @@ const BriefChat = () => {
             <path
               d="M24 10.2H17.1L14.8 13.65H10.2L7.9 10.2H1"
               stroke="#134D80"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M4.9675 2.2765L1 10.2V17.1C1 17.71 1.24232 18.295 1.67365 18.7263C2.10499 19.1577 2.69 19.4 3.3 19.4H21.7C22.31 19.4 22.895 19.1577 23.3263 18.7263C23.7577 18.295 24 17.71 24 17.1V10.2L20.0325 2.2765C19.8421 1.89331 19.5486 1.57083 19.1849 1.34532C18.8212 1.11982 18.4019 1.00023 17.974 1H7.026C6.5981 1.00023 6.17875 1.11982 5.8151 1.34532C5.45145 1.57083 5.15791 1.89331 4.9675 2.2765Z"
               stroke="#134D80"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>
@@ -231,27 +235,30 @@ const BriefChat = () => {
           )}
           <div
             className={
-              moreThree === undefined
+              cls(
+                "alert  flex flex-col shadow-md fixed space-y-1 bg-white",
+                moreThree === undefined
+                  ? "hidden"
+                  : moreThree
+                  ? " animate-[bottom-sheet-up_500ms_ease-in-out] bottom-40"
+                  : " animate-[bottom-sheet-down_500ms_ease-in-out] -bottom-20 "
+              )
+              /*  ismoreThree === undefined
                 ? "hidden"
-                : moreThree
-                ? "alert alert-error animate-[bottom-sheet-up_500ms_ease-in-out] shadow-xl flex flex-row fixed bottom-20 gap-0 space-x-2 text-white "
-                : "alert alert-error animate-[bottom-sheet-down_500ms_ease-in-out] shadow-xl flex flex-row fixed bottom-0 gap-0 space-x-2 text-white "
+                :  */
             }
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current shrink-0 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
+            <div className="text-[20px] font-bold">토큰 만료</div>
+            <div className="text-base">
+              토큰이 만료되어 추가 질문이 불가합니다. 추가 내용은
+              설정&#62;유의사항을 확인해주세요.
+            </div>
+            <div
+              onClick={() => setMoreThree(false)}
+              className="btn bg-[#C6C6C6] font-bold text-base p-2 roundedLg w-full"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>토큰 만료! 새 채팅을 생성해주세요</span>
+              확인
+            </div>
           </div>
           <div ref={messageEndRef}></div>
         </div>
