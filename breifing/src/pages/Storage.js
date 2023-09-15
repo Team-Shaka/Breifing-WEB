@@ -121,6 +121,10 @@ const Storage = () => {
                                 <button className="btn btn-sm btn-circle btn-ghost focus:ring-0 focus:outline-none  border-none absolute right-2 top-2">
                                     <Close className="w-5 h-5" />
                                 </button>
+                                {/* 키워드 헤더 */}
+                                <h3 className="text-lg text-primaryTextColor ml-4">
+                                    #{selectedChatting.briefingKeyword}
+                                </h3>
                                 <div className="mt-4 h-full flex flex-col">
                                     <div className="flex-grow py-4 overflow-y-auto">
                                         {selectedChatting.map((message) => (
