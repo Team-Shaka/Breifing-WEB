@@ -6,14 +6,14 @@ import Storage from "./pages/Storage";
 import Ready from "./pages/Ready";
 
 function App() {
-    return (
-        <div>
-            <Routes>
-                <Route path="/briefChat" element={<Ready />} />
-                <Route path="/storage" element={<Storage />} />
-            </Routes>
-        </div>
-    );
+  return (
+    <div>
+      <Routes>
+        <Route path="/briefChat" element={<Ready />} />
+        <Route path="/storage" element={<Storage />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
