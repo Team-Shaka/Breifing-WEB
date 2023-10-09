@@ -9,7 +9,7 @@ const BriefDetail = () => {
   const [loading, setLoading] = useState(false);
 
   const onClickDelete = () => {
-    alert("삭제되었습니다");
+    alert("삭제되었습니다.");
   };
   const onClickRe = () => {
     setLoading((prev) => !prev);
