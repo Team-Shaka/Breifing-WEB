@@ -10,6 +10,7 @@ function BriefList() {
     const [password, setPassword] = useState("");
     const [cookies, setCookie, removeCookie] = useCookies(["loggedIn"]);
     const [selectedDate, setSelectedDate] = useRecoilState(managingDateState);
+    const [inputError, setInputError] = useState(false);
 
     useEffect(() => {
         console.log("selectedDate:", selectedDate);
@@ -25,6 +26,8 @@ function BriefList() {
                 alert("세션이 만료되었습니다. 다시 로그인해주세요.");
                 window.location.reload();
             }, time * 1000); // 3초 후에 실행
+        } else {
+            setInputError(true);
         }
     };
 
@@ -36,7 +39,7 @@ function BriefList() {
                     <ManagingHeader showDatepicker={true} />
                     <div className="h-screen bg-primaryBgColor flex flex-col items-center pt-5">
                         {/* YYYY.MM.DD 키워드 브리핑 */}
-                        <div className="title text-5xl text-white font-bold">
+                        <div className="title text-5xl md:text-4xl sm:text-2xl text-white font-bold">
                             {selectedDate} 키워드 브리핑
                         </div>
                         <div className="lastUpdate text-gray-300 text-sm mt-3">
@@ -92,11 +95,18 @@ function BriefList() {
                     </div>
 
                     <input
-                        className="input w-full max-w-xs mt-8"
+                        className={`input w-48 ${
+                            inputError ? "input-bordered input-error" : ""
+                        } max-w-xs mt-8`}
                         type="password"
                         placeholder="Enter the Code"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleLogin(password);
+                            }
+                        }}
                     />
                     <button
                         className="btn w-32 bg-white text-primaryBgColor mt-3"
