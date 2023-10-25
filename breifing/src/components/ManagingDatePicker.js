@@ -24,17 +24,21 @@ function ManagingDatePicker() {
 
     return (
         <div>
-            <div>
-                <LocalizationProvider
-                    dateAdapter={AdapterDayjs}
-                    dateFormats={datePickerUtils}
+            <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                dateFormats={datePickerUtils}
+            >
+                <DemoContainer
+                    label="Responsive variant"
+                    components={["DatePicker"]}
                 >
-                    <DemoContainer components={["DatePicker"]}>
+                    <div className="bg-white rounded-md p-1 ">
                         <DatePicker
+                            label={`${selectedDate}`}
                             value={selectedDate.date}
                             slotProps={{
                                 textField: {
-                                    size: "medium",
+                                    size: "small",
                                 },
                             }}
                             format={datePickerFormat}
@@ -42,9 +46,9 @@ function ManagingDatePicker() {
                                 handleDateChange(newValue);
                             }}
                         />
-                    </DemoContainer>
-                </LocalizationProvider>
-            </div>
+                    </div>
+                </DemoContainer>
+            </LocalizationProvider>
         </div>
     );
 }
