@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ReactComponent as Exit } from "../assets/images/exit.svg";
 import ManagingDatePicker from "./ManagingDatePicker";
 import { useCookies } from "react-cookie";
@@ -12,12 +12,12 @@ function ManagingHeader({ showDatepicker }) {
         <div className="navbar bg-primaryBgColor">
             {/* 로고 */}
             <div className="navbar-start">
-                <a className="btn btn-ghost no-animation normal-case text-xl text-white">
+                <a className="btn btn-ghost no-animation normal-case lg:font-bold sm:font-bold lg:text-xl sm:text-base text-white">
                     Briefing
                 </a>
             </div>
             {/* 날짜 선택창 */}
-            <div className="navbar-center">
+            <div className="navbar-center pb-2">
                 {showDatepicker && <ManagingDatePicker />}
             </div>
             {/* 나가기 버튼 */}
@@ -26,10 +26,10 @@ function ManagingHeader({ showDatepicker }) {
                     onClick={() => {
                         handleLogout();
                     }}
-                    className="btn btn-ghost text-white border-none"
+                    className="btn btn-ghost lg:text-xl sm:text-base text-white border-none"
                 >
-                    나가기
-                    <Exit className="w-9 h-9 pt-1 fill-white" />
+                    <div className="lg:inline sm:hidden pb-1">나가기</div>
+                    <Exit className="lg:w-11 lg:h-11 sm:w-10 sm:h-10 pt-1 fill-white" />
                 </button>
             </div>
         </div>

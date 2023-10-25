@@ -50,12 +50,12 @@ module.exports = {
                 primaryTextColor: "#134D80",
                 secondBgColor: "#F7F7F7",
                 secondTextColor: "#B6B6B6",
+                thirdTextColor: "#93A8D0",
             },
         },
         screens: {
-            sm: { min: "390px", max: "819px" },
-            md: { min: "820px", max: "1023px" },
-            lg: { min: "1024px" },
+            sm: "375px", // mobile screen size
+            lg: "768px", // tablet, desktop screen size
         },
     },
     plugins: [require("daisyui")],

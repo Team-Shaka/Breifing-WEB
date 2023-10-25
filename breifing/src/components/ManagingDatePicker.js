@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -24,17 +24,20 @@ function ManagingDatePicker() {
 
     return (
         <div>
-            <div>
-                <LocalizationProvider
-                    dateAdapter={AdapterDayjs}
-                    dateFormats={datePickerUtils}
+            <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                dateFormats={datePickerUtils}
+            >
+                <DemoContainer
+                    label="Responsive variant"
+                    components={["DatePicker"]}
                 >
-                    <DemoContainer components={["DatePicker"]}>
+                    <div className="bg-white rounded-md">
                         <DatePicker
                             value={selectedDate.date}
                             slotProps={{
                                 textField: {
-                                    size: "medium",
+                                    size: "small",
                                 },
                             }}
                             format={datePickerFormat}
@@ -42,9 +45,9 @@ function ManagingDatePicker() {
                                 handleDateChange(newValue);
                             }}
                         />
-                    </DemoContainer>
-                </LocalizationProvider>
-            </div>
+                    </div>
+                </DemoContainer>
+            </LocalizationProvider>
         </div>
     );
 }
