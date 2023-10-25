@@ -5,16 +5,45 @@ import ManagingHeader from "../components/ManagingHeader";
 import { useRecoilState } from "recoil";
 import { managingDateState } from "../recoil/atoms/managingDateState";
 import { ReactComponent as Left } from "../assets/images/left.svg";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function BriefList() {
     const [password, setPassword] = useState("");
-    const [cookies, setCookie, removeCookie] = useCookies(["loggedIn"]);
-    const [selectedDate, setSelectedDate] = useRecoilState(managingDateState);
+    const [cookies, setCookie] = useCookies(["loggedIn"]);
+    const [selectedDate] = useRecoilState(managingDateState);
     const [inputError, setInputError] = useState(false);
+    const [briefings, setBriefings] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [lastUpdate, setLastUpdate] = useState("");
 
     useEffect(() => {
         console.log("selectedDate:", selectedDate);
-    }, [selectedDate]);
+
+        // GET briefing list
+        if (cookies.loggedIn) {
+            setIsLoading(true);
+            axios
+                .get(
+                    `https://dev.newsbreifing.store/briefings?type=KOREA&date=${selectedDate}`
+                    // `https://dev.newsbreifing.store/briefings?type=KOREA&date=2023-10-20`
+                )
+                .then((res) => {
+                    setIsLoading(false);
+
+                    if (res.data.isSuccess) {
+                        setBriefings(res.data.result.briefings);
+                        setLastUpdate(res.data.result.createdAt);
+                    } else {
+                        console.error(res.data.code, res.data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("API 호출 오류: ", error);
+                    setIsLoading(false);
+                });
+        }
+    }, [selectedDate, cookies.loggedIn]);
 
     const handleLogin = (password) => {
         if (password === "1234") {
@@ -37,48 +66,50 @@ function BriefList() {
                 // 로그인 후 페이지
                 <div>
                     <ManagingHeader showDatepicker={true} />
-                    <div className="h-screen bg-primaryBgColor flex flex-col items-center pt-5">
+                    <div className="h-screen overflow-y-auto bg-primaryBgColor flex flex-col items-center">
                         {/* YYYY.MM.DD 키워드 브리핑 */}
-                        <div className="title text-5xl md:text-4xl sm:text-2xl text-white font-bold">
+                        <div className="title lg:text-4xl sm:text-2xl text-white font-bold mt-3">
                             {selectedDate} 키워드 브리핑
                         </div>
                         <div className="lastUpdate text-gray-300 text-sm mt-3">
-                            Updated: 00.00.00 0AM
+                            Updated: {lastUpdate}
                         </div>
 
                         {/* brief list */}
-                        <div className="flex flex-col w-2/3 mt-3">
+                        <div className="flex flex-col my-3">
                             {/* brief card */}
-                            <div className="flex flex-row h-20 border-none bg-white mt-3 card rounded-box place-items-center">
-                                <div className="brief-rank text-lg px-8 text-primaryTextColor">
-                                    1
+                            {isLoading ? (
+                                <div className="text-white">Loading...</div>
+                            ) : briefings.length === 0 ? (
+                                <div className=" text-white">
+                                    {selectedDate} 의 브리핑 데이터를 불러올 수
+                                    없습니다.
                                 </div>
-                                <div className="content-wrap w-full flex flex-col">
-                                    <div className=" text-lg font-bold text-primaryTextColor">
-                                        배터리 혁명
-                                    </div>
-                                    <div className=" text-smfont-bold text-secondTextColor">
-                                        2차 전지 혁명으로 인한 놀라운 발전과...
-                                    </div>
-                                </div>
-                                {/* go to detail */}
-                                <Left className=" mx-5 w-7 h-7" />
-                            </div>
-                            <div className="flex flex-row h-20 border-none bg-white mt-3 card rounded-box place-items-center">
-                                <div className="brief-rank text-lg px-8 text-primaryTextColor">
-                                    2
-                                </div>
-                                <div className="content-wrap w-full flex flex-col">
-                                    <div className=" text-lg font-bold text-primaryTextColor">
-                                        배터리 혁명
-                                    </div>
-                                    <div className=" text-smfont-bold text-secondTextColor">
-                                        2차 전지 혁명으로 인한 놀라운 발전과...
-                                    </div>
-                                </div>
-                                {/* go to detail */}
-                                <Left className=" mx-5 w-7 h-7" />
-                            </div>
+                            ) : (
+                                // briefing data is loaded
+                                briefings.map((briefing, index) => (
+                                    <Link to={`briefing/${briefing.id}`}>
+                                        <div
+                                            key={index}
+                                            className="flex flex-row lg:h-20 sm:h-16 border-none bg-white mt-3 card rounded-box place-items-center"
+                                        >
+                                            <div className="briefing-rank lg:text-lg sm:text-base lg:px-8 sm:px-5 text-primaryTextColor">
+                                                {briefing.ranks}
+                                            </div>
+                                            <div className="content-wrap w-full flex flex-col">
+                                                <div className="briefing-title  lg:text-lg sm:text-base text-primaryTextColor">
+                                                    {briefing.title}
+                                                </div>
+                                                <div className="briefing-subtitle lg:text-base sm:text-sm text-thirdTextColor">
+                                                    {briefing.subtitle}
+                                                </div>
+                                            </div>
+                                            {/* go to detail */}
+                                            <Left className=" mx-5 w-7 h-7" />
+                                        </div>
+                                    </Link>
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>

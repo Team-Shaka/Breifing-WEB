@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -32,9 +32,8 @@ function ManagingDatePicker() {
                     label="Responsive variant"
                     components={["DatePicker"]}
                 >
-                    <div className="bg-white rounded-md p-1 ">
+                    <div className="bg-white rounded-md">
                         <DatePicker
-                            label={`${selectedDate}`}
                             value={selectedDate.date}
                             slotProps={{
                                 textField: {
