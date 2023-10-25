@@ -12,12 +12,12 @@ function ManagingHeader({ showDatepicker }) {
         <div className="navbar bg-primaryBgColor">
             {/* 로고 */}
             <div className="navbar-start">
-                <a className="btn btn-ghost no-animation normal-case lg:text-xl sm:text-base text-white">
+                <a className="btn btn-ghost no-animation normal-case lg:font-bold sm:font-bold lg:text-xl sm:text-base text-white">
                     Briefing
                 </a>
             </div>
             {/* 날짜 선택창 */}
-            <div className="navbar-center">
+            <div className="navbar-center pb-2">
                 {showDatepicker && <ManagingDatePicker />}
             </div>
             {/* 나가기 버튼 */}

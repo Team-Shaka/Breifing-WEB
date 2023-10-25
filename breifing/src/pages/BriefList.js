@@ -76,7 +76,7 @@ function BriefList() {
                         </div>
 
                         {/* brief list */}
-                        <div className="flex flex-col my-3">
+                        <div className="flex flex-col lg:w-2/3 sm:w-5/6 my-3">
                             {/* brief card */}
                             {isLoading ? (
                                 <div className="text-white">Loading...</div>
@@ -91,7 +91,7 @@ function BriefList() {
                                     <Link to={`briefing/${briefing.id}`}>
                                         <div
                                             key={index}
-                                            className="flex flex-row lg:h-20 sm:h-16 border-none bg-white mt-3 card rounded-box place-items-center"
+                                            className="flex flex-row w-full lg:h-20 sm:h-16 border-none bg-white mt-3 card rounded-box place-items-center"
                                         >
                                             <div className="briefing-rank lg:text-lg sm:text-base lg:px-8 sm:px-5 text-primaryTextColor">
                                                 {briefing.ranks}
