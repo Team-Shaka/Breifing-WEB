@@ -101,10 +101,15 @@ function BriefList() {
                                                     {briefing.title}
                                                 </div>
                                                 <div className="briefing-subtitle lg:text-base sm:text-sm text-thirdTextColor">
-                                                    {briefing.subtitle}
+                                                    {briefing.subtitle.length >
+                                                    20
+                                                        ? briefing.subtitle.slice(
+                                                              0,
+                                                              20
+                                                          ) + "..."
+                                                        : briefing.subtitle}
                                                 </div>
                                             </div>
-                                            {/* go to detail */}
                                             <Left className=" mx-5 w-7 h-7" />
                                         </div>
                                     </Link>
@@ -139,11 +144,12 @@ function BriefList() {
                             }
                         }}
                     />
+
                     <button
-                        className="btn w-32 bg-white text-primaryBgColor mt-3"
+                        className="bg-white rounded-lg font-bold text-primaryBgColor px-2 py-1 mt-3"
                         onClick={() => handleLogin(password)}
                     >
-                        Enter
+                        ENTER
                     </button>
                 </div>
             )}
