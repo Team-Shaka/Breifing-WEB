@@ -25,16 +25,16 @@ const BriefDetail = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="h-screen flex flex-col justify-start items-center bg-primaryBgColor ">
+    <div className="sm:h-screen flex flex-col justify-start items-center bg-primaryBgColor ">
       <ManagingHeader showDatepicker={false} />
-      <div className="  md:w-[768px]  bg-white rounded-lg px-4 pt-2 pb-4 text-primaryTextColor">
+      <div className="  lg:w-2/3 sm:w-5/6 bg-white rounded-lg px-4 py-5 text-primaryTextColor">
         <div className="text-right text-sm text-[#93A8D0]">
           {data?.date} Briefing #{data?.ranks}
         </div>
         <div className="font-bold">
           <div className="text-4xl">{data?.title}</div>
           <div className="mt-3 mb-4 ">{data?.subtitle}</div>
-          <div className="text-base leading-8 flex justify-center items-center h-40">
+          <div className="text-base leading-8 flex justify-center items-center ">
             {loading ? (
               <div className="three-body">
                 <div className="three-body__dot"></div>
@@ -81,7 +81,7 @@ const BriefDetail = () => {
           </div>
         </div>
       </div>
-      <div className="mt-5 flex justify-between items-center w-full font-bold">
+      <div className="mt-5 flex justify-between items-center w-full font-bold pb-3 bg-primaryBgColor">
         <Link
           to="/managing"
           className="bg-white rounded-lg text-primaryBgColor px-2 py-1"
