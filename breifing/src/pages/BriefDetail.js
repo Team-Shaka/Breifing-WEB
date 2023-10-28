@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../components/loading.css";
+import ManagingHeader from "../components/ManagingHeader";
 
 const BriefDetail = () => {
   const { id } = useParams();
@@ -16,15 +17,16 @@ const BriefDetail = () => {
   };
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/briefings/${id}`)
+      .get(`https://dev.newsbreifing.store/briefings/${id}`)
       .then((res) => {
         console.log(res);
-        setData(res.data);
+        setData(res.data.result);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <div className="h-screen flex flex-col justify-start items-center bg-primaryBgColor ">
+      <ManagingHeader showDatepicker={false} />
       <div className="  md:w-[768px]  bg-white rounded-lg px-4 pt-2 pb-4 text-primaryTextColor">
         <div className="text-right text-sm text-[#93A8D0]">
           {data?.date} Briefing #{data?.ranks}
@@ -79,7 +81,7 @@ const BriefDetail = () => {
           </div>
         </div>
       </div>
-      <div className="mt-5 flex justify-between items-center md:w-[768px]  font-bold">
+      <div className="mt-5 flex justify-between items-center w-full font-bold">
         <Link
           to="/managing"
           className="bg-white rounded-lg text-primaryBgColor px-2 py-1"
