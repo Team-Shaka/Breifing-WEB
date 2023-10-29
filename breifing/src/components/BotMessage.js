@@ -12,7 +12,13 @@ import "./loading.css";
 
 function BotMessage({ content, time, loading }) {
   function formatTime(timeString) {
-    if (typeof timeString !== "string" || timeString === "") return "";
+    if (
+      typeof timeString !== "string" ||
+      timeString === "" ||
+      timeString === null
+    )
+      return "";
+
     const [datePart, timePart] = timeString.split("T");
     const [year, month, day] = datePart.split("/");
     const [hours, minutes] = timePart.split(":");
