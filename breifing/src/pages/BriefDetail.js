@@ -81,7 +81,7 @@ const BriefDetail = () => {
           </div>
         </div>
       </div>
-      <div className="mt-5 flex justify-between items-center w-full font-bold pb-3 bg-primaryBgColor">
+      <div className="lg:w-2/3 sm:w-5/6  mt-5 flex justify-between items-center w-full font-bold pb-3 bg-primaryBgColor">
         <Link
           to="/managing"
           className="bg-white rounded-lg text-primaryBgColor px-2 py-1"
