@@ -4,7 +4,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useRecoilState } from "recoil";
-import { managingDateState } from "../recoil/atoms/managingDateState";
+import { managingDateState } from "../../recoil/atoms/managingDateState";
 import dayjs from "dayjs";
 
 function ManagingDatePicker() {

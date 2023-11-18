@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import BotMessage from "../components/BotMessage";
-import UserMessage from "../components/UserMessage";
+import BotMessage from "../components/chatComs/BotMessage";
+import UserMessage from "../components/chatComs/UserMessage";
 import { ReactComponent as Close } from "../assets/images/close.svg";
 import attention from "../assets/images/attention.png";
 
@@ -130,7 +130,7 @@ const Storage = () => {
                                         {selectedChatting.map((message) => (
                                             <div key={message.id}>
                                                 {message.role ===
-                                                "assistant" ? (
+                                                    "assistant" ? (
                                                     <BotMessage
                                                         content={
                                                             message.content
@@ -212,8 +212,8 @@ const Storage = () => {
                                                                 ].length -
                                                                     1 !==
                                                                     chatIndex && (
-                                                                    <hr />
-                                                                )}
+                                                                        <hr />
+                                                                    )}
                                                             </div>
                                                         )
                                                     )}

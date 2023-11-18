@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Logo } from "../../src/assets/images/logo.svg";
+import { ReactComponent as Logo } from "../../../src/assets/images/logo.svg";
 import "./loading.css";
 
 // params 예시

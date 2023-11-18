@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { ReactComponent as GPT4 } from "../assets/images/GPT_logo.svg";
-import ManagingHeader from "../components/ManagingHeader";
+import ManagingHeader from "../components/chatComs/ManagingHeader";
 import { useRecoilState } from "recoil";
 import { managingDateState } from "../recoil/atoms/managingDateState";
 import { ReactComponent as Left } from "../assets/images/left.svg";
@@ -102,11 +102,11 @@ function BriefList() {
                                                 </div>
                                                 <div className="briefing-subtitle lg:text-base sm:text-sm text-thirdTextColor">
                                                     {briefing.subtitle.length >
-                                                    20
+                                                        20
                                                         ? briefing.subtitle.slice(
-                                                              0,
-                                                              20
-                                                          ) + "..."
+                                                            0,
+                                                            20
+                                                        ) + "..."
                                                         : briefing.subtitle}
                                                 </div>
                                             </div>
@@ -131,9 +131,8 @@ function BriefList() {
                     </div>
 
                     <input
-                        className={`input w-48 ${
-                            inputError ? "input-bordered input-error" : ""
-                        } max-w-xs mt-8`}
+                        className={`input w-48 ${inputError ? "input-bordered input-error" : ""
+                            } max-w-xs mt-8`}
                         type="password"
                         placeholder="Enter the Code"
                         value={password}
