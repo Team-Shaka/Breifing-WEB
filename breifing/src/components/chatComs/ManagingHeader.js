@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Exit } from "../assets/images/exit.svg";
+import { ReactComponent as Exit } from "../../assets/images/exit.svg";
 import ManagingDatePicker from "./ManagingDatePicker";
 import { useCookies } from "react-cookie";
 

@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "../components/loading.css";
-import ManagingHeader from "../components/ManagingHeader";
+import "../components/chatComs/loading.css";
+import ManagingHeader from "../components/chatComs/ManagingHeader.js";
 
 const BriefDetail = () => {
   const { id } = useParams();

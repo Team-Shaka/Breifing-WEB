@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as You } from "../../src/assets/images/you.svg";
+import { ReactComponent as You } from "../../../src/assets/images/you.svg";
 
 // params 예시
 
