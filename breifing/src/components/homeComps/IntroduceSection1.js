@@ -5,7 +5,7 @@ function IntroduceSection1() {
     return (
         <div className="flex flex-row px-24 justify-center items-center bg-white h-[400px]">
             <div className="flex flex-col mx-12 w-2/3">
-                <div className="text-left text-primaryBgColor text-[35px] font-bold font-bold">
+                <div className="text-left text-primaryBgColor text-[35px] font-bold leading-tight">
                     뉴스를 파악하세요. <br />
                     쉽게, 빠르게, 중립적으로.
                 </div>
