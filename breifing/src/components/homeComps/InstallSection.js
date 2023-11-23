@@ -25,7 +25,7 @@ function InstallSection() {
                 </div>
             </div>
             <div className="flex justify-center mt-9 lg:mt-auto lg:w-1/2">
-                <InstallSectionImage className="w-[195px] h-[200px] lg:h-[417px]" />
+                <InstallSectionImage className="w-[195px] h-[200px] lg:w-[417px] lg:h-[417px]" />
             </div>
         </div>
     );
