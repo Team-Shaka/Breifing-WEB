@@ -3,7 +3,7 @@ import { ReactComponent as IntroduceSection2Image } from "../../assets/images/in
 
 function IntroduceSection2() {
     return (
-        <div className="flex flex-row px-24 justify-center items-center bg-white h-[400px]">
+        <div className="flex flex-row px-20 justify-center items-center bg-white h-[400px]">
             <IntroduceSection2Image className=" mx-12 h-56"></IntroduceSection2Image>
             <div className="flex flex-col mx-12 w-2/3">
                 <div className="text-right text-primaryBgColor text-[35px] font-bold leading-tight">

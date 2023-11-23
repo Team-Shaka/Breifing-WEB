@@ -5,7 +5,7 @@ import { ReactComponent as InstallSectionImage } from "../../assets/images/insta
 
 function InstallSection() {
     return (
-        <div className="flex justify-center items-center row h-[462px] px-24  bg-primaryBgColor">
+        <div className="flex justify-center items-center row h-[462px] px-20  bg-primaryBgColor">
             <div className="flex flex-col  w-1/2 text-left">
                 <div className="text-white text-[45px]">
                     당신의 AI 뉴스 리더,
