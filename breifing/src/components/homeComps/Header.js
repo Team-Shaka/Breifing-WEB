@@ -4,7 +4,7 @@ import { MdArrowOutward } from "react-icons/md";
 
 const Header = () => {
     return (
-        <div className='bg-white px-3 py-5 md:py-3 md:px-20 flex items-center justify-between text-base md:text-[18px]'>
+        <div className='bg-white p-3 lg:py-3 lg:px-20 flex items-center justify-between text-base md:text-[18px]'>
             <div className='text-lg font-extrabold text-primaryBgColor'>
                 Briefing
             </div>

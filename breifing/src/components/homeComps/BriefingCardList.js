@@ -24,7 +24,7 @@ const BriefingCardList = () => {
             }).catch(err => console.log(err))
     }, [])
     return (
-        <div className='md:p-20 bg-white space-y-5'>
+        <div className='lg:p-20 bg-white space-y-5 py-12'>
             <div className='text-center text-3xl font-bold'>
                 오늘의 <span className='text-primaryBgColor'>Briefing Keywords</span> <span className='font-normal'>- Social</span>
             </div>
