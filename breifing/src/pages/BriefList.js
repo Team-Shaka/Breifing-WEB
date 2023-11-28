@@ -25,8 +25,7 @@ function BriefList() {
             setIsLoading(true);
             axios
                 .get(
-                    `https://dev.newsbreifing.store/briefings?type=KOREA&date=${selectedDate}`
-                    // `https://dev.newsbreifing.store/briefings?type=KOREA&date=2023-10-20`
+                    `https://api.newsbreifing.store/briefings?type=KOREA&date=${selectedDate}`
                 )
                 .then((res) => {
                     setIsLoading(false);
@@ -76,7 +75,7 @@ function BriefList() {
                         </div>
 
                         {/* brief list */}
-                        <div className="flex flex-col lg:w-2/3 sm:w-5/6 my-3">
+                        <div className="flex flex-col lg:w-2/3 sm:w-5/6 w-5/6 my-3">
                             {/* brief card */}
                             {isLoading ? (
                                 <div className="text-white">Loading...</div>
@@ -91,22 +90,22 @@ function BriefList() {
                                     <Link to={`briefing/${briefing.id}`}>
                                         <div
                                             key={index}
-                                            className="flex flex-row w-full lg:h-20 sm:h-16 border-none bg-white mt-3 card rounded-box place-items-center"
+                                            className="flex flex-row w-full lg:h-20 sm:h-16 h-16 border-none bg-white mt-3 card rounded-box place-items-center"
                                         >
-                                            <div className="briefing-rank lg:text-lg sm:text-base lg:px-8 sm:px-5 text-primaryTextColor">
+                                            <div className="briefing-rank lg:text-lg sm:text-base text-base lg:px-8 sm:px-5 px-5 text-primaryTextColor">
                                                 {briefing.ranks}
                                             </div>
                                             <div className="content-wrap w-full flex flex-col">
-                                                <div className="briefing-title  lg:text-lg sm:text-base text-primaryTextColor">
+                                                <div className="briefing-title  lg:text-lg sm:text-base text-base text-primaryTextColor">
                                                     {briefing.title}
                                                 </div>
-                                                <div className="briefing-subtitle lg:text-base sm:text-sm text-thirdTextColor">
+                                                <div className="briefing-subtitle lg:text-base sm:text-sm text-sm text-thirdTextColor">
                                                     {briefing.subtitle.length >
-                                                        20
+                                                    20
                                                         ? briefing.subtitle.slice(
-                                                            0,
-                                                            20
-                                                        ) + "..."
+                                                              0,
+                                                              20
+                                                          ) + "..."
                                                         : briefing.subtitle}
                                                 </div>
                                             </div>
@@ -131,8 +130,9 @@ function BriefList() {
                     </div>
 
                     <input
-                        className={`input w-48 ${inputError ? "input-bordered input-error" : ""
-                            } max-w-xs mt-8`}
+                        className={`input w-48 ${
+                            inputError ? "input-bordered input-error" : ""
+                        } max-w-xs mt-8`}
                         type="password"
                         placeholder="Enter the Code"
                         value={password}
