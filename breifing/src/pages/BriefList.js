@@ -25,7 +25,7 @@ function BriefList() {
             setIsLoading(true);
             axios
                 .get(
-                    `https://api.newsbreifing.store/briefings?type=KOREA&date=${selectedDate}`
+                    `https://dev.newsbreifing.store/v2/briefings?type=SOCIAL&date=${selectedDate}`
                 )
                 .then((res) => {
                     setIsLoading(false);
@@ -101,11 +101,11 @@ function BriefList() {
                                                 </div>
                                                 <div className="briefing-subtitle lg:text-base sm:text-sm text-sm text-thirdTextColor">
                                                     {briefing.subtitle.length >
-                                                    20
+                                                        20
                                                         ? briefing.subtitle.slice(
-                                                              0,
-                                                              20
-                                                          ) + "..."
+                                                            0,
+                                                            20
+                                                        ) + "..."
                                                         : briefing.subtitle}
                                                 </div>
                                             </div>
@@ -130,9 +130,8 @@ function BriefList() {
                     </div>
 
                     <input
-                        className={`input w-48 ${
-                            inputError ? "input-bordered input-error" : ""
-                        } max-w-xs mt-8`}
+                        className={`input w-48 ${inputError ? "input-bordered input-error" : ""
+                            } max-w-xs mt-8`}
                         type="password"
                         placeholder="Enter the Code"
                         value={password}

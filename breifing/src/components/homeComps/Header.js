@@ -11,7 +11,7 @@ const Header = () => {
             <div className='flex items-center space-x-5'>
                 <div>Home</div>
                 <div>About Team</div>
-                <div className='flex items-center space-x-1 bg-white px-2 border border-black'>
+                <div className=' btn  btn-outline min-h-fit h-7 px-2 rounded-none  gap-0 bg-white font-normal border border-black'>
                     <span>
                         Install
                     </span>
