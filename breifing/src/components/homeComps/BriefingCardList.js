@@ -15,18 +15,22 @@ const BriefingCardList = () => {
         return year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
     }
 
-    useEffect(() => {
-        axios.get(`https://dev.newsbreifing.store/briefings/temp?type=KOREA&date=${getFormatDate(date)}`)
-            .then(res => {
-                console.log(res)
-                setData(res.data.result.briefings)
 
-            }).catch(err => console.log(err))
+
+    useEffect(() => {
+        axios.get(`https://dev.newsbreifing.store/v2/briefings?type=SOCIAL&date=${getFormatDate(date)}`)
+            .then(res => {
+                console.log(res, "dfs")
+                const sorted = [...res.data.result.briefings].sort((a, b) => a.ranks - b.ranks)
+                setData(sorted)
+
+            })
+            .catch(err => console.log(err))
     }, [])
     return (
         <div className='lg:p-20 bg-white space-y-5 py-12'>
-            <div className='text-center text-3xl font-bold'>
-                오늘의 <span className='text-primaryBgColor'>Briefing Keywords</span> <span className='font-normal'>- Social</span>
+            <div className='text-center text-2xl xs:text-3xl font-bold'>
+                오늘의 <span className='text-primaryBgColor '>Briefing Keywords</span> <span className='font-normal'>- Social</span>
             </div>
             <div className='flex flex-wrap justify-center '>
                 {data?.map(card => (
