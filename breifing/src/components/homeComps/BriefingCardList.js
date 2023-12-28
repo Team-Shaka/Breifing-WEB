@@ -17,9 +17,8 @@ const BriefingCardList = () => {
         return year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
     }
 
-    //https://dev.briefing.store
     useEffect(() => {
-        axios.get(`https://dev.briefing.store/v2/briefings?type=SOCIAL`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/v2/briefings?type=SOCIAL`)
             .then(res => {
                 console.log(res, "dfs")
                 const sorted = [...res.data.result.briefings].sort((a, b) => a.ranks - b.ranks)

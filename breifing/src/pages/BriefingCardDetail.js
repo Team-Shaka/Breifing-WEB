@@ -12,7 +12,7 @@ const BriefingCardDetail = () => {
 
     useEffect(() => {
         axios
-            .get(`https://dev.briefing.store/v2/briefings/${window.atob(id)}`)
+            .get(`${process.env.REACT_APP_BASE_URL}/v2/briefings/${window.atob(id)}`)
             .then((res) => {
                 console.log(res);
                 setData(res.data.result)
