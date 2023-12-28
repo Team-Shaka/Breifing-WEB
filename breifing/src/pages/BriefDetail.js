@@ -17,7 +17,7 @@ const BriefDetail = () => {
   };
   useEffect(() => {
     axios
-      .get(`https://dev.newsbreifing.store/briefings/${id}`)
+      .get(`https://api.newsbreifing.store/v2/briefings/${id}`)
       .then((res) => {
         console.log(res);
         setData(res.data.result);
