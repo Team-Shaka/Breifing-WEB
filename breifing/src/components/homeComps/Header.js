@@ -10,8 +10,8 @@ const Header = () => {
                 Briefing
             </Link>
             <div className='flex items-center space-x-5'>
-                <div>Home</div>
-                <div>About Team</div>
+                <div className='cursor-pointer'>Home</div>
+                <div className='cursor-pointer'>About Team</div>
                 <Link to="https://linktr.ee/briefingnews" className=' btn  btn-outline min-h-fit h-7 px-2 rounded-none  gap-0 bg-white font-normal border border-black'>
                     <span>
                         Install
