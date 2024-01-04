@@ -10,7 +10,7 @@ function IntroduceSection1() {
             viewport={{ once: false }}
             transition={{
                 ease: "easeInOut",
-                duration: 2,
+                duration: 1,
                 y: { duration: 1 },
             }}
         >
