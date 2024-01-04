@@ -4,7 +4,7 @@ import { ReactComponent as IntroduceSection1Image } from "../../assets/images/in
 function IntroduceSection1() {
     return (
         <div className="flex flex-row px-0 lg:px-20 justify-center items-center bg-white h-[338px] lg:h-[400px]">
-            <div className="flex flex-col w-2/3">
+            <div className="flex flex-col w-4/5">
                 <div className="text-left text-primaryBgColor text-[20px] lg:text-[35px] font-bold leading-tight">
                     뉴스를 파악하세요. <br />
                     쉽게, 빠르게, 중립적으로.

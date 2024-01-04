@@ -5,7 +5,7 @@ function IntroduceSection2() {
     return (
         <div className="flex flex-row px-0 lg:px-20 justify-center lg:justify-center items-center bg-white h-[338px] lg:h-[400px]">
             <IntroduceSection2Image className="hidden lg:block mx-12 h-56"></IntroduceSection2Image>
-            <div className="flex flex-col w-2/3">
+            <div className="flex flex-col w-4/5">
                 <div className="text-left lg:text-right text-primaryBgColor text-[20px] lg:text-[35px] font-bold leading-tight">
                     요약된 정리와 키워드로 <br /> 트렌드를 따라가세요
                 </div>
