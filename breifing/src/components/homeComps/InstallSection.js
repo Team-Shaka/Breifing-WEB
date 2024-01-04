@@ -16,13 +16,13 @@ function InstallSection() {
                 </div>
                 <div className="flex justify-center mt-4 lg:mt-16">
                     <Link to="https://apps.apple.com/kr/app/briefing/id6463561633">
-                        <button className="btn btn-outline rounded-none normal-case w-[130px] lg:w-[175px] h-[35px] lg:h-[57px] text-sm lg:text-[20px] font-bold text-white mr-5">
+                        <button className="btn btn-outline rounded-none normal-case w-[130px] lg:w-[175px] h-[35px] lg:h-[57px] text-sm lg:text-[20px] font-bold text-white mr-5 flex items-center justify-center whitespace-nowrap">
                             <Apple className="w-[18px] h-[18px] lg:w-7 lg:h-7" />
                             <div>App Store</div>
                         </button>
                     </Link>
                     <Link to="https://play.google.com/store/apps/details?id=com.dev.briefing&pcampaignid=web_share">
-                        <button className="btn btn-outline rounded-none normal-case w-[130px] lg:w-[175px] h-[35px] lg:h-[57px] text-sm lg:text-[20px] font-bold text-white">
+                        <button className="btn btn-outline rounded-none normal-case w-[130px] lg:w-[175px] h-[35px] lg:h-[57px] text-sm lg:text-[20px] font-bold text-white flex items-center justify-center whitespace-nowrap">
                             <GooglePlay className="w-[18px] h-[18px] lg:w-7 lg:h-7" />
                             <div>Google Play</div>
                         </button>
