@@ -9,7 +9,6 @@ function InstallSection() {
     return (
         <div className="bg-primaryBgColor">
             <div className="flex flex-col lg:flex-row items-center h-[420px] lg:h-[462px] px-0 lg:px-20">
-                {/* '당신의 AI 뉴스 리더'와 'Briefing'을 포함하는 div */}
                 <div className="flex flex-col w-1/2 text-left">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -28,7 +27,6 @@ function InstallSection() {
                         </div>
                     </motion.div>
 
-                    {/* 앱 스토어 링크 버튼들 */}
                     <div className="flex justify-center mt-4 lg:mt-16">
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
@@ -40,7 +38,6 @@ function InstallSection() {
                             }}
                         >
                             {" "}
-                            {/* App Store 링크 */}
                             <Link to="https://apps.apple.com/kr/app/briefing/id6463561633">
                                 <button className="btn btn-outline rounded-none normal-case w-[130px] lg:w-[175px] h-[35px] lg:h-[57px] text-sm lg:text-[20px] font-bold text-white mr-5 flex items-center justify-center whitespace-nowrap">
                                     <Apple className="w-[18px] h-[18px] lg:w-7 lg:h-7" />
@@ -58,7 +55,6 @@ function InstallSection() {
                             }}
                         >
                             {" "}
-                            {/* Google Play 링크 */}
                             <Link to="https://play.google.com/store/apps/details?id=com.dev.briefing&pcampaignid=web_share">
                                 <button className="btn btn-outline rounded-none normal-case w-[130px] lg:w-[175px] h-[35px] lg:h-[57px] text-sm lg:text-[20px] font-bold text-white flex items-center justify-center whitespace-nowrap">
                                     <GooglePlay className="w-[18px] h-[18px] lg:w-7 lg:h-7" />
@@ -69,7 +65,6 @@ function InstallSection() {
                     </div>
                 </div>
 
-                {/* InstallSectionImage를 포함하는 div */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
