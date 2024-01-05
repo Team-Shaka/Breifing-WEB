@@ -21,7 +21,7 @@ const BriefingCardList = () => {
         axios
             .get(`${process.env.REACT_APP_BASE_URL}/v2/briefings?type=SOCIAL`)
             .then((res) => {
-                console.log(res, "dfs");
+                console.log(res);
                 const sorted = [...res.data.result.briefings].sort(
                     (a, b) => a.ranks - b.ranks
                 );

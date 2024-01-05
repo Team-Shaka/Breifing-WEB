@@ -14,7 +14,6 @@ const Footer = () => {
                 </span>
             </div>
             <div className='md:space-x-5 space-x-10'>
-                <span>X</span>
                 <Link to="https://www.instagram.com/briefing_today/">Instagram</Link>
             </div>
         </div>
