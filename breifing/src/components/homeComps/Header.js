@@ -12,7 +12,7 @@ const Header = () => {
             <div className='flex items-center space-x-5'>
                 <div className='cursor-pointer'>Home</div>
                 <div className='cursor-pointer'>About Team</div>
-                <Link to="https://linktr.ee/briefingnews" className=' btn  btn-outline min-h-fit h-7 px-2 rounded-none  gap-0 bg-white font-normal border border-black'>
+                <Link to="https://linktr.ee/briefingnews" className=' btn  btn-outline min-h-fit h-7 px-2 rounded-none  gap-0 bg-white font-normal border border-black text-black'>
                     <span>
                         Install
                     </span>
