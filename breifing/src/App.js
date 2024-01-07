@@ -6,6 +6,8 @@ import Storage from "./pages/Storage";
 import Ready from "./pages/Ready";
 import BriefDetail from "./pages/BriefDetail";
 import BriefList from "./pages/BriefList";
+import Home from "./pages/Home";
+import BriefingCardDetail from "./pages/BriefingCardDetail";
 
 function App() {
     return (
@@ -18,6 +20,8 @@ function App() {
                     path="/managing/briefing/:id"
                     element={<BriefDetail />}
                 />
+                <Route path="/" element={<Home />} />
+                <Route path="/briefingCard/:id" element={<BriefingCardDetail />} />
             </Routes>
         </div>
     );

@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "../components/loading.css";
-import ManagingHeader from "../components/ManagingHeader";
+import "../components/chatComs/loading.css";
+import ManagingHeader from "../components/chatComs/ManagingHeader.js";
 
 const BriefDetail = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const BriefDetail = () => {
   };
   useEffect(() => {
     axios
-      .get(`https://dev.newsbreifing.store/briefings/${id}`)
+      .get(`https://api.newsbreifing.store/v2/briefings/${id}`)
       .then((res) => {
         console.log(res);
         setData(res.data.result);
@@ -25,9 +25,9 @@ const BriefDetail = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="sm:h-screen flex flex-col justify-start items-center bg-primaryBgColor ">
+    <div className="h-screen flex flex-col justify-start items-center bg-primaryBgColor ">
       <ManagingHeader showDatepicker={false} />
-      <div className="  lg:w-2/3 sm:w-5/6 bg-white rounded-lg px-4 py-5 text-primaryTextColor">
+      <div className="mx-5 sm:w-[768px] bg-white rounded-lg px-4 py-5 text-primaryTextColor">
         <div className="text-right text-sm text-[#93A8D0]">
           {data?.date} Briefing #{data?.ranks}
         </div>
@@ -81,7 +81,7 @@ const BriefDetail = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-2/3 sm:w-5/6  mt-5 flex justify-between items-center w-full font-bold pb-3 bg-primaryBgColor">
+      <div className=" mt-5 flex justify-between items-center w-full font-bold pb-3 px-5 sm:px-0 sm:w-[768px]">
         <Link
           to="/managing"
           className="bg-white rounded-lg text-primaryBgColor px-2 py-1"

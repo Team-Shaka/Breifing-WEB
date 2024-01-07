@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import BotMessage from "../components/BotMessage";
-import UserMessage from "../components/UserMessage";
+import BotMessage from "../components/chatComs/BotMessage";
+import UserMessage from "../components/chatComs/UserMessage";
 import axios from "axios";
 
 export function cls(...classnames) {
@@ -223,8 +223,8 @@ const BriefChat = () => {
           {chatsWithTime.map((chat, i) =>
             chat.role === "assistant" ? (
               loading &&
-              chatsWithTime.length !== 1 &&
-              i === chatsWithTime.length - 1 ? (
+                chatsWithTime.length !== 1 &&
+                i === chatsWithTime.length - 1 ? (
                 <BotMessage key={i} loading={loading} time={chat.time} />
               ) : (
                 <BotMessage key={i} content={chat.content} time={chat.time} />
@@ -240,8 +240,8 @@ const BriefChat = () => {
                 moreThree === undefined
                   ? "hidden"
                   : moreThree
-                  ? " animate-[bottom-sheet-up_500ms_ease-in-out] bottom-40"
-                  : " animate-[bottom-sheet-down_500ms_ease-in-out] -bottom-20 "
+                    ? " animate-[bottom-sheet-up_500ms_ease-in-out] bottom-40"
+                    : " animate-[bottom-sheet-down_500ms_ease-in-out] -bottom-20 "
               )
               /*  ismoreThree === undefined
                 ? "hidden"
