@@ -55,7 +55,7 @@ module.exports = {
         },
         screens: {
             xs: "450px",
-            sm: "768px", // mobile, tablet screen size
+            sm: "810px", // mobile, tablet screen size
             lg: "1024px", // desktop screen size
         },
     },
