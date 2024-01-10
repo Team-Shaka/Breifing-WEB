@@ -2,11 +2,28 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import BriefingCard from "./BriefingCard";
 import { Link } from "react-router-dom";
+import TabBar from "./SelectBar";
+import { useRecoilState } from "recoil";
+import { categoryState } from "../../recoil/atoms/categoryState";
 
 const BriefingCardList = () => {
     const date = new Date(Date.now());
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
+    const [category, setCagetory] = useRecoilState(categoryState)
+
+    const getType = () => {
+        setLoading(false)
+        if (category === 0) {
+            return "SOCIAL"
+        } else if (category === 1) {
+            return "GLOBAL"
+        } else if (category === 2) {
+            return "SCIENCE"
+        } else {
+            return "ECONOMY"
+        }
+    }
 
     function getFormatDate(date) {
         var year = date.getFullYear(); //yyyy
@@ -19,7 +36,7 @@ const BriefingCardList = () => {
 
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_BASE_URL}/v2/briefings?type=SOCIAL`)
+            .get(`${process.env.REACT_APP_BASE_URL}/v2/briefings?type=${getType()}`)
             .then((res) => {
                 console.log(res);
                 const sorted = [...res.data.result.briefings].sort(
@@ -29,19 +46,18 @@ const BriefingCardList = () => {
                 setLoading(true);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [category]);
     return (
-        <div className="lg:p-20 bg-white space-y-5 py-12">
-            <div className="text-center text-xl xs:text-3xl font-bold">
-                오늘의{" "}
-                <span className="text-primaryBgColor ">Briefing Keywords</span>{" "}
-                <span className="font-normal">- Social</span>
+        <div className="mt-10 bg-white space-y-5 py-12">
+            <div>
+                <TabBar />
             </div>
-            <div className="flex flex-wrap justify-center gap-5 px-6 xs:px-20">
-                {loading ? (
-                    data?.map((card) => (
+            <div className="flex justify-center">
+
+                {loading ? (<div className="grid grid-cols-[300px] sm:grid-cols-[300px_300px_300px] justify-items-center gap-7">
+                    {data?.map((card) => (
                         <Link
-                            className="w-full xs:w-72"
+                            className="w-full h-full "
                             to={`/briefingCard/${window.btoa(card.id)}`}
                         >
                             <BriefingCard
@@ -50,11 +66,13 @@ const BriefingCardList = () => {
                                 subtitle={card.subtitle}
                             />
                         </Link>
-                    ))
-                ) : (
+                    ))}
+                </div>) : (
                     <span className="loading loading-spinner loading-lg m-10 text-primaryBgColor"></span>
                 )}
+
             </div>
+
         </div>
     );
 };
