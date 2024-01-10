@@ -9,7 +9,7 @@ import InstallSection from "../components/homeComps/InstallSection";
 const Home = () => {
     return (
         <div className="flex justify-center" >
-            <div className="sm:w-[1200px] border">
+            <div className="sm:w-[1200px] ">
                 <Header />
                 <BriefingCardList />
                 <IntroduceSection1 />
