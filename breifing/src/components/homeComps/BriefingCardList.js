@@ -19,9 +19,9 @@ const BriefingCardList = () => {
         } else if (category === 1) {
             return "GLOBAL"
         } else if (category === 2) {
-            return "SCIENCE"
-        } else {
             return "ECONOMY"
+        } else {
+            return "SCIENCE"
         }
     }
 
@@ -48,13 +48,13 @@ const BriefingCardList = () => {
             .catch((err) => console.log(err));
     }, [category]);
     return (
-        <div className="mt-10 bg-white space-y-5 py-12">
+        <div className=" bg-white space-y-5 py-12">
             <div>
                 <TabBar />
             </div>
             <div className="flex justify-center">
 
-                {loading ? (<div className="grid grid-cols-[300px] sm:grid-cols-[300px_300px_300px] justify-items-center gap-7">
+                {loading ? (<div className="grid grid-cols-1 sm:grid-cols-3 justify-items-center gap-7">
                     {data?.map((card) => (
                         <Link
                             className="w-full h-full "
