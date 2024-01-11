@@ -8,16 +8,17 @@ import InstallSection from "../components/homeComps/InstallSection";
 
 const Home = () => {
     return (
-        <div className="flex justify-center" >
-            <div className="sm:w-[1200px] ">
-                <Header />
-                <BriefingCardList />
-                <IntroduceSection1 />
-                <IntroduceSection2 />
-                <InstallSection />
-                <Footer />
+        <div>
+            <Header />
+            <InstallSection />
+            <div className="flex justify-center">
+                <div className="sm:w-[1200px]">
+                    <BriefingCardList />
+                    <IntroduceSection1 />
+                    <IntroduceSection2 />
+                    <Footer />
+                </div>
             </div>
-
         </div>
     );
 };
