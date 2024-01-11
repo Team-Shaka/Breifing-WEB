@@ -2,7 +2,7 @@ import React from 'react';
 
 const BriefingCard = ({ ranks, title, subtitle }) => {
     return (
-        <div className='border-b h-full sm:border-none transition-all'>
+        <div className='h-full w-full  sm:border-none transition-all'>
             <div className='bg-white rounded-lg p-3 px-5 space-y-2 h-full'>
                 <div className=' text-lg space-x-2 font-bold flex items-center'>
                     <span className='text-[#306DAB] text-2xl xs:text-4xl'>{ranks}.</span>
@@ -12,7 +12,7 @@ const BriefingCard = ({ ranks, title, subtitle }) => {
                     {subtitle}
                 </div>
             </div>
-
+            <hr className='sm:hidden absolute w-[90vw] left-5' />
         </div>
     );
 };
