@@ -25,7 +25,7 @@ const BriefingCardDetail = () => {
     return (
         <div className='h-screen flex flex-col bg-white'>
             <Header />
-            <div className='flex-1 p-5 flex justify-center'>
+            <div className='flex-1 p-5 flex justify-center mt-14'>
                 {loading ?
                     <div className='sm:w-[768px]'>
                         <div className='flex flex-col border-b space-y-2 pb-2'>
