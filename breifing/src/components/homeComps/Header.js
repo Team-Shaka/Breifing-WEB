@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <div className='fixed left-0 w-screen bg-primaryBgColor flex justify-center z-20'>
-            <div className='w-[1000px] px-4  py-3 space-x-4  lg:py-3 lg:px-20 flex items-center justify-between text-base md:text-[18px] bg-primaryBgColor'>
+            <div className='w-[1000px] px-4  py-3 space-x-4  lg:py-3  flex items-center justify-between text-base md:text-[18px] bg-primaryBgColor'>
                 <Link to="/" className='text-lg font-extrabold text-white'>
                     Briefing
                 </Link>
