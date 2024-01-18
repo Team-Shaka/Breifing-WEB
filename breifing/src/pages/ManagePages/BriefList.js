@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { ReactComponent as GPT4 } from "../assets/images/GPT_logo.svg";
-import ManagingHeader from "../components/chatComs/ManagingHeader";
+import { ReactComponent as GPT4 } from "../../assets/images/GPT_logo.svg";
+import ManagingHeader from "../../components/chatComs/ManagingHeader";
 import { useRecoilState } from "recoil";
-import { managingDateState } from "../recoil/atoms/managingDateState";
-import { ReactComponent as Left } from "../assets/images/left.svg";
+import { managingDateState } from "../../recoil/atoms/managingDateState";
+import { ReactComponent as Left } from "../../assets/images/left.svg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 

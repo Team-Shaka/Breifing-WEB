@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Header from '../components/homeComps/Header';
-import Footer from '../components/homeComps/Footer';
+import Header from '../../components/homeComps/Header';
+import Footer from '../../components/homeComps/Footer';
 import axios from 'axios';
 
 const BriefingCardDetail = () => {
