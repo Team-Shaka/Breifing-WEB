@@ -20,3 +20,27 @@ body {
   background-color: #ffffff;
   color: black
 }
+
+/* ManagingDatePicker */
+.MuiOutlinedInput-notchedOutline {
+    border: none !important;
+}
+.MuiInputBase-input {
+    color: white !important;
+    text-align: center !important;
+    font-weight: 400 !important;
+}
+
+/* 화면 너비가 375px 이상일 때 */
+@media (min-width: 375px) {
+    .MuiInputBase-input {
+        font-size: 15px !important;
+    }
+}
+
+/* 화면 너비가 810px 이상일 때 */
+@media (min-width: 810px) {
+    .MuiInputBase-input {
+        font-size: 23px !important;
+    }
+}
