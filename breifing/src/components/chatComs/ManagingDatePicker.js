@@ -32,7 +32,7 @@ function ManagingDatePicker() {
                     label="Responsive variant"
                     components={["DatePicker"]}
                 >
-                    <div className="bg-white rounded-md">
+                    <div className="rounded-full border-none">
                         <DatePicker
                             value={selectedDate.date}
                             slotProps={{
@@ -44,6 +44,7 @@ function ManagingDatePicker() {
                             onChange={(newValue) => {
                                 handleDateChange(newValue);
                             }}
+                            className="w-44 sm:w-80 bg-primaryBgColor rounded-full"
                         />
                     </div>
                 </DemoContainer>
