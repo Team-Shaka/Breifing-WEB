@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as Exit } from "../../assets/images/exit.svg";
 import ManagingDatePicker from "./ManagingDatePicker";
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 function ManagingHeader({ showDatepicker }) {
     const [cookies, setCookie, removeCookie] = useCookies(["loggedIn"]);
@@ -9,27 +10,31 @@ function ManagingHeader({ showDatepicker }) {
         removeCookie("loggedIn", { path: "/" });
     };
     return (
-        <div className="navbar bg-primaryBgColor">
+        <div className="navbar flex justify-evenly bg-white">
             {/* 로고 */}
-            <div className="navbar-start">
-                <a className="btn btn-ghost no-animation normal-case lg:font-bold sm:font-bold lg:text-xl sm:text-base text-white">
+            <div className="">
+                <Link
+                    to="/managing"
+                    className="btn btn-ghost no-animation normal-case font-bold text-base sm:text-3xl text-primaryBgColor"
+                >
                     Briefing
-                </a>
+                </Link>
             </div>
             {/* 날짜 선택창 */}
-            <div className="navbar-center pb-2">
+            <div className="pb-2">
                 {showDatepicker && <ManagingDatePicker />}
             </div>
             {/* 나가기 버튼 */}
-            <div className="navbar-end">
+            <div className="">
                 <button
                     onClick={() => {
                         handleLogout();
                     }}
-                    className="btn btn-ghost lg:text-xl sm:text-base text-white border-none"
+                    className="btn btn-ghost border-none"
                 >
-                    <div className="lg:inline sm:hidden pb-1">나가기</div>
-                    <Exit className="lg:w-11 lg:h-11 sm:w-10 sm:h-10 pt-1 fill-white" />
+                    <div className="text-base font-bold sm:text-lg text-primaryBgColor">
+                        나가기
+                    </div>
                 </button>
             </div>
         </div>
