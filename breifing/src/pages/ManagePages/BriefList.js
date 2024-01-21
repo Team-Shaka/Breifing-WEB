@@ -59,10 +59,10 @@ function BriefList() {
     };
 
     useEffect(() => {
-        console.log("selectedDate:", selectedDate);
-        console.log("Updated:", lastUpdate);
-        console.log("category:", category);
-        console.log("timeOfDay:", timeOfDay);
+        // console.log("selectedDate:", selectedDate);
+        // console.log("Updated:", lastUpdate);
+        // console.log("category:", category);
+        // console.log("timeOfDay:", timeOfDay);
 
         // GET briefing list
         if (cookies.loggedIn) {
@@ -101,7 +101,7 @@ function BriefList() {
     }, [briefings]);
 
     const handleLogin = (password) => {
-        if (password === "1234") {
+        if (password === process.env.REACT_APP_MANAGING_PASSWORD) {
             const time = 3600; //1시간
             const expiration = new Date(Date.now() + time * 1000);
             setCookie("loggedIn", true, { path: "/", expires: expiration });
@@ -209,7 +209,11 @@ function BriefList() {
                             }
                         }}
                     />
-
+                    {inputError && (
+                        <div className="mt-2 text-red-500">
+                            패스워드가 틀렸습니다.
+                        </div>
+                    )}
                     <button
                         className="bg-primaryBgColor rounded-lg font-bold text-white mt-9 w-32 h-10"
                         onClick={() => handleLogin(password)}
