@@ -74,7 +74,7 @@ function InstallSection() {
                             duration: 1,
                             ease: "easeInOut",
                         }}
-                        className="flex justify-center mt-9 lg:mt-auto lg:w-1/2"
+                        className="flex justify-center mt-auto lg:w-1/2"
                     >
                         <InstallSectionImage className="w-[195px] h-[200px] lg:w-[417px] lg:h-[417px]" />
                     </motion.div>
