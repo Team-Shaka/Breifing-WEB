@@ -63,8 +63,17 @@ const BriefingCardDetail = () => {
                                 {data.title}
                             </span>
                             <span className="text-[#7C7C7C] text-sm">
-                                {data.date} | 사회 #{data.ranks} | GPT-3로
-                                생성됨
+                                {data.date} |{" "}
+                                {data.type === "SOCIAL"
+                                    ? "사회"
+                                    : data.type === "GLOBAL"
+                                    ? "글로벌"
+                                    : data.type === "ECONOMY"
+                                    ? "경제"
+                                    : data.type === "SCIENCE"
+                                    ? "과학"
+                                    : ""}{" "}
+                                #{data.ranks} | GPT-3로 생성됨
                             </span>
                         </div>
                         <div className="py-4 space-y-4 border-b">
