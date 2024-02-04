@@ -6,16 +6,23 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-    <RecoilRoot>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </RecoilRoot>
+const rootElement = document.getElementById("root");
+
+const app = (
+    <React.StrictMode>
+        <RecoilRoot>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </RecoilRoot>
+    </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+if (rootElement?.hasChildNodes()) {
+    ReactDOM.hydrateRoot(rootElement, app);
+} else {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(app);
+}
+
 reportWebVitals();
