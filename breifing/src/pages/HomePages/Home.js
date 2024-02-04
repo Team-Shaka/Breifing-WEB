@@ -28,10 +28,6 @@ const Home = () => {
                     property="og:url"
                     content={window.location.href}
                 />
-                <meta
-                    name="google-site-verification"
-                    content="QX8azh4qQyzi70T77iliLi3etgr5t2HZbWXrCG_UPxE"
-                />
             </Helmet>
             <Header />
             <InstallSection />
