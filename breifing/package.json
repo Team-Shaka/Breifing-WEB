@@ -21,6 +21,7 @@
     "react-hook-form": "^7.49.3",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.15.0",
+    "react-router-sitemap": "^1.2.0",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
     "web-vitals": "^2.1.4"
@@ -29,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sitemap": "babel-node src/sitemapGenerator.js",
+    "predeploy": "npm run sitemap"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,10 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.15",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "daisyui": "^3.5.1",
     "postcss": "^8.4.28",
     "tailwind-styled-components": "^2.2.0",
