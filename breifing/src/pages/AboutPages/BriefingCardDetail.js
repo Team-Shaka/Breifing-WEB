@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Header from "../../components/homeComps/Header";
-import Footer from "../../components/homeComps/Footer";
+import Header from "../../components/aboutComps/Header";
+import Footer from "../../components/aboutComps/Footer";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 
@@ -67,12 +67,12 @@ const BriefingCardDetail = () => {
                                 {data.type === "SOCIAL"
                                     ? "사회"
                                     : data.type === "GLOBAL"
-                                    ? "글로벌"
-                                    : data.type === "ECONOMY"
-                                    ? "경제"
-                                    : data.type === "SCIENCE"
-                                    ? "과학"
-                                    : ""}{" "}
+                                        ? "글로벌"
+                                        : data.type === "ECONOMY"
+                                            ? "경제"
+                                            : data.type === "SCIENCE"
+                                                ? "과학"
+                                                : ""}{" "}
                                 #{data.ranks} | GPT-3로 생성됨
                             </span>
                         </div>

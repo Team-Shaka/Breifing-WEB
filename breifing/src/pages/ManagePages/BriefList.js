@@ -7,10 +7,10 @@ import { managingDateState } from "../../recoil/atoms/managingDateState";
 import { ReactComponent as Left } from "../../assets/images/left.svg";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import BriefingCardList from "../../components/homeComps/BriefingCardList";
+import BriefingCardList from "../../components/aboutComps/BriefingCardList";
 import { categoryState } from "../../recoil/atoms/categoryState";
-import SelectBar from "../../components/homeComps/SelectBar";
-import BriefingCard from "../../components/homeComps/BriefingCard";
+import SelectBar from "../../components/aboutComps/SelectBar";
+import BriefingCard from "../../components/aboutComps/BriefingCard";
 
 function BriefList() {
     const [password, setPassword] = useState("");
@@ -69,8 +69,7 @@ function BriefList() {
             setIsLoading(true);
             axios
                 .get(
-                    `${
-                        process.env.REACT_APP_BASE_URL
+                    `${process.env.REACT_APP_BASE_URL
                     }/v2/briefings?type=${getType()}&date=${formatDate(
                         selectedDate
                     )}&timeOfDay=${timeOfDay}`
@@ -124,21 +123,19 @@ function BriefList() {
                     <div className=" overflow-y-auto flex flex-col items-center">
                         <div>
                             <button
-                                className={`text-base sm:text-lg px-3 py-2 mx-2 ${
-                                    isMorning
+                                className={`text-base sm:text-lg px-3 py-2 mx-2 ${isMorning
                                         ? "text-primaryBgColor"
                                         : " text-gray-400"
-                                }`}
+                                    }`}
                                 onClick={() => handleTimeOfDayChange(true)}
                             >
                                 아침
                             </button>
                             <button
-                                className={`text-base sm:text-lg px-3 py-2 mx-2 ${
-                                    isMorning
+                                className={`text-base sm:text-lg px-3 py-2 mx-2 ${isMorning
                                         ? "text-gray-400"
                                         : " text-primaryBgColor"
-                                }`}
+                                    }`}
                                 onClick={() => handleTimeOfDayChange(false)}
                             >
                                 저녁
@@ -196,9 +193,8 @@ function BriefList() {
                     </div>
 
                     <input
-                        className={`input w-48 ${
-                            inputError ? "input-bordered input-error" : ""
-                        } max-w-xs mt-8 text-center border-0 border-b-2 border-primaryBgColor rounded-none focus:outline-none`}
+                        className={`input w-48 ${inputError ? "input-bordered input-error" : ""
+                            } max-w-xs mt-8 text-center border-0 border-b-2 border-primaryBgColor rounded-none focus:outline-none`}
                         type="password"
                         placeholder="Enter the Code"
                         value={password}
