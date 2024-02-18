@@ -2,45 +2,21 @@ import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { categoryState } from '../../recoil/atoms/categoryState';
 
-const texts = [
-    {
-        emoji: "👤",
-        text: "사회"
-    },
-    {
-        emoji: "🌐",
-        text: "글로벌"
-    },
-    {
-        emoji: "💰",
-        text: "경제"
-    },
-    {
-        emoji: "🥼",
-        text: "과학"
-    }]
+const texts = ["전체", "사회", "글로벌", "경제", "과학"]
 const SelectBar = () => {
     const [index, setIndex] = useRecoilState(categoryState)
 
-    const onClickBtn = (i) => {
-        setIndex(i)
+    const onClickBtn = (text) => {
+        setIndex(text)
     }
 
     return (
-        <div className=' sm:flex justify-start'>
-            <div className='flex sm:space-x-2'>
-                {texts.map((item, i) =>
-                    <div onClick={() => onClickBtn(i)} className=' flex flex-col items-center' >
-                        <div className='p-3 px-5 btn text-black hover:bg-gray-200 font-normal bg-white border-none text-[16px] sm:text-[20px]'>
-                            {item.emoji} {item.text}
-                        </div>
-
-                        <hr className={`transition-transform w-1/2  ${index == i ? "border border-primaryBgColor" : "border-none"}`} />
-                    </div>
-                )}
+        <div className='xs:border-t xs:border-b border-[#B6B6B6] p-3'>
+            <div className='flex justify-center space-x-5 xs:space-x-20 text-sm'>
+                {texts.map((text, i) => <div onClick={() => onClickBtn(text)} className='cursor-pointer' key={i}>{text}</div>)}
             </div>
-        </div>
 
+        </div>
     );
 };
 
