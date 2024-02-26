@@ -5,6 +5,24 @@ import Footer from "../../components/aboutComps/Footer";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 
+const category = [
+    {
+        eng: "SOCIAL",
+        kor: "사회",
+    },
+    {
+        eng: "GLOBAL",
+        kor: "글로벌",
+    },
+    {
+        eng: "ECONOMY",
+        kor: "경제",
+    },
+    {
+        eng: "SCIENCE",
+        kor: "과학",
+    },
+]
 const BriefingCardDetail = () => {
     const { id } = useParams();
     const [loading, setLoading] = useState(false);
@@ -16,9 +34,7 @@ const BriefingCardDetail = () => {
     useEffect(() => {
         axios
             .get(
-                `${process.env.REACT_APP_BASE_URL}/v2/briefings/${window.atob(
-                    id
-                )}`
+                `${process.env.REACT_APP_BASE_URL}/v2/briefings/${window.atob(id)}`
             )
             .then((res) => {
                 console.log(res);
@@ -55,24 +71,21 @@ const BriefingCardDetail = () => {
         <div className="h-screen flex flex-col bg-white">
             {renderHelmet()}
             <Header />
-            <div className="flex-1 p-5 flex justify-center mt-14">
+            <div className="xl:w-[1200px] flex-1 p-5 flex justify-center">
                 {loading ? (
                     <div className="sm:w-[768px]">
                         <div className="flex flex-col border-b space-y-2 pb-2">
+                            <div className="flex">
+                                <div className="px-2 py-1 rounded-full text-[#0072E7] bg-[#0072E7] bg-opacity-10">
+                                    {category.map((c) => c.eng === data.type ? `${c.kor}` : "")}{data.ranks}
+                                </div>
+                            </div>
+
                             <span className="font-bold text-3xl">
                                 {data.title}
                             </span>
                             <span className="text-[#7C7C7C] text-sm">
-                                {data.date} |{" "}
-                                {data.type === "SOCIAL"
-                                    ? "사회"
-                                    : data.type === "GLOBAL"
-                                        ? "글로벌"
-                                        : data.type === "ECONOMY"
-                                            ? "경제"
-                                            : data.type === "SCIENCE"
-                                                ? "과학"
-                                                : ""}{" "}
+                                {data.date} | {" "}{category.map((c) => c.eng === data.type ? `${c.kor}` : "")}
                                 #{data.ranks} | GPT-3로 생성됨
                             </span>
                         </div>
