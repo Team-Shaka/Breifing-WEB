@@ -24,3 +24,15 @@ export const managingDateState = atom({
     // 오늘 날짜(YYYY-MM-DD)로 포맷팅
     default: formatDate(today),
 });
+
+// YYYY-MM-DD 형식의 날짜를 받아오는 atom
+export const dateState = atom({
+    key: "dateState",
+    default: "",
+});
+
+// 오전/오후를 나타내는 atom
+export const timeOfDayState = atom({
+    key: "timeOfDayState",
+    default: "Morning",
+});

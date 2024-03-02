@@ -14,7 +14,9 @@ function BoxItemLong(props) {
                 </div>
             </div>
 
-            <div className="text-[#B0B0B0] font-light ">2024.02.05 오전</div>
+            <div className="text-[#B0B0B0] font-light ">
+                {props.date} {props.timeOfDay}
+            </div>
         </div>
     );
 }

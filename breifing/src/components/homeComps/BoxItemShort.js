@@ -13,7 +13,7 @@ function BoxItemShort(props) {
             <div className="summary mt-1">
                 {props.subtitle}{" "}
                 <span className="text-[#B0B0B0] font-light">
-                    2024.02.05 오전
+                    {props.date} {props.timeOfDay}
                 </span>
             </div>
         </div>
