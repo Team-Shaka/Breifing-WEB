@@ -17,6 +17,8 @@ const Header = () => {
         window.scrollTo({ top: 0, behavior: "smooth" })
         navigate("/")
     }
+
+
     return (
         <div className="flex justify-center w-full">
             <div className="xl:w-[1200px] w-full p-2  bg-white">
@@ -59,19 +61,26 @@ const Header = () => {
                 </div>
                 <SelectBar />
 
-                <div className={cls(menuClick ? "inline-block" : "hidden ")}>
+                <div className={cls("", menuClick ? "fixed left-0 top-0 inline-block " : "hidden ")}>
                     <div onClick={() => setMenuClick(false)} className={cls(" absolute top-0 left-0  h-screen w-screen bg-black bg-opacity-20 "
                         , menuClick ? "inline-block" : "hidden"
-                    )}>dfsf
+                    )}>
                     </div>
-                    <ul className="absolute top-0 left-0  menu bg-white w-56 [&_li>*]:rounded-none h-screen shadow-xl font-bold">
+                    <ul className="absolute scroll top-0 left-0  menu bg-white w-56 [&_li>*]:rounded-none h-screen shadow-xl font-bold">
                         <div className="text-right">
                             <button onClick={() => setMenuClick(false)} className="btn btn-ghost text-red-500 text-right py-2">Exit</button>
                         </div>
 
-                        <li><a>Home</a></li>
-                        <li><a>About Briefing</a></li>
-                        <li><a>About Team Shaka</a></li>
+                        <li><a onClick={() => {
+                            navigate("/")
+                            setMenuClick(false)
+                        }}>Home</a></li>
+                        <li><a onClick={() => {
+                            window.open('https://linktr.ee/briefingnews')
+                        }}>About Briefing</a></li>
+                        <li><a onClick={() => {
+                            window.open("https://onve.notion.site/Team-shaka-75de92ed8c724c6ea9fd5661bb03d1c5?pvs=4")
+                        }}>About Team Shaka</a></li>
                     </ul>
                 </div>
             </div>
