@@ -2,12 +2,12 @@ import React from "react";
 import BoxItemMobile from "./BoxItemMobile";
 import { useRecoilValue } from "recoil";
 import {
-    globalBriefingState,
+    scienceBriefingState,
     socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 
-export default function GlobalMobileBox() {
-    let briefingList = useRecoilValue(globalBriefingState);
+export function ScienceMobileBox() {
+    let briefingList = useRecoilValue(scienceBriefingState);
     console.log(briefingList);
 
     // Filling the array with empty objects to make sure the length is 10
@@ -21,9 +21,9 @@ export default function GlobalMobileBox() {
             {/* Title */}
             <div className="flex items-center">
                 {" "}
-                <div className="text-base font-bold mr-2">글로벌</div>
+                <div className="text-base font-bold mr-2">과학</div>
                 <div className="text-sm font-normal text-[#B0B0B0]">
-                    AI가 선정한 오늘의 글로벌 키워드
+                    AI가 선정한 오늘의 과학 키워드
                 </div>
             </div>
             {/* Cards */}

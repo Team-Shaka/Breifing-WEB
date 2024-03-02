@@ -3,7 +3,7 @@ import BoxItemShort from "./BoxItemShort";
 import BoxItemLong from "./BoxItemLong";
 import { useRecoilValue } from "recoil";
 import {
-    globalBriefingState,
+    economyBriefingState,
     socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import {
@@ -11,8 +11,8 @@ import {
     timeOfDayState,
 } from "../../recoil/atoms/managingDateState";
 
-export default function GlobalDesktopBox() {
-    let briefingList = useRecoilValue(globalBriefingState);
+export default function EconomyDesktopBox() {
+    let briefingList = useRecoilValue(economyBriefingState);
     let date = useRecoilValue(dateState);
     let timeOfDay = useRecoilValue(timeOfDayState);
 
@@ -29,9 +29,9 @@ export default function GlobalDesktopBox() {
             {/* Title */}
             <div className="flex items-center">
                 {" "}
-                <div className="text-base font-bold mr-2">글로벌</div>
+                <div className="text-base font-bold mr-2">경제</div>
                 <div className="text-sm font-normal text-[#B0B0B0]">
-                    AI가 선정한 오늘의 글로벌 키워드
+                    AI가 선정한 오늘의 경제 키워드
                 </div>
             </div>
             {/* Cards */}
@@ -177,6 +177,33 @@ export default function GlobalDesktopBox() {
                     {/* Right Section */}
                     <div className="w-full flex">
                         {" "}
+                        <div className="flex flex-col justify-end w-5/12">
+                            <div className="w-full h-[200px] mb-[12px] flex justify-center items-center bg-pink-50">
+                                Image
+                            </div>
+                            {filledBriefingList.length > 0 && (
+                                <BoxItemShort
+                                    rank={
+                                        filledBriefingList[9].ranks || "No data"
+                                    }
+                                    title={
+                                        filledBriefingList[9].title || "No data"
+                                    }
+                                    subtitle={
+                                        filledBriefingList[9].subtitle ||
+                                        "No data"
+                                    }
+                                    date={date}
+                                    timeOfDay={
+                                        timeOfDay === "Morning"
+                                            ? "오전"
+                                            : "오후"
+                                    }
+                                />
+                            )}{" "}
+                        </div>
+                        {/* 세로 구분선 */}
+                        <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
                         <div className="flex-col w-7/12">
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
@@ -240,33 +267,6 @@ export default function GlobalDesktopBox() {
                                     }
                                 />
                             )}{" "}
-                        </div>
-                        {/* 세로 구분선 */}
-                        <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
-                        <div className="flex-col w-5/12">
-                            {filledBriefingList.length > 0 && (
-                                <BoxItemShort
-                                    rank={
-                                        filledBriefingList[9].ranks || "No data"
-                                    }
-                                    title={
-                                        filledBriefingList[9].title || "No data"
-                                    }
-                                    subtitle={
-                                        filledBriefingList[9].subtitle ||
-                                        "No data"
-                                    }
-                                    date={date}
-                                    timeOfDay={
-                                        timeOfDay === "Morning"
-                                            ? "오전"
-                                            : "오후"
-                                    }
-                                />
-                            )}{" "}
-                            <div className="w-full h-[200px] mt-[12px] flex justify-center items-center bg-pink-50">
-                                Image
-                            </div>
                         </div>
                     </div>
                 </div>

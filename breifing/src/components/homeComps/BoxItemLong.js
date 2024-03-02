@@ -1,6 +1,10 @@
 import React from "react";
 
 function BoxItemLong(props) {
+    const subtitle =
+        props.subtitle.length > 20
+            ? props.subtitle.substring(0, 20) + "..."
+            : props.subtitle;
     return (
         <div className="flex items-center justify-between py-1">
             <div className="flex items-center">
@@ -10,7 +14,7 @@ function BoxItemLong(props) {
                     {props.title}
                 </div>
                 <div className="overflow-hidden lg:w-44 whitespace-nowrap overflow-ellipsis">
-                    {props.subtitle}
+                    {subtitle}
                 </div>
             </div>
 

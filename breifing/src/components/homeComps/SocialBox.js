@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { briefingsListState } from "../../recoil/atoms/briefingListState";
+import { socialBriefingState } from "../../recoil/atoms/briefingListState";
 import axios from "axios";
 import {
     dateState,
@@ -9,8 +9,8 @@ import {
 import DesktopBox, { SocialDesktopBox } from "./SocialDesktopBox";
 import MobileBox, { SocialMobileBox } from "./SocialMobileBox";
 
-function SocialBox() {
-    const [briefingList, setBriefingList] = useRecoilState(briefingsListState);
+export default function SocialBox() {
+    const [briefingList, setBriefingList] = useRecoilState(socialBriefingState);
     const date = useRecoilValue(dateState);
     const timeOfDay = useRecoilValue(timeOfDayState);
 
@@ -46,5 +46,3 @@ function SocialBox() {
         </div>
     );
 }
-
-export default SocialBox;

@@ -1,10 +1,10 @@
 import React from "react";
 import BoxItemMobile from "./BoxItemMobile";
 import { useRecoilValue } from "recoil";
-import { briefingsListState } from "../../recoil/atoms/briefingListState";
+import { socialBriefingState } from "../../recoil/atoms/briefingListState";
 
 export function SocialMobileBox() {
-    let briefingList = useRecoilValue(briefingsListState);
+    let briefingList = useRecoilValue(socialBriefingState);
     console.log(briefingList);
 
     // Filling the array with empty objects to make sure the length is 10

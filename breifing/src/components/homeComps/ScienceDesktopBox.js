@@ -2,14 +2,17 @@ import React from "react";
 import BoxItemShort from "./BoxItemShort";
 import BoxItemLong from "./BoxItemLong";
 import { useRecoilValue } from "recoil";
-import { socialBriefingState } from "../../recoil/atoms/briefingListState";
+import {
+    scienceBriefingState,
+    socialBriefingState,
+} from "../../recoil/atoms/briefingListState";
 import {
     dateState,
     timeOfDayState,
 } from "../../recoil/atoms/managingDateState";
 
-export function SocialDesktopBox() {
-    let briefingList = useRecoilValue(socialBriefingState);
+export function ScienceDesktopBox() {
+    let briefingList = useRecoilValue(scienceBriefingState);
     let date = useRecoilValue(dateState);
     let timeOfDay = useRecoilValue(timeOfDayState);
 
@@ -19,22 +22,46 @@ export function SocialDesktopBox() {
         filledBriefingList.push({ ranks: filledBriefingList.length + 1 });
     }
 
-    const rightSectionBriefings = filledBriefingList.slice(4, 10);
+    const leftSectionBriefings = filledBriefingList.slice(0, 6);
+    const rightSectionBriefings = filledBriefingList.slice(6, 10);
 
     return (
         <div className="flex flex-col pb-11 ">
             {/* Title */}
             <div className="flex items-center">
                 {" "}
-                <div className="text-base font-bold mr-2">사회</div>
+                <div className="text-base font-bold mr-2">과학</div>
                 <div className="text-sm font-normal text-[#B0B0B0]">
-                    AI가 선정한 오늘의 사회 키워드
+                    AI가 선정한 오늘의 과학 키워드
                 </div>
             </div>
             {/* Cards */}
             <div className="flex justify-around mt-3">
                 <div className="lg:flex w-full">
                     {/* Left Section */}
+                    <div className="w-full">
+                        {leftSectionBriefings.map((briefing, index) => (
+                            <React.Fragment key={index}>
+                                <BoxItemLong
+                                    rank={briefing.ranks || "No data"}
+                                    title={briefing.title || "No data"}
+                                    subtitle={briefing.subtitle || "No data"}
+                                    date={date}
+                                    timeOfDay={
+                                        timeOfDay === "Morning"
+                                            ? "오전"
+                                            : "오후"
+                                    }
+                                />
+                                {index < leftSectionBriefings.length - 1 && (
+                                    <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+                                )}{" "}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                    <div className="hidden lg:block bg-[#B6B6B6] w-[1px] mx-7 h-full"></div>
+                    <div className="lg:hidden bg-[#B6B6B6] h-[1px] my-4"></div>
+                    {/* Right Section */}
                     <div className="w-full flex flex-col">
                         <div className="flex w-full">
                             <div className="flex-col w-1/2">
@@ -42,15 +69,15 @@ export function SocialDesktopBox() {
                                 {filledBriefingList.length > 0 && (
                                     <BoxItemShort
                                         rank={
-                                            filledBriefingList[0].ranks ||
+                                            filledBriefingList[6].ranks ||
                                             "No data"
                                         }
                                         title={
-                                            filledBriefingList[0].title ||
+                                            filledBriefingList[6].title ||
                                             "No data"
                                         }
                                         subtitle={
-                                            filledBriefingList[0].subtitle ||
+                                            filledBriefingList[6].subtitle ||
                                             "No data"
                                         }
                                         date={date}
@@ -65,15 +92,15 @@ export function SocialDesktopBox() {
                                 {filledBriefingList.length > 0 && (
                                     <BoxItemShort
                                         rank={
-                                            filledBriefingList[1].ranks ||
+                                            filledBriefingList[7].ranks ||
                                             "No data"
                                         }
                                         title={
-                                            filledBriefingList[1].title ||
+                                            filledBriefingList[7].title ||
                                             "No data"
                                         }
                                         subtitle={
-                                            filledBriefingList[1].subtitle ||
+                                            filledBriefingList[7].subtitle ||
                                             "No data"
                                         }
                                         date={date}
@@ -96,13 +123,13 @@ export function SocialDesktopBox() {
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
                                     rank={
-                                        filledBriefingList[2].ranks || "No data"
+                                        filledBriefingList[8].ranks || "No data"
                                     }
                                     title={
-                                        filledBriefingList[2].title || "No data"
+                                        filledBriefingList[8].title || "No data"
                                     }
                                     subtitle={
-                                        filledBriefingList[2].subtitle ||
+                                        filledBriefingList[8].subtitle ||
                                         "No data"
                                     }
                                     date={date}
@@ -117,13 +144,13 @@ export function SocialDesktopBox() {
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
                                     rank={
-                                        filledBriefingList[3].ranks || "No data"
+                                        filledBriefingList[9].ranks || "No data"
                                     }
                                     title={
-                                        filledBriefingList[3].title || "No data"
+                                        filledBriefingList[9].title || "No data"
                                     }
                                     subtitle={
-                                        filledBriefingList[3].subtitle ||
+                                        filledBriefingList[9].subtitle ||
                                         "No data"
                                     }
                                     date={date}
@@ -135,29 +162,6 @@ export function SocialDesktopBox() {
                                 />
                             )}
                         </div>
-                    </div>
-                    <div className="hidden lg:block bg-[#B6B6B6] w-[1px] mx-7 h-full"></div>
-                    <div className="lg:hidden bg-[#B6B6B6] h-[1px] my-4"></div>
-                    {/* Right Section */}
-                    <div className="w-full">
-                        {rightSectionBriefings.map((briefing, index) => (
-                            <React.Fragment key={index}>
-                                <BoxItemLong
-                                    rank={briefing.ranks || "No data"}
-                                    title={briefing.title || "No data"}
-                                    subtitle={briefing.subtitle || "No data"}
-                                    date={date}
-                                    timeOfDay={
-                                        timeOfDay === "Morning"
-                                            ? "오전"
-                                            : "오후"
-                                    }
-                                />
-                                {index < rightSectionBriefings.length - 1 && (
-                                    <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
-                                )}{" "}
-                            </React.Fragment>
-                        ))}
                     </div>
                 </div>
             </div>
