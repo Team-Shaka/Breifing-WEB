@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { socialBriefingState } from "../../recoil/atoms/briefingListState";
+import {
+    scienceBriefingState,
+    socialBriefingState,
+} from "../../recoil/atoms/briefingListState";
 import axios from "axios";
 import {
     dateState,
@@ -8,16 +11,19 @@ import {
 } from "../../recoil/atoms/managingDateState";
 import DesktopBox, { SocialDesktopBox } from "./SocialDesktopBox";
 import MobileBox, { SocialMobileBox } from "./SocialMobileBox";
+import { ScienceMobileBox } from "./ScienceMobileBox";
+import { ScienceDesktopBox } from "./ScienceDesktopBox";
 
-export default function SocialBox() {
-    const [briefingList, setBriefingList] = useRecoilState(socialBriefingState);
+export function ScienceBox() {
+    const [briefingList, setBriefingList] =
+        useRecoilState(scienceBriefingState);
     const date = useRecoilValue(dateState);
     const timeOfDay = useRecoilValue(timeOfDayState);
 
     useEffect(() => {
         axios
             .get(
-                `${process.env.REACT_APP_BASE_URL}/v2/briefings?type=SOCIAL&date=${date}&timeOfDay=${timeOfDay}`
+                `${process.env.REACT_APP_BASE_URL}/v2/briefings?type=SCIENCE&date=${date}&timeOfDay=${timeOfDay}`
             )
             .then((response) => {
                 const data = response.data;
@@ -38,10 +44,10 @@ export default function SocialBox() {
     return (
         <div className="xl:w-[1200px] p-2 mx-auto">
             <div className="sm:hidden">
-                <SocialMobileBox />
+                <ScienceMobileBox />
             </div>
             <div className="hidden sm:block">
-                <SocialDesktopBox />
+                <ScienceDesktopBox />
             </div>
         </div>
     );
