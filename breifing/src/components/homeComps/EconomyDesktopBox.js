@@ -1,10 +1,8 @@
 import React from "react";
 import BoxItemShort from "./BoxItemShort";
-import BoxItemLong from "./BoxItemLong";
 import { useRecoilValue } from "recoil";
 import {
     economyBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import {
     dateState,
@@ -21,8 +19,6 @@ export default function EconomyDesktopBox() {
     while (filledBriefingList.length < 10) {
         filledBriefingList.push({ ranks: filledBriefingList.length + 1 });
     }
-
-    const rightSectionBriefings = filledBriefingList.slice(6, 10);
 
     return (
         <div className="flex flex-col pb-11 ">
@@ -191,31 +187,6 @@ export default function EconomyDesktopBox() {
                                 <BoxItemShort
                                     id = {filledBriefingList[9].id}
                                     rank={
-                                        filledBriefingList[9].ranks || "No data"
-                                    }
-                                    title={
-                                        filledBriefingList[9].title || "No data"
-                                    }
-                                    subtitle={
-                                        filledBriefingList[9].subtitle ||
-                                        "No data"
-                                    }
-                                    date={date}
-                                    timeOfDay={
-                                        timeOfDay === "Morning"
-                                            ? "오전"
-                                            : "오후"
-                                    }
-                                />
-                            )}{" "}
-                        </div>
-                        {/* 세로 구분선 */}
-                        <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
-                        <div className="flex-col w-7/12">
-                            {filledBriefingList.length > 0 && (
-                                <BoxItemShort
-                                    id = {filledBriefingList[6].id}
-                                    rank={
                                         filledBriefingList[6].ranks || "No data"
                                     }
                                     title={
@@ -233,10 +204,13 @@ export default function EconomyDesktopBox() {
                                     }
                                 />
                             )}{" "}
-                            <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+                        </div>
+                        {/* 세로 구분선 */}
+                        <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
+                        <div className="flex-col w-7/12">
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
-                                    id = {filledBriefingList[7].id}
+                                    id = {filledBriefingList[6].id}
                                     rank={
                                         filledBriefingList[7].ranks || "No data"
                                     }
@@ -258,7 +232,7 @@ export default function EconomyDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
-                                    id = {filledBriefingList[8].id}
+                                    id = {filledBriefingList[7].id}
                                     rank={
                                         filledBriefingList[8].ranks || "No data"
                                     }
@@ -267,6 +241,28 @@ export default function EconomyDesktopBox() {
                                     }
                                     subtitle={
                                         filledBriefingList[8].subtitle ||
+                                        "No data"
+                                    }
+                                    date={date}
+                                    timeOfDay={
+                                        timeOfDay === "Morning"
+                                            ? "오전"
+                                            : "오후"
+                                    }
+                                />
+                            )}{" "}
+                            <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+                            {filledBriefingList.length > 0 && (
+                                <BoxItemShort
+                                    id = {filledBriefingList[8].id}
+                                    rank={
+                                        filledBriefingList[9].ranks || "No data"
+                                    }
+                                    title={
+                                        filledBriefingList[9].title || "No data"
+                                    }
+                                    subtitle={
+                                        filledBriefingList[9].subtitle ||
                                         "No data"
                                     }
                                     date={date}
