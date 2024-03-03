@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function BoxItemLong(props) {
     const subtitle =
@@ -6,7 +7,7 @@ function BoxItemLong(props) {
             ? props.subtitle.substring(0, 20) + "..."
             : props.subtitle;
     return (
-        <div className="flex items-center justify-between py-1">
+        <Link to={`/briefingCard/${props.id}`} className="flex items-center justify-between py-1">
             <div className="flex items-center">
                 {" "}
                 <div className="font-bold text-xl pr-2 ">{props.rank}</div>
@@ -21,7 +22,7 @@ function BoxItemLong(props) {
             <div className="text-[#B0B0B0] font-light ">
                 {props.date} {props.timeOfDay}
             </div>
-        </div>
+        </Link>
     );
 }
 

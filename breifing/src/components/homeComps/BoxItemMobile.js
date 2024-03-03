@@ -1,9 +1,10 @@
 import React from "react";
 import { ReactComponent as Scrap } from "../../assets/images/mingcute_bookmark-line.svg";
+import { Link } from "react-router-dom";
 
 function BoxItemMobile(props) {
     return (
-        <div className="flex-col">
+        <Link to={`/briefingCard/${props.id}`}  className="flex-col">
             <div className="flex">
                 <div className="font-bold text-xl pr-4 ">{props.rank}</div>
                 <div className="flex-col">
@@ -19,7 +20,7 @@ function BoxItemMobile(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

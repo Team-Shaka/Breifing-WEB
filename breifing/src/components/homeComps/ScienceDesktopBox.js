@@ -4,7 +4,6 @@ import BoxItemLong from "./BoxItemLong";
 import { useRecoilValue } from "recoil";
 import {
     scienceBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import {
     dateState,
@@ -23,7 +22,6 @@ export function ScienceDesktopBox() {
     }
 
     const leftSectionBriefings = filledBriefingList.slice(0, 6);
-    const rightSectionBriefings = filledBriefingList.slice(6, 10);
 
     return (
         <div className="flex flex-col pb-11 ">
@@ -43,6 +41,7 @@ export function ScienceDesktopBox() {
                         {leftSectionBriefings.map((briefing, index) => (
                             <React.Fragment key={index}>
                                 <BoxItemLong
+                                    id={briefing.id}
                                     rank={briefing.ranks || "No data"}
                                     title={briefing.title || "No data"}
                                     subtitle={briefing.subtitle || "No data"}
@@ -68,6 +67,7 @@ export function ScienceDesktopBox() {
                                 {" "}
                                 {filledBriefingList.length > 0 && (
                                     <BoxItemShort
+                                        id={filledBriefingList[6].id}
                                         rank={
                                             filledBriefingList[6].ranks ||
                                             "No data"
@@ -91,6 +91,7 @@ export function ScienceDesktopBox() {
                                 <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                                 {filledBriefingList.length > 0 && (
                                     <BoxItemShort
+                                        id={filledBriefingList[7].id}
                                         rank={
                                             filledBriefingList[7].ranks ||
                                             "No data"
@@ -122,6 +123,7 @@ export function ScienceDesktopBox() {
                             {" "}
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id={filledBriefingList[8].id}
                                     rank={
                                         filledBriefingList[8].ranks || "No data"
                                     }
@@ -143,6 +145,7 @@ export function ScienceDesktopBox() {
                             <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id={filledBriefingList[9].id}
                                     rank={
                                         filledBriefingList[9].ranks || "No data"
                                     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function BoxItemShort(props) {
     const subtitle =
@@ -6,7 +7,7 @@ function BoxItemShort(props) {
             ? props.subtitle.substring(0, 14) + "..."
             : props.subtitle;
     return (
-        <div className="py-1 w-full h-[90px]">
+        <Link to={`/briefingCard/${props.id}`}  className="py-1 w-full h-[90px]">
             <div className="flex">
                 <div className="font-bold text-xl pr-2 ">{props.rank}</div>
                 <div className="font-bold text-xl pr-3 ">
@@ -20,7 +21,7 @@ function BoxItemShort(props) {
                     {props.date} {props.timeOfDay}
                 </span>
             </div>
-        </div>
+        </Link>
     );
 }
 

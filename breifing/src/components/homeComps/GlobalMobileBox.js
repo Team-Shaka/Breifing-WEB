@@ -3,7 +3,6 @@ import BoxItemMobile from "./BoxItemMobile";
 import { useRecoilValue } from "recoil";
 import {
     globalBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 
 export default function GlobalMobileBox() {
@@ -32,6 +31,7 @@ export default function GlobalMobileBox() {
                     <React.Fragment key={index}>
                         <div className="p-5">
                             <BoxItemMobile
+                                id={briefing.id}
                                 rank={briefing.ranks || "No data"}
                                 title={briefing.title || "No data"}
                                 subtitle={briefing.subtitle || "No data"}

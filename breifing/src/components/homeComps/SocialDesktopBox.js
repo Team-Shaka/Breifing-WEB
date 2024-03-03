@@ -41,6 +41,7 @@ export function SocialDesktopBox() {
                                 {" "}
                                 {filledBriefingList.length > 0 && (
                                     <BoxItemShort
+                                        id={filledBriefingList[0].id}
                                         rank={
                                             filledBriefingList[0].ranks ||
                                             "No data"
@@ -64,6 +65,7 @@ export function SocialDesktopBox() {
                                 <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                                 {filledBriefingList.length > 0 && (
                                     <BoxItemShort
+                                        id={filledBriefingList[1].id}
                                         rank={
                                             filledBriefingList[1].ranks ||
                                             "No data"
@@ -95,6 +97,7 @@ export function SocialDesktopBox() {
                             {" "}
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id={filledBriefingList[2].id}
                                     rank={
                                         filledBriefingList[2].ranks || "No data"
                                     }
@@ -116,6 +119,7 @@ export function SocialDesktopBox() {
                             <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id={filledBriefingList[3].id}
                                     rank={
                                         filledBriefingList[3].ranks || "No data"
                                     }
@@ -143,6 +147,7 @@ export function SocialDesktopBox() {
                         {rightSectionBriefings.map((briefing, index) => (
                             <React.Fragment key={index}>
                                 <BoxItemLong
+                                    id={briefing.id}
                                     rank={briefing.ranks || "No data"}
                                     title={briefing.title || "No data"}
                                     subtitle={briefing.subtitle || "No data"}
