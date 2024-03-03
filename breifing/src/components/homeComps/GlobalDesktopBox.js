@@ -1,10 +1,8 @@
 import React from "react";
 import BoxItemShort from "./BoxItemShort";
-import BoxItemLong from "./BoxItemLong";
 import { useRecoilValue } from "recoil";
 import {
     globalBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import {
     dateState,
@@ -22,7 +20,6 @@ export default function GlobalDesktopBox() {
         filledBriefingList.push({ ranks: filledBriefingList.length + 1 });
     }
 
-    const rightSectionBriefings = filledBriefingList.slice(6, 10);
 
     return (
         <div className="flex flex-col pb-11 ">

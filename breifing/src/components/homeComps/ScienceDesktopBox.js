@@ -4,7 +4,6 @@ import BoxItemLong from "./BoxItemLong";
 import { useRecoilValue } from "recoil";
 import {
     scienceBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import {
     dateState,
@@ -23,7 +22,6 @@ export function ScienceDesktopBox() {
     }
 
     const leftSectionBriefings = filledBriefingList.slice(0, 6);
-    const rightSectionBriefings = filledBriefingList.slice(6, 10);
 
     return (
         <div className="flex flex-col pb-11 ">

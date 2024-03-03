@@ -3,7 +3,6 @@ import BoxItemMobile from "./BoxItemMobile";
 import { useRecoilValue } from "recoil";
 import {
     globalBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 
 export default function GlobalMobileBox() {

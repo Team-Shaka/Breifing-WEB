@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
     globalBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import axios from "axios";
 import {
