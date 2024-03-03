@@ -39,6 +39,7 @@ export default function GlobalDesktopBox() {
                         <div className="flex-col w-1/2">
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[0].id}
                                     rank={
                                         filledBriefingList[0].ranks || "No data"
                                     }
@@ -60,6 +61,7 @@ export default function GlobalDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[1].id}
                                     rank={
                                         filledBriefingList[1].ranks || "No data"
                                     }
@@ -81,6 +83,7 @@ export default function GlobalDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[2].id}
                                     rank={
                                         filledBriefingList[2].ranks || "No data"
                                     }
@@ -106,6 +109,7 @@ export default function GlobalDesktopBox() {
                         <div className="flex-col w-1/2">
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[3].id}
                                     rank={
                                         filledBriefingList[3].ranks || "No data"
                                     }
@@ -127,6 +131,7 @@ export default function GlobalDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[4].id}
                                     rank={
                                         filledBriefingList[4].ranks || "No data"
                                     }
@@ -148,6 +153,7 @@ export default function GlobalDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[5].id}
                                     rank={
                                         filledBriefingList[5].ranks || "No data"
                                     }
@@ -177,6 +183,7 @@ export default function GlobalDesktopBox() {
                         <div className="flex-col w-7/12">
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[6].id}
                                     rank={
                                         filledBriefingList[6].ranks || "No data"
                                     }
@@ -198,6 +205,7 @@ export default function GlobalDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[7].id}
                                     rank={
                                         filledBriefingList[7].ranks || "No data"
                                     }
@@ -219,6 +227,7 @@ export default function GlobalDesktopBox() {
                             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[8].id}
                                     rank={
                                         filledBriefingList[8].ranks || "No data"
                                     }
@@ -243,6 +252,7 @@ export default function GlobalDesktopBox() {
                         <div className="flex-col w-5/12">
                             {filledBriefingList.length > 0 && (
                                 <BoxItemShort
+                                    id = {filledBriefingList[9].id}
                                     rank={
                                         filledBriefingList[9].ranks || "No data"
                                     }

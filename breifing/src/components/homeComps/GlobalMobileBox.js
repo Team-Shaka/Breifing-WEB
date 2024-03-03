@@ -31,6 +31,7 @@ export default function GlobalMobileBox() {
                     <React.Fragment key={index}>
                         <div className="p-5">
                             <BoxItemMobile
+                                id={briefing.id}
                                 rank={briefing.ranks || "No data"}
                                 title={briefing.title || "No data"}
                                 subtitle={briefing.subtitle || "No data"}
