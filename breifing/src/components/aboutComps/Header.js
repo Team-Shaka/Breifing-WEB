@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsPerson } from "react-icons/bs";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SelectBar from "./SelectBar";
 
 export function cls(...classnames) {
@@ -12,13 +12,14 @@ const Header = () => {
     const today = new Date()
     const [menuClick, setMenuClick] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation()
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" })
         navigate("/")
     }
 
-
+    console.log(location)
     return (
         <div className="flex justify-center w-full">
             <div className="xl:w-[1200px] w-full p-2  bg-white">
@@ -59,7 +60,8 @@ const Header = () => {
                         dfsdfsdfdfs
                     </div>
                 </div>
-                <SelectBar />
+                {location.pathname === "/" ? <SelectBar /> : null}
+
 
                 <div className={cls("", menuClick ? "fixed left-0 top-0 inline-block " : "hidden ")}>
                     <div onClick={() => setMenuClick(false)} className={cls(" absolute top-0 left-0  h-screen w-screen bg-black bg-opacity-20 "

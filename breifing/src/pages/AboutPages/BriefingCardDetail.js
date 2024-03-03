@@ -68,10 +68,10 @@ const BriefingCardDetail = () => {
     };
 
     return (
-        <div className="h-screen flex flex-col bg-white">
+        <div className=" h-screen flex flex-col bg-white">
             {renderHelmet()}
             <Header />
-            <div className="flex justify-center">
+            <div className="flex-1 flex justify-center">
                 <div className="xl:w-[1200px] flex-1 p-5 flex justify-center">
                     {loading ? (
                         <div className="sm:w-[768px]">
