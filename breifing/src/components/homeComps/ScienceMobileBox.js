@@ -3,7 +3,6 @@ import BoxItemMobile from "./BoxItemMobile";
 import { useRecoilValue } from "recoil";
 import {
     scienceBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 
 export function ScienceMobileBox() {

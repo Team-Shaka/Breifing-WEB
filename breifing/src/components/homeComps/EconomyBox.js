@@ -2,15 +2,12 @@ import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
     economyBriefingState,
-    socialBriefingState,
 } from "../../recoil/atoms/briefingListState";
 import axios from "axios";
 import {
     dateState,
     timeOfDayState,
 } from "../../recoil/atoms/managingDateState";
-import GlobalMobileBox from "./GlobalMobileBox";
-import GlobalDesktopBox from "./GlobalDesktopBox";
 import EconomyDesktopBox from "./EconomyDesktopBox";
 import EconomyMobileBox from "./EconomyMobileBox";
 

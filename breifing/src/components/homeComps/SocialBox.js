@@ -6,8 +6,8 @@ import {
     dateState,
     timeOfDayState,
 } from "../../recoil/atoms/managingDateState";
-import DesktopBox, { SocialDesktopBox } from "./SocialDesktopBox";
-import MobileBox, { SocialMobileBox } from "./SocialMobileBox";
+import  { SocialDesktopBox } from "./SocialDesktopBox";
+import  { SocialMobileBox } from "./SocialMobileBox";
 
 export default function SocialBox() {
     const [briefingList, setBriefingList] = useRecoilState(socialBriefingState);
