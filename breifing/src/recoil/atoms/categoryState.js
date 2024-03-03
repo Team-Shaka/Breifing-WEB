@@ -2,5 +2,5 @@ import { atom } from "recoil";
 
 export const categoryState = atom({
     key: "categoryState",
-    default: 0
+    default: "전체"
 });
