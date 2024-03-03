@@ -34,7 +34,7 @@ const BriefingCardDetail = () => {
     useEffect(() => {
         axios
             .get(
-                `${process.env.REACT_APP_BASE_URL}/v2/briefings/${window.atob(id)}`
+                `${process.env.REACT_APP_BASE_URL}/v2/briefings/${id}`
             )
             .then((res) => {
                 console.log(res);
