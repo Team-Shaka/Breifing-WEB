@@ -71,60 +71,63 @@ const BriefingCardDetail = () => {
         <div className="h-screen flex flex-col bg-white">
             {renderHelmet()}
             <Header />
-            <div className="xl:w-[1200px] flex-1 p-5 flex justify-center">
-                {loading ? (
-                    <div className="sm:w-[768px]">
-                        <div className="flex flex-col border-b space-y-2 pb-2">
-                            <div className="flex">
-                                <div className="px-2 py-1 rounded-full text-[#0072E7] bg-[#0072E7] bg-opacity-10">
-                                    {category.map((c) => c.eng === data.type ? `${c.kor}` : "")}{data.ranks}
+            <div className="flex justify-center">
+                <div className="xl:w-[1200px] flex-1 p-5 flex justify-center">
+                    {loading ? (
+                        <div className="sm:w-[768px]">
+                            <div className="flex flex-col border-b space-y-2 pb-2">
+                                <div className="flex">
+                                    <div className="px-2 py-1 rounded-full text-[#0072E7] bg-[#0072E7] bg-opacity-10">
+                                        {category.map((c) => c.eng === data.type ? `${c.kor}` : "")}{data.ranks}
+                                    </div>
+                                </div>
+
+                                <span className="font-bold text-3xl">
+                                    {data.title}
+                                </span>
+                                <span className="text-[#7C7C7C] text-sm">
+                                    {data.date} | {" "}{category.map((c) => c.eng === data.type ? `${c.kor}` : "")}
+                                    #{data.ranks} | GPT-3로 생성됨
+                                </span>
+                            </div>
+                            <div className="py-4 space-y-4 border-b">
+                                <div className="font-bold text-xl">
+                                    {data.subtitle}
+                                </div>
+
+                                <div className="text-[17px]">{data.content}</div>
+                            </div>
+                            <div className="space-y-3 py-3">
+                                <span className="text-xl font-bold ml-2">
+                                    관련 기사
+                                </span>
+                                <div className="space-y-3">
+                                    {data.articles.map((article) => (
+                                        <div
+                                            onClick={() =>
+                                                handleOpenNewTab(article.url)
+                                            }
+                                            className="border border-black flex flex-col py-1 px-2"
+                                        >
+                                            <span className="text-sm font-bold">
+                                                뉴스
+                                            </span>
+                                            <span className="text-[15px]">
+                                                {article.title}
+                                            </span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-
-                            <span className="font-bold text-3xl">
-                                {data.title}
-                            </span>
-                            <span className="text-[#7C7C7C] text-sm">
-                                {data.date} | {" "}{category.map((c) => c.eng === data.type ? `${c.kor}` : "")}
-                                #{data.ranks} | GPT-3로 생성됨
-                            </span>
                         </div>
-                        <div className="py-4 space-y-4 border-b">
-                            <div className="font-bold text-xl">
-                                {data.subtitle}
-                            </div>
-
-                            <div className="text-[17px]">{data.content}</div>
+                    ) : (
+                        <div className="w-full h-full flex justify-center items-center">
+                            <span className="loading loading-spinner loading-lg text-primaryBgColor"></span>
                         </div>
-                        <div className="space-y-3 py-3">
-                            <span className="text-xl font-bold ml-2">
-                                관련 기사
-                            </span>
-                            <div className="space-y-3">
-                                {data.articles.map((article) => (
-                                    <div
-                                        onClick={() =>
-                                            handleOpenNewTab(article.url)
-                                        }
-                                        className="border border-black flex flex-col py-1 px-2"
-                                    >
-                                        <span className="text-sm font-bold">
-                                            뉴스
-                                        </span>
-                                        <span className="text-[15px]">
-                                            {article.title}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="w-full h-full flex justify-center items-center">
-                        <span className="loading loading-spinner loading-lg text-primaryBgColor"></span>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
+
             <Footer />
         </div>
     );
