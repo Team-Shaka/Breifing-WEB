@@ -1,5 +1,6 @@
 import React from "react";
 import BoxItemShort from "./BoxItemShort";
+import image from "../../assets/images/global_image.svg";
 
 export default function GlobalDesktopBox({ briefingList, date, timeOfDay }) {
   // Filling the array with empty objects to make sure the length is 10
@@ -140,8 +141,8 @@ export default function GlobalDesktopBox({ briefingList, date, timeOfDay }) {
                   timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
                 />
               )}{" "}
-              <div className="w-full h-[200px] mt-[12px] flex justify-center items-center bg-pink-50">
-                Image
+              <div className="w-full h-[200px] mt-[12px] flex justify-center items-center ">
+                <img src={image} alt="=Global" className="w-full h-auto" />
               </div>
             </div>
           </div>

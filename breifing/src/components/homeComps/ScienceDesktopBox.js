@@ -1,6 +1,7 @@
 import React from "react";
 import BoxItemShort from "./BoxItemShort";
 import BoxItemLong from "./BoxItemLong";
+import image from "../../assets/images/science_image.svg";
 
 export function ScienceDesktopBox({ briefingList, date, timeOfDay }) {
   // Filling the array with empty objects to make sure the length is 10
@@ -70,8 +71,8 @@ export function ScienceDesktopBox({ briefingList, date, timeOfDay }) {
                 )}
               </div>
               <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
-              <div className=" w-1/2 flex justify-center items-center bg-pink-50">
-                Image
+              <div className=" w-1/2 flex justify-center items-center">
+                <img src={image} alt="Science" className="w-full h-auto" />
               </div>
             </div>
             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>

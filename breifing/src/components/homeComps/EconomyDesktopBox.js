@@ -1,5 +1,6 @@
 import React from "react";
 import BoxItemShort from "./BoxItemShort";
+import image from "../../assets/images/economy_image.svg";
 
 export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
   // Filling the array with empty objects to make sure the length is 10
@@ -98,8 +99,8 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
           <div className="w-full flex">
             {" "}
             <div className="flex flex-col justify-end w-5/12">
-              <div className="w-full h-[200px] mb-[12px] flex justify-center items-center bg-pink-50">
-                Image
+              <div className="w-full h-[200px] mb-[12px] flex justify-center items-center">
+                <img src={image} alt="Economy" className="w-full h-auto" />
               </div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
