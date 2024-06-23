@@ -272,5 +272,138 @@ export default function GlobalDesktopBox() {
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     );
+=======
+      </div>
+      {/* Cards */}
+      <div className="flex justify-around mt-3">
+        <div className="lg:flex w-full">
+          {/* Left Section */}
+          <div className="w-full flex">
+            <div className="flex-col w-1/2">
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[0].ranks || "No data"}
+                  title={filledBriefingList[0].title || "No data"}
+                  subtitle={filledBriefingList[0].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[1].ranks || "No data"}
+                  title={filledBriefingList[1].title || "No data"}
+                  subtitle={filledBriefingList[1].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[2].ranks || "No data"}
+                  title={filledBriefingList[2].title || "No data"}
+                  subtitle={filledBriefingList[2].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+            </div>
+            {/* 세로 구분선 */}
+            <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
+
+            <div className="flex-col w-1/2">
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[3].ranks || "No data"}
+                  title={filledBriefingList[3].title || "No data"}
+                  subtitle={filledBriefingList[3].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[4].ranks || "No data"}
+                  title={filledBriefingList[4].title || "No data"}
+                  subtitle={filledBriefingList[4].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[5].ranks || "No data"}
+                  title={filledBriefingList[5].title || "No data"}
+                  subtitle={filledBriefingList[5].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+            </div>
+          </div>
+          <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
+          <div className="lg:hidden bg-[#B6B6B6] h-[1px] my-4"></div>
+
+          {/* Right Section */}
+          <div className="w-full flex">
+            {" "}
+            <div className="flex-col w-7/12">
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[6].ranks || "No data"}
+                  title={filledBriefingList[6].title || "No data"}
+                  subtitle={filledBriefingList[6].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[7].ranks || "No data"}
+                  title={filledBriefingList[7].title || "No data"}
+                  subtitle={filledBriefingList[7].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[8].ranks || "No data"}
+                  title={filledBriefingList[8].title || "No data"}
+                  subtitle={filledBriefingList[8].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+            </div>
+            {/* 세로 구분선 */}
+            <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
+            <div className="flex-col w-5/12">
+              {filledBriefingList.length > 0 && (
+                <BoxItemShort
+                  rank={filledBriefingList[9].ranks || "No data"}
+                  title={filledBriefingList[9].title || "No data"}
+                  subtitle={filledBriefingList[9].subtitle || "No data"}
+                  date={date}
+                  timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                />
+              )}{" "}
+              <div className="w-full h-[200px] mt-[12px] flex justify-center items-center ">
+                <img src={image} alt="=Global" className="w-auto h-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+>>>>>>> 65ff01f (Refactor image sizing in desktop boxes)
 }

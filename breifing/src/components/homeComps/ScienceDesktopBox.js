@@ -30,10 +30,37 @@ export function ScienceDesktopBox() {
             {/* Title */}
             <div className="flex items-center">
                 {" "}
+<<<<<<< HEAD
                 <div className="text-base font-bold mr-2">과학</div>
                 <div className="text-sm font-normal text-[#B0B0B0]">
                     AI가 선정한 오늘의 과학 키워드
                 </div>
+=======
+                {filledBriefingList.length > 0 && (
+                  <BoxItemShort
+                    rank={filledBriefingList[6].ranks || "No data"}
+                    title={filledBriefingList[6].title || "No data"}
+                    subtitle={filledBriefingList[6].subtitle || "No data"}
+                    date={date}
+                    timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                  />
+                )}
+                <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
+                {filledBriefingList.length > 0 && (
+                  <BoxItemShort
+                    rank={filledBriefingList[7].ranks || "No data"}
+                    title={filledBriefingList[7].title || "No data"}
+                    subtitle={filledBriefingList[7].subtitle || "No data"}
+                    date={date}
+                    timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
+                  />
+                )}
+              </div>
+              <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
+              <div className=" w-1/2 flex justify-center items-center">
+                <img src={image} alt="Science" className="w-auto h-full" />
+              </div>
+>>>>>>> 65ff01f (Refactor image sizing in desktop boxes)
             </div>
             {/* Cards */}
             <div className="flex justify-around mt-3">
