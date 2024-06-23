@@ -77,6 +77,7 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
                   timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
                 />
               )}
+
             </div>
           </div>
           <div className="hidden lg:block bg-[#B6B6B6] w-[1px] mx-7 h-full"></div>

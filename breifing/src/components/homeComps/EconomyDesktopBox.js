@@ -144,6 +144,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
                   timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
                 />
               )}{" "}
+
             </div>
           </div>
         </div>

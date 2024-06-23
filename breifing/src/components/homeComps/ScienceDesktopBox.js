@@ -3,6 +3,7 @@ import BoxItemShort from "./BoxItemShort";
 import BoxItemLong from "./BoxItemLong";
 import image from "../../assets/images/science_image.svg";
 
+
 export function ScienceDesktopBox({ briefingList, date, timeOfDay }) {
   // Filling the array with empty objects to make sure the length is 10
   const filledBriefingList = [...briefingList];
@@ -49,6 +50,7 @@ export function ScienceDesktopBox({ briefingList, date, timeOfDay }) {
           <div className="w-full flex flex-col">
             <div className="flex w-full">
               <div className="flex-col w-1/2">
+
                 {" "}
                 {filledBriefingList.length > 0 && (
                   <BoxItemShort
@@ -97,6 +99,7 @@ export function ScienceDesktopBox({ briefingList, date, timeOfDay }) {
                   timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
                 />
               )}
+
             </div>
           </div>
         </div>

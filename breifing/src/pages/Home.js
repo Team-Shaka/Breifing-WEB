@@ -27,6 +27,7 @@ const Home = () => {
         }
       },
       { rootMargin: "100px" }
+
     );
 
     if (lastElementRef.current) {

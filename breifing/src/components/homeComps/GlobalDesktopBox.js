@@ -2,6 +2,7 @@ import React from "react";
 import BoxItemShort from "./BoxItemShort";
 import image from "../../assets/images/global_image.svg";
 
+
 export default function GlobalDesktopBox({ briefingList, date, timeOfDay }) {
   // Filling the array with empty objects to make sure the length is 10
   const filledBriefingList = [...briefingList];
@@ -144,6 +145,7 @@ export default function GlobalDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="w-full h-[200px] mt-[12px] flex justify-center items-center ">
                 <img src={image} alt="=Global" className="w-auto h-full" />
               </div>
+
             </div>
           </div>
         </div>

@@ -7,7 +7,6 @@ export function ScienceMobileBox({ briefingList, date, timeOfDay }) {
   while (filledBriefingList.length < 10) {
     filledBriefingList.push({ ranks: filledBriefingList.length + 1 });
   }
-
   return (
     <div className="flex-col">
       {/* Title */}
@@ -16,6 +15,7 @@ export function ScienceMobileBox({ briefingList, date, timeOfDay }) {
         <div className="text-base font-bold mr-2">과학</div>
         <div className="text-sm font-normal text-[#B0B0B0]">
           AI가 선정한 오늘의 과학 키워드
+
         </div>
       </div>
       {/* Cards */}
