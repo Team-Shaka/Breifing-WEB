@@ -100,7 +100,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
             {" "}
             <div className="flex flex-col justify-end w-5/12">
               <div className="w-full h-[200px] mb-[12px] flex justify-center items-center">
-                <img src={image} alt="Economy" className="w-full h-auto" />
+                <img src={image} alt="Economy" className="w-auto h-full" />
               </div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort

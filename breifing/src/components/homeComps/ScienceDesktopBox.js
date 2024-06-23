@@ -72,7 +72,7 @@ export function ScienceDesktopBox({ briefingList, date, timeOfDay }) {
               </div>
               <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
               <div className=" w-1/2 flex justify-center items-center">
-                <img src={image} alt="Science" className="w-full h-auto" />
+                <img src={image} alt="Science" className="w-auto h-full" />
               </div>
             </div>
             <div className="bg-[#B6B6B6] h-[1px] my-4"></div>

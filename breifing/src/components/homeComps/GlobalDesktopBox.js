@@ -142,7 +142,7 @@ export default function GlobalDesktopBox({ briefingList, date, timeOfDay }) {
                 />
               )}{" "}
               <div className="w-full h-[200px] mt-[12px] flex justify-center items-center ">
-                <img src={image} alt="=Global" className="w-full h-auto" />
+                <img src={image} alt="=Global" className="w-auto h-full" />
               </div>
             </div>
           </div>
