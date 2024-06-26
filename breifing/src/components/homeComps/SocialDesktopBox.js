@@ -32,6 +32,7 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
                 {" "}
                 {filledBriefingList.length > 0 && (
                   <BoxItemShort
+                    id={filledBriefingList[0].id}
                     rank={filledBriefingList[0].ranks || "No data"}
                     title={filledBriefingList[0].title || "No data"}
                     subtitle={filledBriefingList[0].subtitle || "No data"}
@@ -42,6 +43,7 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
                 <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
                 {filledBriefingList.length > 0 && (
                   <BoxItemShort
+                    id={filledBriefingList[1].id}
                     rank={filledBriefingList[1].ranks || "No data"}
                     title={filledBriefingList[1].title || "No data"}
                     subtitle={filledBriefingList[1].subtitle || "No data"}
@@ -60,6 +62,7 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
               {" "}
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[2].id}
                   rank={filledBriefingList[2].ranks || "No data"}
                   title={filledBriefingList[2].title || "No data"}
                   subtitle={filledBriefingList[2].subtitle || "No data"}
@@ -70,6 +73,7 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] w-[1px] mx-7"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[3].id}
                   rank={filledBriefingList[3].ranks || "No data"}
                   title={filledBriefingList[3].title || "No data"}
                   subtitle={filledBriefingList[3].subtitle || "No data"}
@@ -77,7 +81,6 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
                   timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
                 />
               )}
-
             </div>
           </div>
           <div className="hidden lg:block bg-[#B6B6B6] w-[1px] mx-7 h-full"></div>
@@ -87,6 +90,7 @@ export function SocialDesktopBox({ briefingList, date, timeOfDay }) {
             {rightSectionBriefings.map((briefing, index) => (
               <React.Fragment key={index}>
                 <BoxItemLong
+                  id={briefing.id}
                   rank={briefing.ranks || "No data"}
                   title={briefing.title || "No data"}
                   subtitle={briefing.subtitle || "No data"}
