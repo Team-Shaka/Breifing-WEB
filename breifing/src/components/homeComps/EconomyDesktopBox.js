@@ -29,6 +29,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
             <div className="flex-col w-1/2">
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[0].id}
                   rank={filledBriefingList[0].ranks || "No data"}
                   title={filledBriefingList[0].title || "No data"}
                   subtitle={filledBriefingList[0].subtitle || "No data"}
@@ -39,6 +40,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[1].id}
                   rank={filledBriefingList[1].ranks || "No data"}
                   title={filledBriefingList[1].title || "No data"}
                   subtitle={filledBriefingList[1].subtitle || "No data"}
@@ -49,6 +51,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[2].id}
                   rank={filledBriefingList[2].ranks || "No data"}
                   title={filledBriefingList[2].title || "No data"}
                   subtitle={filledBriefingList[2].subtitle || "No data"}
@@ -63,6 +66,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
             <div className="flex-col w-1/2">
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[3].id}
                   rank={filledBriefingList[3].ranks || "No data"}
                   title={filledBriefingList[3].title || "No data"}
                   subtitle={filledBriefingList[3].subtitle || "No data"}
@@ -73,6 +77,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[4].id}
                   rank={filledBriefingList[4].ranks || "No data"}
                   title={filledBriefingList[4].title || "No data"}
                   subtitle={filledBriefingList[4].subtitle || "No data"}
@@ -83,6 +88,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[5].id}
                   rank={filledBriefingList[5].ranks || "No data"}
                   title={filledBriefingList[5].title || "No data"}
                   subtitle={filledBriefingList[5].subtitle || "No data"}
@@ -104,6 +110,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               </div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[9].id}
                   rank={filledBriefingList[9].ranks || "No data"}
                   title={filledBriefingList[9].title || "No data"}
                   subtitle={filledBriefingList[9].subtitle || "No data"}
@@ -117,6 +124,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
             <div className="flex-col w-7/12">
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[6].id}
                   rank={filledBriefingList[6].ranks || "No data"}
                   title={filledBriefingList[6].title || "No data"}
                   subtitle={filledBriefingList[6].subtitle || "No data"}
@@ -127,6 +135,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[7].id}
                   rank={filledBriefingList[7].ranks || "No data"}
                   title={filledBriefingList[7].title || "No data"}
                   subtitle={filledBriefingList[7].subtitle || "No data"}
@@ -137,6 +146,7 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
               <div className="bg-[#B6B6B6] h-[1px] my-4"></div>
               {filledBriefingList.length > 0 && (
                 <BoxItemShort
+                  id={filledBriefingList[8].id}
                   rank={filledBriefingList[8].ranks || "No data"}
                   title={filledBriefingList[8].title || "No data"}
                   subtitle={filledBriefingList[8].subtitle || "No data"}
@@ -144,7 +154,6 @@ export default function EconomyDesktopBox({ briefingList, date, timeOfDay }) {
                   timeOfDay={timeOfDay === "Morning" ? "오전" : "오후"}
                 />
               )}{" "}
-
             </div>
           </div>
         </div>

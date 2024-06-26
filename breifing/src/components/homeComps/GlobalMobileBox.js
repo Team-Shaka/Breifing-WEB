@@ -16,7 +16,6 @@ export default function GlobalMobileBox({ briefingList, date, timeOfDay }) {
         <div className="text-base font-bold mr-2">글로벌</div>
         <div className="text-sm font-normal text-[#B0B0B0]">
           AI가 선정한 오늘의 글로벌 키워드
-
         </div>
       </div>
       {/* Cards */}
@@ -25,6 +24,7 @@ export default function GlobalMobileBox({ briefingList, date, timeOfDay }) {
           <React.Fragment key={index}>
             <div className="p-5">
               <BoxItemMobile
+                id={briefing.id}
                 rank={briefing.ranks || "No data"}
                 title={briefing.title || "No data"}
                 subtitle={briefing.subtitle || "No data"}
