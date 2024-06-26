@@ -6,6 +6,7 @@ import { EconomyBox } from "../components/homeComps/EconomyBox";
 import { ScienceBox } from "../components/homeComps/ScienceBox";
 import axios from "axios";
 import formatDateWithDay from "../utils/formatDateWithDay";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 const Home = () => {
   const [news, setNews] = useState([]);
@@ -18,26 +19,7 @@ const Home = () => {
     fetchNews(date, timeOfDay);
   }, [date, timeOfDay]);
 
-  // Setup IntersectionObserver to handle infinite scrolling
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !isLoading) {
-          loadMoreNews();
-        }
-      },
-      { rootMargin: "100px" }
-
-    );
-
-    if (lastElementRef.current) {
-      observer.observe(lastElementRef.current);
-    }
-    return () => observer.disconnect();
-  }, [isLoading]);
-
   const loadMoreNews = () => {
-    if (isLoading) return;
     setIsLoading(true);
     let newDate = new Date(date);
     let newTimeOfDay = timeOfDay === "Evening" ? "Morning" : "Evening";
@@ -89,6 +71,8 @@ const Home = () => {
       setIsLoading(false);
     }
   };
+
+  useIntersectionObserver(lastElementRef, loadMoreNews, isLoading);
 
   return (
     <div>
