@@ -28,7 +28,7 @@ export default function GlobalMobileBox({ briefingList, date, timeOfDay }) {
                 rank={briefing.ranks || "No data"}
                 title={briefing.title || "No data"}
                 subtitle={briefing.subtitle || "No data"}
-                scrapCount={briefing.scrapCount || "0"}
+                viewCount={briefing.viewCount || "0"}
               />
             </div>
             {index < filledBriefingList.length - 1 && (
