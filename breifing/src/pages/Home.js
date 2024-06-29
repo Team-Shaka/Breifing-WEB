@@ -111,7 +111,11 @@ const Home = () => {
           />
         </React.Fragment>
       ))}
-      {isLoading && <div>Loading...</div>}
+      {isLoading && (
+        <div className="w-full h-full flex justify-center items-center">
+          <span className="loading loading-spinner loading-lg text-primaryBgColor"></span>
+        </div>
+      )}
       <div ref={lastElementRef} />
     </div>
   );
