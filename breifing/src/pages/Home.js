@@ -9,15 +9,16 @@ import formatDateWithDay from "../utils/formatDateWithDay";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { useRecoilValue } from "recoil";
 import { categoryState } from "../recoil/atoms/categoryState";
+import getCurrentTimeOfDay from "../utils/getCurrentTimeOfDay";
 
 const Home = () => {
   const [news, setNews] = useState([]);
   const [date, setDate] = useState(new Date());
-  const [timeOfDay, setTimeOfDay] = useState("Evening");
+  const [timeOfDay, setTimeOfDay] = useState(getCurrentTimeOfDay());
   const [isLoading, setIsLoading] = useState(false);
   const lastElementRef = useRef(null);
 
-  const category = useRecoilValue(categoryState)
+  const category = useRecoilValue(categoryState);
 
   useEffect(() => {
     fetchNews(date, timeOfDay);
@@ -90,48 +91,53 @@ const Home = () => {
             </div>
           )}
 
-          {category === "전체" || category === "사회" ?
+          {category === "전체" || category === "사회" ? (
             <React.Fragment>
               <SocialBox
                 briefingList={newsItem.social}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-              <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              {category === "전체" && (
+                <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              )}{" "}
             </React.Fragment>
-            : null}
-          {category === "전체" || category === "글로벌" ?
+          ) : null}
+          {category === "전체" || category === "글로벌" ? (
             <React.Fragment>
               <GlobalBox
                 briefingList={newsItem.social}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-              <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              {category === "전체" && (
+                <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              )}{" "}
             </React.Fragment>
-            : null}
+          ) : null}
 
-          {category === "전체" || category === "경제" ?
+          {category === "전체" || category === "경제" ? (
             <React.Fragment>
               <EconomyBox
                 briefingList={newsItem.social}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-              <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              {category === "전체" && (
+                <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              )}{" "}
             </React.Fragment>
-            : null}
+          ) : null}
 
-          {category === "전체" || category === "과학" ?
+          {category === "전체" || category === "과학" ? (
             <React.Fragment>
               <ScienceBox
                 briefingList={newsItem.social}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-
             </React.Fragment>
-            : null}
+          ) : null}
         </React.Fragment>
       ))}
       {isLoading && (
