@@ -98,7 +98,9 @@ const Home = () => {
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-              <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              {category === "전체" && (
+                <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              )}{" "}
             </React.Fragment>
           ) : null}
           {category === "전체" || category === "글로벌" ? (
@@ -108,7 +110,9 @@ const Home = () => {
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-              <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              {category === "전체" && (
+                <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              )}{" "}
             </React.Fragment>
           ) : null}
 
@@ -119,7 +123,9 @@ const Home = () => {
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
-              <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              {category === "전체" && (
+                <div className="bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px]"></div>
+              )}{" "}
             </React.Fragment>
           ) : null}
 
