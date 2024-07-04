@@ -5,13 +5,17 @@ import BriefChat from "./pages/BriefChat";
 import Storage from "./pages/Storage";
 import Ready from "./pages/Ready";
 import BriefList from "./pages/ManagePages/BriefList";
-import Home from "./pages/HomePages/Home";
-import BriefingCardDetail from "./pages/HomePages/BriefingCardDetail";
+import About from "./pages/AboutPages/About";
+import BriefingCardDetail from "./pages/AboutPages/BriefingCardDetail";
 import ManageBriefDetail from "./pages/ManagePages/ManageBriefDetail";
+import Home from "./pages/Home";
+import { useEffect } from "react";
+import SetDateAndTimeOfDay from "./utils/setDateAndTimeOfDay";
 
 function App() {
     return (
         <div>
+            <SetDateAndTimeOfDay />
             <Routes>
                 {/* <Route path="/briefChat" element={<Ready />} />
                 <Route path="/storage" element={<Storage />} /> */}
@@ -20,8 +24,12 @@ function App() {
                     path="/managing/briefing/:id"
                     element={<ManageBriefDetail />}
                 />
+                <Route path="/about" element={<About />} />
+                <Route
+                    path="/briefingCard/:id"
+                    element={<BriefingCardDetail />}
+                />
                 <Route path="/" element={<Home />} />
-                <Route path="/briefingCard/:id" element={<BriefingCardDetail />} />
             </Routes>
         </div>
     );

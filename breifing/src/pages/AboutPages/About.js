@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "../../components/homeComps/Header";
-import Footer from "../../components/homeComps/Footer";
-import BriefingCardList from "../../components/homeComps/BriefingCardList";
-import IntroduceSection1 from "../../components/homeComps/IntroduceSection1";
-import IntroduceSection2 from "../../components/homeComps/IntroduceSection2";
-import InstallSection from "../../components/homeComps/InstallSection";
+import Header from "../../components/aboutComps/Header";
+import Footer from "../../components/aboutComps/Footer";
+import BriefingCardList from "../../components/aboutComps/BriefingCardList";
+import IntroduceSection1 from "../../components/aboutComps/IntroduceSection1";
+import IntroduceSection2 from "../../components/aboutComps/IntroduceSection2";
+import InstallSection from "../../components/aboutComps/InstallSection";
 import { Helmet } from "react-helmet";
 
-const Home = () => {
+const About = () => {
     return (
         <div>
             <Helmet>
@@ -43,4 +43,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default About;
