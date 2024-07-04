@@ -1,6 +1,6 @@
 const getCurrentTimeOfDay = () => {
   const currentHour = new Date().getHours();
-  if (currentHour >= 4 && currentHour < 16) {
+  if (currentHour >= 5 && currentHour < 17) {
     return "Morning";
   } else {
     return "Evening";
