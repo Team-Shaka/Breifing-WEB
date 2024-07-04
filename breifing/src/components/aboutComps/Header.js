@@ -58,7 +58,7 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          <div className="visible xs:invisible text-primaryBgColor font-bold text-lg cursor-pointer">
+          <div onClick={() => navigate("/")} className="visible xs:invisible text-primaryBgColor font-bold text-lg cursor-pointer">
             Briefing
           </div>
           <div>
@@ -81,7 +81,7 @@ const Header = () => {
           </div>
           <div className="opacity-0">dfsdfsdfdfs</div>
         </div>
-        {location.pathname === "/" ? <SelectBar /> : null}
+        <SelectBar />
 
         <div
           className={cls(
