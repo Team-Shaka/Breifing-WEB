@@ -5,7 +5,7 @@ import { GlobalBox } from "../components/homeComps/GlobalBox";
 import { EconomyBox } from "../components/homeComps/EconomyBox";
 import { ScienceBox } from "../components/homeComps/ScienceBox";
 import axios from "axios";
-import formatDateWithDay from "../utils/formatDateWithDay";
+import { formatDateWithDay } from "../utils/dateFormatter";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { useRecoilValue } from "recoil";
 import { categoryState } from "../recoil/atoms/categoryState";
@@ -85,7 +85,7 @@ const Home = () => {
       {news.map((newsItem, index) => (
         <React.Fragment key={index}>
           {newsItem.date && index !== 0 && (
-            <div className="my-4 mx-auto flex justify-center sm:justify-start sm:px-16 py-2 text-base text-[#306DAB] w-[calc(100%-1rem)] rounded-lg xl:w-[1170px] bg-[#0072E721]">
+            <div className="my-4 mx-auto flex justify-center sm:justify-start sm:px-16 py-2 text-base text-[#306DAB] w-[calc(100%-1rem)] rounded-lg xl:w-[1200px] bg-[#0072E721]">
               {formatDateWithDay(new Date(newsItem.date))}{" "}
               {newsItem.timeOfDay === "Morning" ? "아침" : "저녁"} 브리핑
             </div>
