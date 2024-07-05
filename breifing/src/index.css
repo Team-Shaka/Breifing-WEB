@@ -14,33 +14,57 @@ code {
 
 body {
   margin: 0;
-  font-family: "product-sans";
+  font-family: "Pretendard", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
-  color: black
+  color: black;
 }
 
 /* ManagingDatePicker */
 .MuiOutlinedInput-notchedOutline {
-    border: none !important;
+  border: none !important;
 }
 .MuiInputBase-input {
-    color: white !important;
-    text-align: center !important;
-    font-weight: 400 !important;
+  color: white !important;
+  text-align: center !important;
+  font-weight: 400 !important;
 }
 
 /* 화면 너비가 375px 이상일 때 */
 @media (min-width: 375px) {
-    .MuiInputBase-input {
-        font-size: 15px !important;
-    }
+  .MuiInputBase-input {
+    font-size: 15px !important;
+  }
 }
 
 /* 화면 너비가 810px 이상일 때 */
 @media (min-width: 810px) {
-    .MuiInputBase-input {
-        font-size: 23px !important;
-    }
+  .MuiInputBase-input {
+    font-size: 23px !important;
+  }
+}
+
+@font-face {
+  font-family: Pretendard;
+  font-weight: 400;
+  src: local("Pretendard Regular"),
+    url("./assets/fonts/pretendard/Pretendard-Regular.woff") format("woff"),
+    url("./assets/fonts/pretendard/Pretendard-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Pretendard;
+  font-weight: 500;
+  src: local("Pretendard Medium"),
+    url("./assets/fonts/pretendard/Pretendard-Medium.woff") format("woff"),
+    url("./assets/fonts/pretendard/Pretendard-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Pretendard;
+  font-weight: 700;
+  src: local("Pretendard Bold"),
+    url("./assets/fonts/pretendard/Pretendard-Bold.woff") format("woff"),
+    url("./assets/fonts/pretendard/Pretendard-Bold.woff2") format("woff2");
 }

@@ -32,7 +32,7 @@ const Header = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className=" w-6 h-6"
+                className="w-6 h-6"
               >
                 <path
                   strokeLinecap="round"
@@ -58,10 +58,13 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          <div onClick={() => navigate("/")} className="visible xs:invisible text-primaryBgColor font-bold text-lg cursor-pointer">
+          <div
+            onClick={() => navigate("/")}
+            className="visible xs:invisible text-primaryBgColor font-bold text-lg cursor-pointer"
+          >
             Briefing
           </div>
-          <div>
+          <div className="px-4">
             <BsPerson size={30} />
           </div>
         </div>
