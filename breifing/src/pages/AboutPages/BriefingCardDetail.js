@@ -96,17 +96,7 @@ const BriefingCardDetail = () => {
                   {data.subtitle}
                 </div>
 
-                <div className="text-[16px] leading-7">
-                  {/* {data.content} */}
-                  배터리 혁명은 현대 산업과 일상 생활에 혁명적인 변화를
-                  가져왔다. 전기 자동차 및 이동식 장치들은 더 큰 용량과 효율성을
-                  가진 배터리로 긴 주행거리와 높은 성능을 실현하였다. 또한 재생
-                  에너지 저장 시스템으로 활용되어 전력 그리드 안정성을
-                  증진시키고 친환경 에너지 전환을 촉진하고 있다. 연구의 진보로
-                  배터리 수명과 충전 시간이 개선되며, 이는 모바일 기기부터
-                  심지어 대규모 에너지 저장까지 다양한 분야에서 혁신을 이뤄내고
-                  있다.
-                </div>
+                <div className="text-[16px] leading-7">{data.content}</div>
               </div>
               <div className="space-y-3 py-3">
                 <span className="text-xl font-bold ml-2">관련 기사</span>
