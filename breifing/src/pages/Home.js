@@ -84,13 +84,23 @@ const Home = () => {
       <Header />
       {news.map((newsItem, index) => (
         <React.Fragment key={index}>
-          {newsItem.date && index !== 0 && (
-            <div className="my-4 mx-auto flex justify-center sm:justify-start sm:px-16 py-2 text-base text-[#306DAB] w-[calc(100%-1rem)] rounded-lg xl:w-[1200px] bg-[#0072E721]">
-              {formatDateWithDay(new Date(newsItem.date))}{" "}
-              {newsItem.timeOfDay === "Morning" ? "아침" : "저녁"} 브리핑
-            </div>
+          {newsItem.date && (
+            <>
+              <div
+                className={`my-4 flex justify-center sm:justify-start mx-auto sm:px-16 py-2  text-base text-[#306DAB] w-[calc(100%-4rem)] xl:w-[1200px] rounded-lg  bg-[#0072E721] ${
+                  index === 0 ? "flex sm:hidden" : ""
+                }`}
+              >
+                {formatDateWithDay(new Date(newsItem.date))}{" "}
+                {newsItem.timeOfDay === "Morning" ? "아침" : "저녁"} 브리핑
+              </div>
+              <div
+                className={`bg-black h-[1px] my-4 mx-auto px-2 w-[calc(100%-1rem)] xl:w-[1170px] ${
+                  index === 0 ? "flex sm:hidden" : ""
+                }`}
+              ></div>
+            </>
           )}
-
           {category === "전체" || category === "사회" ? (
             <React.Fragment>
               <SocialBox
