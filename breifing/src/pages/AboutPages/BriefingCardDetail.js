@@ -24,6 +24,8 @@ const category = [
     kor: "과학",
   },
 ];
+
+
 const BriefingCardDetail = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
@@ -91,7 +93,7 @@ const BriefingCardDetail = () => {
                   생성됨
                 </span>
               </div>
-              <div className="py-4 space-y-4 border-b">
+              <div className="py-4 space-y-4">
                 <div className="font-semibold text-xl leading-7">
                   {data.subtitle}
                 </div>
@@ -99,15 +101,19 @@ const BriefingCardDetail = () => {
                 <div className="text-[16px] leading-7">{data.content}</div>
               </div>
               <div className="space-y-3 py-3">
-                <span className="text-xl font-bold ml-2">관련 기사</span>
+                <div className="border-b pb-2">
+                  <span className="text-xl font-bold">관련 기사</span>
+                </div>
+
                 <div className="space-y-3">
                   {data.articles.map((article) => (
                     <div
                       onClick={() => handleOpenNewTab(article.url)}
-                      className="border border-black flex flex-col py-1 px-2"
+                      key={article.id}
+                      className="border-b flex flex-col py-2 space-y-2 "
                     >
-                      <span className="text-sm font-bold">뉴스</span>
-                      <span className="text-[15px]">{article.title}</span>
+                      <span className="text-[16px]">{article.title.split("-")[0]}</span>
+                      <span className="text-[14px]">{article.press}</span>
                     </div>
                   ))}
                 </div>
