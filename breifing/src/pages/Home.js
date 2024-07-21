@@ -116,7 +116,7 @@ const Home = () => {
           {category === "전체" || category === "글로벌" ? (
             <React.Fragment>
               <GlobalBox
-                briefingList={newsItem.social}
+                briefingList={newsItem.global}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
@@ -129,7 +129,7 @@ const Home = () => {
           {category === "전체" || category === "경제" ? (
             <React.Fragment>
               <EconomyBox
-                briefingList={newsItem.social}
+                briefingList={newsItem.economy}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
@@ -142,7 +142,7 @@ const Home = () => {
           {category === "전체" || category === "과학" ? (
             <React.Fragment>
               <ScienceBox
-                briefingList={newsItem.social}
+                briefingList={newsItem.science}
                 date={date.toISOString().split("T")[0]}
                 timeOfDay={timeOfDay}
               />
